@@ -1,0 +1,87 @@
+.site-footer {
+    margin-top: 4rem;
+    color: #f0eee9;
+    font-size: 15px;
+}
+
+/* Partie haute : le bloc brun avec les colonnes */
+.footer-main {
+    display: flex;
+    gap: 3rem;
+    background: #4a3128;            /* brun du logo, légèrement assombri */
+    padding: 3rem 40px;
+}
+
+/* Colonne marque (plus large que les autres) */
+.footer-brand {
+    flex: 1.6;
+}
+
+.footer-brand img {
+    height: 52px;
+    width: auto;
+    margin-bottom: 1.2rem;
+    /* le logo a un fond clair : on lui donne un petit cadre crème */
+    background: #f0eee9;
+    padding: 6px;
+    border-radius: 4px;
+}
+
+.footer-brand p {
+    margin: 0;
+    line-height: 1.6;
+    color: #d8cfc7;                 /* crème un peu adouci pour le paragraphe */
+    max-width: 38ch;
+}
+
+/* Colonnes de liens */
+.footer-col {
+    flex: 1;
+}
+
+.footer-col h3 {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #f0eee9;
+    margin: 0.4rem 0 1.4rem 0;
+}
+
+.footer-col ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+}
+
+.footer-col a {
+    color: #d8cfc7;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.footer-col a:hover {
+    color: #8fb0c2;                 /* le bleu ardoise du logo, en clair, au survol */
+}
+
+/* Barre de copyright */
+.footer-bottom {
+    background: #3a261f;            /* brun encore plus sombre, comme la réf */
+    padding: 1rem 40px;
+    text-align: right;
+    font-size: 13px;
+    color: #b8aaa0;
+}
+
+.footer-bottom a {
+    color: #f0eee9;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.footer-bottom a:hover {
+    color: #8fb0c2;
+}

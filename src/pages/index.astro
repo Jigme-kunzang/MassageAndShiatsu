@@ -1,17 +1,114 @@
 ---
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import GoogleReview from "../components/GoogleReview.astro";
 
+import '../styles/globals.css'
+import '../styles/index.css'
 ---
 
-<html lang="en">
+<html lang="fr">
 	<head>
 		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
+		<script>import '../scripts/cards'</script>
+		<title>Massage et shiatsu</title>
 	</head>
 	<body>
-		<h1>Astro</h1>
+		<Header/>
+		
+		<section class="intro-prestations">
+		  	<p class="eyebrow">Prestations</p>
+		  	<h2>Un accompagnement adapté à chacun</h2>
+		  	<p class="lead">
+		  	  	Chaque séance est pensée selon votre état du moment : récupération après le
+		  	  	sport, besoin de souffler, traversée d'une période difficile. Mon approche
+		  	  	reste simple, humaine et personnalisée. Découvrez les pratiques que je propose.
+		  	</p>
+		  
+		  	<ul class="prestations-list">
+		  	  	<li><strong>Massages</strong> — un moment de détente, du cœur à cœur.</li>
+		  	  	<li><strong>Abhyanga</strong> — massage indien à l'huile chaude.</li>
+		  	  	<li><strong>Shiatsu</strong> — discipline japonaise qui relance l'énergie.</li>
+		  	  	<li><strong>Chi Nei Tsang</strong> — massage du ventre qui dénoue les tensions.</li>
+		  	</ul>
+
+			<figure class="prestations-quote">
+  			  	<blockquote>Un corps en bonne santé est la chambre d'hôte de l'âme.</blockquote>
+  			  	<figcaption>Francis Bacon</figcaption>
+  			</figure>
+		</section>
+
+		<section class="feature-cards">
+  			<div class="sticky">
+  			  	<div class="cards">
+  			  	  	<article class="card card--image card--dark">
+  			  	  	  	<div class="inner">
+  			  	  	  	  	<a href="/prestations/massages"><img src="/pictures/massage1.jpg" alt="" /></a>
+  			  	  	  	  	<div class="label top"><span class="dot"></span> Massages</div>
+							<div class="body">
+								<div class="title">
+									<h2>Massages</h2>
+									<p class="subtitle">Du cœur à cœur</p>
+								</div>
+								<div class="wap">
+									<p class="long">Chaque massage est adapté à votre état du moment. Que vous sortiez d'un entraînement ou que vous cherchiez simplement à souffler, mon approche reste simple, humaine et personnalisée. Je vous reçois dans un lieu chaleureux, propice à la détente, où l'on prend le temps de discuter avant la séance. Le massage est une communication du cœur à cœur, de l'intime à l'essentiel.</p>
+									<p class="short">Une approche simple, humaine et personnalisée, du cœur à cœur.</p>
+								</div>
+							</div>
+  			  	  	  	</div>
+  			  	  	</article>
+				  
+					<article class="card card--image card--dark">
+						<div class="inner">
+							<a href="/prestations/abhyanga"><img src="/pictures/abhyanga.jpg" alt="" /></a>
+							<div class="label top"><span class="dot"></span> Abhyanga</div>
+          					<div class="body">
+							  	<h2>Abhyanga</h2>
+							  	<p class="subtitle">Nourrir le corps</p>
+								<div class="swap">
+									<p class="long">L'abhyanga est un massage indien traditionnel à l'huile chaude, issu de l'ayurvéda, la « science de la vie ». L'huile nourrit les tissus en profondeur et favorise la libre circulation des fluides et de l'énergie. Pratiqué pour rééquilibrer les trois doshas, il tonifie autant qu'il relâche. Une parenthèse qui améliore la circulation, détend les muscles et rétablit l'humeur.</p>
+									<p class="short">Massage indien à l'huile chaude qui nourrit les tissus et rééquilibre l'énergie.</p>
+								</div>
+							</div>
+						</div>
+					</article>
+
+  			  	  	<article class="card card--image card--dark">
+  			  	  	  	<div class="inner">
+  			  	  	  	  	<a href="prestations/shiatsu"><img src="/pictures/shiatsu2.jpg" alt="" /></a>
+  			  	  	  	  	<div class="label top"><span class="dot"></span> Shiatsu</div>
+							<div class="body">
+							  	<h2>Shiatsu</h2>
+							  	<p class="subtitle">L'énergie qui circule</p>
+								<div class="swap">
+									<p class="long">Le shiatsu est une discipline énergétique japonaise ancestrale, issue de la médecine traditionnelle chinoise. Par des étirements et des pressions sur des points précis, il facilite la circulation de l'énergie et renforce l'immunité. Il agit immédiatement sur le système nerveux. Le corps s'apaise, la respiration se relâche, l'esprit se calme.</p>
+									<p class="short">Discipline japonaise ancestrale qui relance l'énergie et apaise le corps.</p>
+								</div>
+							</div>
+  			  	  	  	</div>
+  			  	  	</article>
+						  
+  			  	  	<article class="card card--image card--light">
+  			  	  	  	<div class="inner">
+  			  	  	  	  	<a href="prestations/chiNeiTsang"><img src="/pictures/chiNeiTsang.jpg" alt="" /></a>
+  			  	  	  	  	<div class="label top"><span class="dot"></span> Chi Ney Tsang</div>
+							<div class="body">
+								<h2>Chi Nei Tsang</h2>
+								<p class="subtitle">Dénouer ce qui se retient</p>
+								<div class="swap">
+									<p class="long">Le Chi Nei Tsang signifie « transformation de l'énergie ». Les sages taoïstes avaient remarqué que les émotions, le stress et les tensions bloquent la circulation de l'énergie vitale. Par des pressions profondes et douces sur l'abdomen, ce massage lève les stagnations et stimule les organes. Il soulage les douleurs, relance la digestion et apaise les émotions.</p>
+									<p class="short">Un massage doux de l'abdomen pour libérer les tensions et apaiser les émotions.</p>
+								</div>
+							</div>
+  			  	  	  	</div>
+  			  	  	</article>
+  			  	</div>
+  			</div>
+		</section>
+
+		<GoogleReview/>
+		<Footer/>
 	</body>
 </html>

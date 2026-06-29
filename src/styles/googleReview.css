@@ -1,0 +1,27 @@
+.gr { max-width: 1100px; margin: 0 auto; padding: 2rem 1rem; }
+.gr-head { text-align: center; margin-bottom: 1.5rem; }
+.gr-head h2 { margin: 0 0 .5rem; font-size: 1.6rem; }
+.gr-summary { color: #444; margin: 0; }
+.gr-summary a { color: inherit; text-decoration: underline; }
+.gr-stars { color: #f5b400; letter-spacing: 1px; }
+
+.gr-list {
+  list-style: none; margin: 0; padding: 0;
+  display: grid; gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.gr-card {
+  border: 1px solid #e6e6e6; border-radius: 12px;
+  padding: 1.1rem; background: #fff;
+  box-shadow: 0 1px 3px rgba(0,0,0,.04);
+}
+
+.gr-card-head { display: flex; gap: .75rem; align-items: center; }
+.gr-avatar { border-radius: 50%; object-fit: cover; }
+.gr-author { font-weight: 600; color: #1a1a1a; text-decoration: none; }
+.gr-author:hover { text-decoration: underline; }
+.gr-meta { display: flex; gap: .5rem; align-items: center; font-size: .85rem; }
+.gr-date { color: #777; }
+.gr-text { margin: .8rem 0 0; color: #333; line-height: 1.5; font-size: .95rem; }
+.gr-error { text-align: center; color: #b00; padding-top: 40px; }

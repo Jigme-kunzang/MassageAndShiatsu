@@ -1,0 +1,21 @@
+@font-face {
+    font-family: "Lora";
+    src: url("/fonts/Lora-VariableFont_wght.ttf") format("truetype-variations");
+    font-weight: 400 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Lora";
+    src: url("/fonts/Lora-Italic-VariableFont_wght.ttf") format("truetype-variations");
+    font-weight: 400 700;
+    font-style: italic;
+    font-display: swap;
+}
+
+body{
+    font-family: "Lora", Georgia, serif;
+    background-color: #FCF0E2;
+    margin: 0%;
+}

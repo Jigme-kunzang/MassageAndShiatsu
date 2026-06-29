@@ -1,0 +1,240 @@
+/* ============================================================
+   CARROUSEL — section et structure
+   ============================================================ */
+.feature-cards { position: relative; background: #1c1712; }
+
+.sticky { position: sticky; top: 0; height: 100vh; overflow: hidden; }
+
+.cards { display: flex; height: 100vh; }
+
+.card {
+    flex: none;            /* la largeur est pilotée par le JS */
+    height: 100vh;
+    position: relative;
+    overflow: hidden;      /* rogne le contenu quand la carte se referme */
+}
+
+/* contenu à largeur fixe (posée en JS) -> il se fait couper, pas réagencer */
+.inner { height: 100%; position: relative; box-sizing: border-box; }
+
+
+/* ============================================================
+   CARTES IMAGE — image de fond et voile
+   ============================================================ */
+.card--image img {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+}
+
+/* voile dégradé derrière le texte du bas, pour la lisibilité */
+.card--image .inner::after {
+    content: "";
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    height: 60%;
+    z-index: 1;            /* sous le texte (.body est en z-index 2) */
+    pointer-events: none;
+}
+.card--dark  .inner::after { background: linear-gradient(to top, #2a221a, transparent); }
+.card--light .inner::after { background: linear-gradient(to top, #FCF0E2, transparent); }
+
+
+/* ============================================================
+   LABEL (étiquette en haut)
+   ============================================================ */
+.label {
+    position: absolute; left: 2.5rem; top: 2rem; z-index: 2;
+    display: flex; gap: .5rem; align-items: flex-start;
+    font-weight: 700; font-size: 1rem;
+    white-space: nowrap;
+}
+.dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: currentColor; flex-shrink: 0; margin-top: .4em;
+}
+
+
+/* ============================================================
+   TEXTE DES CARTES (body) — placement, couleur, typo
+   ============================================================ */
+.card--image .body {
+    position: absolute;
+    left: 2.5rem; 
+    right: 2.5rem;
+    top: 32rem;                 /* titre ancré ici, identique sur toutes les cartes */
+    bottom: 2.5rem;            /* borne basse : le texte ne descend pas plus bas */
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+}
+
+/* couleur selon le fond de la carte */
+.card--dark  .label, .card--dark  .body { color: #f0eee9; }
+.card--light .label, .card--light .body { color: #3a261f; }
+
+.card--image .body h2 {
+    font-size: 1.7rem;
+    font-weight: 700;
+    line-height: 1.1;
+    margin: 0 0 0.2rem;
+}
+.card--image .body .subtitle {
+    font-style: italic;
+    font-size: 1.15rem;
+    opacity: 0.85;
+    margin: 0 0 1rem;
+}
+.card--image .body .long,
+.card--image .body .short {
+    text-align: justify;
+    line-height: 1.5;
+    font-size: 1rem;
+    margin: 0;
+}
+
+.card--image .body .long {
+    width: 100%;
+}
+
+/* le short est contraint à la largeur FINALE, donc jamais coupé par la voisine */
+.card--image .body .short {
+    width: calc(17vw - 5rem);
+}
+
+
+/* ============================================================
+   EFFET — apparition en fondu du texte
+   ============================================================ */
+@keyframes textReveal {
+    from { opacity: 0; transform: translateY(12px); filter: blur(5px); }
+    to   { opacity: 1; transform: translateY(0);    filter: blur(0); }
+}
+
+/* chaque élément du body apparaît en fondu, avec un léger décalage */
+.card--image .body > * {
+    animation: textReveal 0.7s ease both;
+}
+.card--image .body h2        { animation-delay: 0.00s; }
+.card--image .body .subtitle { animation-delay: 0.08s; }
+.card--image .body .swap     { animation-delay: 0.20s; }
+
+
+/* ============================================================
+   BASCULE texte long / court (selon la largeur de la carte)
+   ============================================================ */
+
+.body .swap {
+    position: relative;       /* repère pour le texte en absolu */
+}
+.body .swap > * {
+    margin: 0;
+    transition: opacity 0.5s ease;
+}
+
+/* le texte VISIBLE est dans le flux (il donne la hauteur) */
+/* le texte MASQUÉ est en absolu (il ne compte pas dans la hauteur) */
+
+.body .short { position: absolute; top: 0; left: 0; right: 0; opacity: 0; }
+.body .long  { position: relative; opacity: 1; }
+
+.card.is-narrow .body .long  { position: absolute; top: 0; left: 0; right: 0; opacity: 0; }
+.card.is-narrow .body .short { position: relative; opacity: 1; line-height: 1.4; }
+
+
+/* ============================================================
+   SECTION INTRO — présentation des prestations
+   ============================================================ */
+.intro-prestations {
+    background: #1B4053;
+    color: #f0eee9;
+    padding: 2.5rem;
+    margin: 0 auto;
+    text-align: center;
+}
+.intro-prestations .eyebrow {
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #b89a6a;        /* brun doré, rappel du logo */
+    margin: 0 0 1rem;
+}
+.intro-prestations h2 {
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 500;
+    line-height: 1.1;
+    margin: 0 0 1.5rem;
+}
+.intro-prestations .lead {
+    font-size: 1.15rem;
+    line-height: 1.6;
+    opacity: 0.85;
+    max-width: 620px;          /* corrigé : plus de marge fixe de 300px */
+    margin: 0 auto 2.5rem;
+}
+
+
+/* ============================================================
+   LISTE des prestations
+   ============================================================ */
+.prestations-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 auto;
+    max-width: 480px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+    text-align: left;
+}
+.prestations-list li {
+    padding-bottom: 0.9rem;
+    border-bottom: 1px solid rgba(240, 238, 233, 0.12);
+    font-size: 1.05rem;
+}
+.prestations-list strong { font-weight: 700; }
+
+
+/* ============================================================
+   CITATION + accroche
+   ============================================================ */
+.prestations-quote {
+    margin: 3.5rem auto 0;
+    max-width: 560px;
+}
+.prestations-quote blockquote {
+    font-style: italic;
+    font-size: clamp(1.3rem, 2.5vw, 1.7rem);   /* corrigé : max > min */
+    line-height: 1.4;
+    margin: 0;
+    padding-top: 1.5rem;
+    position: relative;
+    z-index: 1;            /* le texte passe devant le guillemet */
+}
+.prestations-quote blockquote::before {
+    content: "“";
+    position: absolute;
+    top: -2.5rem; left: 50%;
+    transform: translateX(-50%);
+    z-index: -1;           /* derrière le texte */
+    font-size: 8rem;
+    line-height: 1;
+    color: #b89a6a;
+    opacity: 0.18;
+    pointer-events: none;
+}
+.prestations-quote figcaption {
+    margin-top: 1.2rem;
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #b89a6a;
+}
+.prestations-accroche {
+    margin: 2.5rem auto 0;
+    max-width: 520px;
+    font-size: 1.15rem;
+    line-height: 1.6;
+    opacity: 0.7;
+}
