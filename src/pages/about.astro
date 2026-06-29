@@ -1,21 +1,185 @@
 ---
-const pageTitle = "À propos de moi"
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import '../styles/about.css';
 ---
+<!DOCTYPE html>
 <html lang="fr">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>{pageTitle}</title>
-  </head>
-  <body>
-    <a href="/">Accueil</a>
-    <a href="/about/">À propos</a>
-    <a href="/blog/">Blog</a>
-    <h1>{pageTitle}</h1>
-    <h2>... et de mon nouveau site Astro !</h2>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>À propos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Hanken+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script>import '../scripts/display'</script>
+</head>
+<body>
+  <Header/>
 
-    <p>Je suis en train de suivre le tutoriel d'introduction d'Astro. C'est la deuxième page de mon site web, et c'est la première que j'ai construite moi-même !</p>
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <svg class="meander" viewBox="0 0 220 720" preserveAspectRatio="xMidYMin meet" aria-hidden="true">
+        <path d="M150,-10 C 70,90 200,170 110,260 C 30,345 180,420 120,520 C 80,590 150,640 130,712"/>
+        <circle cx="130" cy="712" r="5"/>
+      </svg>
+      <div class="wrap">
+        <p class="eyebrow anim a1">À propos de moi</p>
+        <h1>
+          <span class="l anim a2">Ralentir.</span>
+          <span class="l anim a3">Écouter.</span>
+          <span class="l anim a4">Accompagner.</span>
+        </h1>
+        <p class="lead anim a4">
+          Dans un monde en perpétuelle accélération, je choisis de prendre le temps —
+          celui du toucher, du souffle, et du retour à soi.
+        </p>
+        <span class="scrollcue anim a4"><span class="bar"></span>Mon histoire</span>
+      </div>
+    </section>
 
-    <p>Ce site se mettra à jour au fur et à mesure que je compléterai davantage le tutoriel, alors revenez régulièrement voir comment se déroule mon parcours !</p>
-  </body>
+    <!-- PRÉSENCE -->
+    <section class="presence">
+      <div class="wrap grid">
+        <div class="reveal">
+          <p>
+            Spécialisée dans l'art du massage bien-être depuis plus de cinq ans, j'ai à cœur
+            d'offrir à chacun une expérience <strong>unique, relaxante et adaptée à ses besoins</strong>.
+            Mon approche allie écoute, expertise et passion, pour vous accompagner vers un
+            mieux-être tant physique qu'émotionnel.
+          </p>
+        </div>
+        <div class="reveal">
+          <p>
+            Je reçois des personnes de tous horizons : certaines pour un moment de détente,
+            d'autres pour récupérer après le sport, ou parce qu'elles traversent une période
+            difficile et se reconnectent à leur corps après une maladie, un burn-out, une
+            transition de vie. À chacune, j'offre <strong>un espace d'écoute et de respect</strong>.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PARCOURS -->
+    <section class="parcours">
+      <div class="wrap">
+        <div class="parcours-head reveal">
+          <p class="eyebrow">Mon parcours</p>
+          <h2>Qui suis-je&nbsp;?</h2>
+          <p>
+            Mon parcours n'est pas linéaire. Il est fait de détours, de bifurcations,
+            de retours à soi. Mais chaque étape a eu du sens — et chacune m'a préparée
+            à la suivante.
+          </p>
+        </div>
+
+        <div class="timeline" id="timeline">
+          <div class="spine" aria-hidden="true">
+            <svg viewBox="0 0 22 1000" preserveAspectRatio="none">
+              <path class="grow" d="M11,0 C13,140 9,280 11,420 C13,560 9,700 11,840 C12,910 10,960 11,1000"/>
+            </svg>
+          </div>
+
+          <article class="chapter">
+            <span class="dot"></span>
+            <div class="card">
+              <span class="tag">Les voyages</span>
+              <h3>Une école de vie</h3>
+              <p>
+                Voyager n'a jamais été pour moi un simple loisir, mais une quête de sens et
+                de rencontres. Chaque pays, chaque culture m'a appris à observer sans juger,
+                à accueillir l'inconnu avec bienveillance. C'est au fil de ces voyages que j'ai
+                commencé à masser mes proches — un geste naturel, presque intuitif, venu du cœur.
+              </p>
+            </div>
+          </article>
+
+          <article class="chapter">
+            <span class="dot"></span>
+            <div class="card">
+              <span class="tag">La nature</span>
+              <h3>Une vie au plus près des éléments</h3>
+              <p>
+                Mon lien avec la nature est fondamental : une source d'équilibre et
+                d'inspiration. J'ai eu la chance de travailler sur des plages, là où le sable,
+                l'eau, le vent et le soleil rythmaient mes journées. Le sport et le yoga
+                nourrissent encore aujourd'hui ma pratique : une conscience plus fine du
+                mouvement, du souffle et de l'alignement intérieur.
+              </p>
+            </div>
+          </article>
+
+          <article class="chapter">
+            <span class="dot"></span>
+            <div class="card">
+              <span class="tag">Le commerce éthique</span>
+              <h3>Un engagement pour la planète</h3>
+              <p>
+                À mon retour de voyage, je me suis investie dans le commerce de produits
+                écologiques et recyclés. J'y ai appris la relation client et la pédagogie, mais
+                surtout un sens aigu de l'éthique : je ne vendais pas seulement des produits,
+                je portais une vision d'un monde plus durable et plus conscient.
+              </p>
+            </div>
+          </article>
+
+          <article class="chapter">
+            <span class="dot"></span>
+            <div class="card">
+              <span class="tag">L'accompagnement</span>
+              <h3>Révéler les potentiels</h3>
+              <p>
+                J'ai ensuite exercé comme conseillère en insertion professionnelle. Une étape
+                courte mais charnière, où j'ai découvert la richesse de la relation d'aide :
+                écouter sans juger, soutenir sans diriger, poser les bonnes questions. J'y ai
+                appris que chaque personne porte en elle une force insoupçonnée.
+              </p>
+            </div>
+          </article>
+
+          <article class="chapter">
+            <span class="dot"></span>
+            <div class="card">
+              <span class="tag">Le massage</span>
+              <h3>Un retour à soi</h3>
+              <p>
+                Je me suis formée aux massages bien-être il y a cinq ans. Ce n'était pas un
+                simple virage professionnel, mais un retour à moi-même : une manière d'entrer
+                en relation autrement, au-delà des mots. Je me suis formée à plusieurs
+                techniques — chacune un langage du corps, de l'énergie et des émotions.
+              </p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- BIEN-ÊTRE -->
+    <section class="band">
+      <div class="wrap">
+        <div class="inner reveal">
+          <p class="eyebrow">Ma vision</p>
+          <p>
+            Le bien-être ne se résume pas à l'absence de douleur. C'est un état d'équilibre,
+            de présence à soi, de cohérence entre ce que l'on vit, ce que l'on ressent et
+            ce que l'on exprime.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CLOSING -->
+    <section class="closing">
+      <div class="wrap reveal">
+        <span class="mark" aria-hidden="true">&ldquo;</span>
+        <blockquote>
+          Prendre soin de l'autre, c'est prendre soin de soi.
+        </blockquote>
+        <p class="sign">Au plaisir de vous recevoir</p>
+      </div>
+    </section>
+  </main>
+  <Footer/>
+</body>
 </html>

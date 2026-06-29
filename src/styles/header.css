@@ -43,3 +43,58 @@ nav li a {
 nav li a:hover {
     color: #5a3a2e; /* le brun du logo */
 }
+
+/* l'élément parent qui contient le sous-menu */
+.dropdown {
+    position: relative;
+}
+
+.dropdown > a {
+    cursor: pointer;
+}
+
+/* le sous-menu déroulant */
+.submenu {
+    position: absolute;
+    top: 100%;
+    left: 100%;
+    transform: translateX(-50%) translateY(8px);
+
+    /* on repasse en colonne (le nav ul est en flex ligne) */
+    flex-direction: column;
+    align-items: flex-start;
+    column-gap: 0;
+    gap: 16px;
+
+    min-width: 190px;
+    padding: 20px 24px;
+    background-color: #FCF0E2;
+    border-radius: 10px;
+    box-shadow: 0 14px 32px rgba(90, 58, 46, .15);
+
+    /* caché par défaut */
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity .2s ease, transform .2s ease, visibility .2s ease;
+    z-index: 100;
+}
+
+/* pont invisible : évite de "perdre" le survol entre le lien et le menu */
+.submenu::before {
+    content: "";
+    position: absolute;
+    top: -12px;
+    left: 0;
+    right: 0;
+    height: 12px;
+}
+
+/* affichage au survol ou au focus clavier */
+.dropdown:hover .submenu,
+.dropdown:focus-within .submenu {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateX(-50%) translateY(0);
+}
