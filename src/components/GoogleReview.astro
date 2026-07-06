@@ -1,17 +1,14 @@
 ---
-// src/components/GoogleReviews.astro
-// Récupère les avis Google au moment du build (côté serveur).
-// La clé API reste donc privée et ne part jamais dans le navigateur.
-
 import '../styles/googleReview.css'
 import { getGoogleReviews, stars } from '../lib/APIGoogleReview';
 import type { Review } from '../lib/Review';
 
 const { reviews, rating, total, mapsUri, errorMsg } = await getGoogleReviews();
 ---
+<script>import '../scripts/carrousel'</script>
 
 {errorMsg && (
-    <p class="gr-error">Impossible de charger les avis ({errorMsg}).</p>
+  <p class="gr-error">Impossible de charger les avis ({errorMsg}).</p>
 )}
 
 {!errorMsg && (
@@ -27,39 +24,43 @@ const { reviews, rating, total, mapsUri, errorMsg } = await getGoogleReviews();
       )}
     </header>
 
-    <ul class="gr-list">
-      {reviews.map((rev: Review) => (
-        <li class="gr-card">
-          <div class="gr-card-head">
-            {rev.authorAttribution?.photoUri && (
-              <img
-                class="gr-avatar"
-                src={rev.authorAttribution.photoUri}
-                alt={rev.authorAttribution.displayName}
-                loading="lazy"
-                width="40"
-                height="40"
-              />
-            )}
-            <div>
-              {/* L'attribution de l'auteur est OBLIGATOIRE selon les règles Google */}
-              <a
-                class="gr-author"
-                href={rev.authorAttribution?.uri}
-                target="_blank"
-                rel="noopener"
-              >
-                {rev.authorAttribution?.displayName}
-              </a>
-              <div class="gr-meta">
-                <span class="gr-stars">{stars(rev.rating)}</span>
-                <span class="gr-date">{rev.relativePublishTimeDescription}</span>
-              </div>
-            </div>
-          </div>
-          {rev.text?.text && <p class="gr-text">{rev.text.text}</p>}
-        </li>
-      ))}
-    </ul>
+    <div class="gr-carousel" data-gr-carousel>
+      <button class="gr-nav gr-prev" aria-label="Avis précédent">‹</button>
+
+      <div class="gr-viewport">
+        <ul class="gr-track">
+          {reviews.map((rev: Review) => (
+            <li class="gr-slide">
+              <article class="gr-card">
+                <div class="gr-card-head">
+                  {rev.authorAttribution?.photoUri && (
+                    <img class="gr-avatar" src={rev.authorAttribution.photoUri}
+                         alt={rev.authorAttribution.displayName}
+                         loading="lazy" width="48" height="48" />
+                  )}
+                  <div>
+                    <a class="gr-author" href={rev.authorAttribution?.uri}
+                       target="_blank" rel="noopener">
+                      {rev.authorAttribution?.displayName}
+                    </a>
+                    <div class="gr-meta">
+                      <span class="gr-stars">{stars(rev.rating)}</span>
+                      <span class="gr-date">{rev.relativePublishTimeDescription}</span>
+                    </div>
+                  </div>
+                </div>
+                {rev.text?.text && <p class="gr-text">{rev.text.text}</p>}
+              </article>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <button class="gr-nav gr-next" aria-label="Avis suivant">›</button>
+
+      <div class="gr-dots" aria-hidden="true">
+        {reviews.map(() => <button class="gr-dot"></button>)}
+      </div>
+    </div>
   </section>
 )}

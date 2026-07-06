@@ -1,27 +1,203 @@
-.gr { max-width: 1100px; margin: 0 auto; padding: 2rem 1rem; }
-.gr-head { text-align: center; margin-bottom: 1.5rem; }
-.gr-head h2 { margin: 0 0 .5rem; font-size: 1.6rem; }
-.gr-summary { color: #444; margin: 0; }
-.gr-summary a { color: inherit; text-decoration: underline; }
-.gr-stars { color: #f5b400; letter-spacing: 1px; }
+/* ============================================================
+   AVIS GOOGLE — bloc encadré et centré
+   ============================================================ */
+.gr {
+    max-width: 1100px;
+    margin: clamp(3rem, 6vw, 5rem) auto;
+    padding: clamp(2.5rem, 5vw, 4rem) 0;
 
-.gr-list {
-  list-style: none; margin: 0; padding: 0;
-  display: grid; gap: 1rem;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    background: #1B4053;                    /* bleu canard, rappel des autres pages */
+    border-radius: 20px;
+    box-shadow: 0 20px 50px rgba(27, 64, 83, 0.25);
+    overflow: hidden;
 }
 
+@media (max-width: 1140px) {
+    .gr { margin-left: 1.2rem; margin-right: 1.2rem; }
+}
+
+/* ---- en-tête ---- */
+.gr-head {
+    text-align: center;
+    padding: 0 1.5rem;
+    margin-bottom: clamp(2rem, 4vw, 3rem);
+}
+.gr-head h2 {
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    font-weight: 500;
+    line-height: 1.1;
+    color: #f0eee9;
+    margin: 0 0 0.8rem;
+}
+.gr-summary {
+    font-size: 1rem;
+    color: #d8cfc2;
+    margin: 0;
+}
+.gr-summary strong { color: #f0eee9; }
+.gr-summary a {
+    color: #b89a6a;
+    font-weight: 700;
+    text-decoration: none;
+}
+.gr-summary a:hover { text-decoration: underline; }
+
+
+/* ============================================================
+   CARROUSEL DIAPO — une carte centrée qui glisse
+   ============================================================ */
+.gr-carousel {
+    position: relative;
+    max-width: 620px;
+    margin: 0 auto;
+    padding: 0 3.5rem;             /* place pour les flèches sur les côtés */
+}
+
+/* fenêtre : ne montre qu'une carte à la fois */
+.gr-viewport {
+    overflow: hidden;
+    border-radius: 14px;
+}
+
+/* piste : toutes les cartes en ligne, translatée d'un cran */
+.gr-track {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    transition: transform 0.6s cubic-bezier(.4, 0, .2, 1);
+}
+
+/* chaque diapo occupe 100 % de la fenêtre */
+.gr-slide {
+    flex: 0 0 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    padding: 0.5rem;               /* laisse respirer l'ombre de la carte */
+}
+
+
+/* ---- carte d'avis ---- */
 .gr-card {
-  border: 1px solid #e6e6e6; border-radius: 12px;
-  padding: 1.1rem; background: #fff;
-  box-shadow: 0 1px 3px rgba(0,0,0,.04);
+    background: #fff;
+    border-radius: 14px;
+    padding: 1.8rem;
+    box-shadow: 0 12px 34px rgba(27, 64, 83, 0.18);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    min-height: 200px;
+}
+.gr-card-head {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+.gr-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+.gr-author {
+    font-weight: 700;
+    color: #3a261f;
+    font-size: 1rem;
+    text-decoration: none;
+}
+.gr-author:hover { text-decoration: underline; }
+.gr-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-top: 0.15rem;
+}
+.gr-stars {
+    color: #e8b84b;
+    font-size: 0.95rem;
+    letter-spacing: 1px;
+    line-height: 1;
+    white-space: nowrap;
+}
+.gr-date {
+    font-size: 0.82rem;
+    color: #6b5548;
+    white-space: nowrap;
+}
+.gr-text {
+    margin: 0;
+    color: #3a261f;
+    font-size: 1rem;
+    line-height: 1.6;
 }
 
-.gr-card-head { display: flex; gap: .75rem; align-items: center; }
-.gr-avatar { border-radius: 50%; object-fit: cover; }
-.gr-author { font-weight: 600; color: #1a1a1a; text-decoration: none; }
-.gr-author:hover { text-decoration: underline; }
-.gr-meta { display: flex; gap: .5rem; align-items: center; font-size: .85rem; }
-.gr-date { color: #777; }
-.gr-text { margin: .8rem 0 0; color: #333; line-height: 1.5; font-size: .95rem; }
-.gr-error { text-align: center; color: #b00; padding-top: 40px; }
+
+/* ---- flèches ---- */
+.gr-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 44px;
+    height: 44px;
+    border: none;
+    border-radius: 50%;
+    background: #b89a6a;
+    color: #1B4053;
+    font-size: 1.6rem;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s ease, transform 0.2s ease;
+    z-index: 2;
+}
+.gr-nav:hover {
+    background: #cbb08a;
+    transform: translateY(-50%) scale(1.08);
+}
+.gr-prev { left: 0; }
+.gr-next { right: 0; }
+
+
+/* ---- points ---- */
+.gr-dots {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+}
+.gr-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    border: none;
+    padding: 0;
+    background: rgba(240, 238, 233, 0.35);
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+.gr-dot.is-active {
+    background: #b89a6a;
+    transform: scale(1.25);
+}
+
+
+/* ---- message d'erreur ---- */
+.gr-error {
+    text-align: center;
+    color: #6b5548;
+    padding: 2rem 1.5rem;
+    font-style: italic;
+}
+
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 520px) {
+    .gr-carousel { padding: 0 2.6rem; }
+    .gr-nav { width: 38px; height: 38px; font-size: 1.4rem; }
+    .gr-card { padding: 1.4rem; }
+}

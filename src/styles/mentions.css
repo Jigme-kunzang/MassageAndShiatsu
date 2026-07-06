@@ -1,0 +1,74 @@
+@font-face {
+    font-family: "Lora";
+    src: url("/fonts/Lora-VariableFont_wght.ttf") format("truetype-variations");
+    font-weight: 400 700;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: "Lora";
+    src: url("/fonts/Lora-Italic-VariableFont_wght.ttf") format("truetype-variations");
+    font-weight: 400 700;
+    font-style: italic;
+    font-display: swap;
+}
+
+/* fond bleu canard sur toute la page */
+body {
+    background-color: #1B4053;
+    margin: 0;
+}
+
+main {
+    font-family: "Lora", Georgia, serif;
+    color: #f0eee9;                     /* texte crème clair */
+    line-height: 1.7;
+
+    /* colonne de lecture centrée */
+    max-width: 780px;
+    margin-inline: auto;
+    padding: clamp(2.5rem, 6vw, 5rem) 1.5rem;
+}
+
+/* ---- titres ---- */
+h1 {
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    font-weight: 600;
+    line-height: 1.15;
+    margin: 0 0 2rem;
+}
+/* petit trait doré sous le titre */
+h1::after {
+    content: "";
+    display: block;
+    width: 60px;
+    height: 2px;
+    margin-top: 1.2rem;
+    background: #b89a6a;                /* doré, rappel du logo */
+}
+
+h2 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #f0eee9;
+    margin: 2.5rem 0 0.6rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid rgba(240, 238, 233, 0.15);   /* filet clair */
+}
+
+/* ---- texte ---- */
+p {
+    margin: 0 0 1.1rem;
+    font-size: 1.02rem;
+}
+
+b { font-weight: 600; }
+
+/* ---- liens ---- */
+a {
+    color: #b89a6a;                    /* doré, lisible sur le bleu */
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    word-break: break-word;
+}
+a:hover { color: #d4bd94; }

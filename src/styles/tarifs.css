@@ -1,0 +1,130 @@
+/* ============================================================
+   PAGE TARIFS
+   ============================================================ */
+body {
+    background-color: #1B4053;
+}
+
+main {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: clamp(2.5rem, 6vw, 5rem) 1.5rem;
+}
+
+main h1 {
+    font-size: clamp(1.9rem, 4vw, 2.8rem);
+    font-weight: 500;
+    line-height: 1.15;
+    color: #f0eee9;
+    text-align: center;
+    margin: 0 0 0.8rem;
+}
+
+/* petit trait doré sous le titre */
+main h1::after {
+    content: "";
+    display: block;
+    width: 64px;
+    height: 2px;
+    margin: 1.2rem auto 0;
+    background: #b89a6a;         /* brun doré, rappel du logo */
+}
+
+
+/* ============================================================
+   TABLEAU
+   ============================================================ */
+main table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: clamp(2rem, 5vw, 3.5rem);
+    font-size: 1.05rem;
+    color: #f0eee9;
+}
+
+/* en-têtes */
+main th {
+    text-align: left;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #b89a6a;                              /* doré : OK sur foncé */
+    border-bottom: 2px solid #b89a6a; 
+    padding: 0 1rem 1rem;
+}
+
+/* cellules */
+main td {
+    padding: 1.1rem 1rem;
+    border-bottom: 1px solid rgba(240, 238, 233, 0.15);  /* hairline claire */
+    vertical-align: middle;
+}
+
+/* nom de la prestation mis en avant */
+main td:first-child {
+    font-weight: 600;
+}
+
+/* colonne durée, un peu en retrait */
+main td:nth-child(2) {
+    color: #c9bfb2;             /* durée : crème atténué au lieu du brun */
+    font-style: italic;
+    white-space: nowrap;
+}
+
+/* colonne tarif, alignée à droite et accentuée */
+main th:last-child { text-align: right; }
+main td:last-child {
+    text-align: right;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+/* survol de ligne */
+main tbody tr {
+    transition: background-color 0.2s ease;
+}
+
+main tbody tr:hover {
+    background-color: rgba(240, 238, 233, 0.06);  /* voile clair au survol */
+}
+
+
+/* ============================================================
+   RESPONSIVE — cartes empilées sur mobile
+   ============================================================ */
+@media (max-width: 520px) {
+    main thead { display: none; }               /* on masque les en-têtes */
+
+    main table, main tbody, main tr, main td { display: block; width: 100%; }
+
+    main tbody tr {
+        border: 1px solid rgba(90, 58, 46, 0.15);
+        border-radius: 10px;
+        padding: 0.4rem 1rem;
+        margin-bottom: 1rem;
+    }
+
+    main td {
+        border: none;
+        border-bottom: 1px solid rgba(90, 58, 46, 0.10);
+        padding: 0.7rem 0;
+        text-align: right;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1rem;
+    }
+    main td:last-child { border-bottom: none; }
+
+    /* libellé de colonne rappelé à gauche de chaque cellule */
+    main td::before {
+        content: attr(data-label);
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        color: #b89a6a;
+    }
+}

@@ -84,7 +84,8 @@ body{
 .scrollcue{
   margin-top:3.2rem;
   display:inline-flex;align-items:center;gap:.7rem;
-  font-size:.74rem;letter-spacing:.22em;text-transform:uppercase;
+  font-size:.62rem;              /* était .74rem — plus petit */
+  letter-spacing:.22em;text-transform:uppercase;
   color:var(--ink-soft);
 }
 .scrollcue .bar{
