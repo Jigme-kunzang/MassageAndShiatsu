@@ -180,6 +180,14 @@ p { margin: 0 0 1.1rem; }
     transform: translateY(1px);
 }
 
+/* --- captcha hCaptcha --- */
+.h-captcha {
+    grid-column: 1 / -1;        /* pleine largeur si dans la grille du form */
+    display: flex;
+    justify-content: center;    /* centre le widget (~303px) */
+    margin-top: 0.4rem;
+}
+
 /* --- message de retour (#result) --- */
 #result {
     margin-top: 1.2rem;

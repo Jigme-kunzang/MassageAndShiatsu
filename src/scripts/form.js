@@ -1,18 +1,25 @@
-const form = document.getElementById("form");
-const result = document.getElementById("result");
-
 form.addEventListener('submit', function(e){
-    const formData = new FormData(form);
     e.preventDefault();
 
+    // --- contrôle du captcha ---
+    const captchaField = form.querySelector('textarea[name="h-captcha-response"]');
+    const hCaptcha = captchaField ? captchaField.value : "";
+
+    if (!hCaptcha) {
+        alert("S'il vous plaît, remplissez le captcha !");
+        return;
+    }
+
+    // --- construction du payload (inclut h-captcha-response) ---
+    const formData = new FormData(form);
     const object = Object.fromEntries(formData);
     const json = JSON.stringify(object);
 
-    result.textContent = "S'il vous plait attendez...";
+    result.textContent = "S'il vous plaît, patientez...";
 
-    fetch( 'https://api.web3forms.com/submit', {
+    fetch('https://api.web3forms.com/submit', {
         method: 'POST',
-        headers:{
+        headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json'
         },
@@ -20,21 +27,15 @@ form.addEventListener('submit', function(e){
     })
     .then(async (response) => {
         let json = await response.json();
-        if (response.status == 200){
-            result.textContent = json.message;
-        } else {
-            console.log(response);
-            result.textContent = json.message;
-        }
+        result.textContent = json.message;
+        if (response.status != 200) console.log(response);
     })
-    .catch(error =>{
+    .catch(error => {
         console.log(error);
-        result.textContent = "Une erreur c'est produite !";
+        result.textContent = "Une erreur s'est produite !";
     })
     .then(function() {
         form.reset();
-        setTimeout(() => {
-            result.style.display = "none";
-        }, 3000);
+        setTimeout(() => { result.style.display = "none"; }, 3000);
     });
 });
