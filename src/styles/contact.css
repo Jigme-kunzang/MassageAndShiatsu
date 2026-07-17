@@ -1,0 +1,211 @@
+/* Importe globals.css AVANT ce fichier.
+   La palette (variables) et le reset viennent de globals.css. */
+
+body {
+    background-color: var(--teal);
+}
+
+/* ---- colonne de lecture centrée ---- */
+main > div {
+    max-width: 900px;
+    margin-inline: auto;
+    padding: clamp(2.5rem, 6vw, 4.5rem) 1.5rem;
+}
+
+/* ---- titres ---- */
+h1 {
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    font-weight: 600;
+    line-height: 1.15;
+    color: var(--cream-light);    /* clair : le h1 est posé sur le fond bleu */
+    margin: 0 0 2.5rem;
+}
+h1::after {                       /* petit trait doré, rappel du logo */
+    content: "";
+    display: block;
+    width: 60px;
+    height: 2px;
+    margin-top: 1.2rem;
+    background: var(--gold);
+}
+
+h2 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0 0 0.6rem;
+}
+
+p { margin: 0 0 1.1rem; }
+
+/* ============================================================
+   ADRESSE + CARTE
+   ============================================================ */
+.map {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    align-items: center;
+    padding: 1.8rem;
+    background: var(--cream-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: 0 14px 32px rgba(0, 0, 0, 0.18);
+    margin-bottom: 3.5rem;
+}
+
+.informations {
+    flex: 1 1 260px;
+}
+.informations h2 {
+    margin-top: 1.4rem;
+}
+.informations h2:first-child {
+    margin-top: 0;
+}
+.informations p {
+    color: var(--brown-soft);
+    margin-bottom: 0;
+}
+
+.map iframe {
+    flex: 1 1 380px;
+    width: 100%;
+    max-width: 450px;
+    height: 250px;
+    border-radius: 10px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+}
+
+/* ============================================================
+   FORMULAIRE
+   ============================================================ */
+.formulaire {
+    background: var(--cream-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: 0 14px 32px rgba(0, 0, 0, 0.18);
+    padding: clamp(1.8rem, 4vw, 2.8rem);
+    text-align: center;
+}
+
+.formulaire .picture {
+    width: 130px;
+    height: 130px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid var(--gold);
+    box-shadow: 0 6px 18px rgba(58, 38, 31, 0.15);
+    margin-bottom: 1.2rem;
+}
+
+.formulaire > h2 {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+/* --- grille du formulaire --- */
+#form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.2rem;
+    text-align: left;
+}
+.surname { grid-column: 1; }
+.name    { grid-column: 2; }
+.email   { grid-column: 1; }
+.object  { grid-column: 2; }
+.message { grid-column: 1 / -1; }
+.button  { grid-column: 1 / -1; }
+
+/* --- labels --- */
+#form label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    color: var(--brown-soft);
+    margin-bottom: 0.4rem;
+}
+
+/* --- champs --- */
+#form input[type="text"],
+#form input[type="email"],
+#form textarea {
+    width: 100%;
+    font-family: inherit;
+    font-size: 1rem;
+    color: var(--brown-deep);
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.7rem 0.9rem;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+#form textarea {
+    resize: vertical;
+    min-height: 140px;
+}
+
+#form input:focus,
+#form textarea:focus {
+    outline: none;
+    border-color: var(--gold);
+    box-shadow: 0 0 0 3px rgba(184, 154, 106, 0.2);
+}
+
+/* --- bouton d'envoi --- */
+.button {
+    text-align: center;
+    margin-top: 0.4rem;
+}
+.button input[type="submit"] {
+    font-family: inherit;
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--cream-light);
+    background: var(--brown);
+    border: none;
+    border-radius: 8px;
+    padding: 0.85rem 2.4rem;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.1s ease;
+}
+.button input[type="submit"]:hover {
+    background: var(--brown-deep);
+}
+.button input[type="submit"]:active {
+    transform: translateY(1px);
+}
+
+/* --- message de retour (#result) --- */
+#result {
+    margin-top: 1.2rem;
+    text-align: center;
+    font-style: italic;
+    color: var(--brown-soft);
+}
+#result:empty {
+    margin-top: 0;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 620px) {
+    #form {
+        grid-template-columns: 1fr;   /* tout sur une colonne */
+    }
+    .surname, .name, .email, .object {
+        grid-column: 1;
+    }
+    .map {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .map iframe {
+        max-width: none;
+    }
+}

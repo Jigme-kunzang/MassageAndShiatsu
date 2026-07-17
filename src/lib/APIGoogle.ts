@@ -1,5 +1,8 @@
 const PLACE_ID = import.meta.env.GOOGLE_PLACE_ID;
-const API_KEY  = import.meta.env.GOOGLE_PLACES_API_KEY;
+const API_KEY = import.meta.env.GOOGLE_PLACES_API_KEY;
+
+const query = encodeURIComponent("Carole Renaud Massage Bien être, 43 Rue des Bugadières, Le Lavandou, France");
+export const mapSrc = `https://www.google.com/maps/embed/v1/place?key=${API_KEY}&q=${query}`;
 
 export async function getGoogleReviews() {
   try {
@@ -13,6 +16,7 @@ export async function getGoogleReviews() {
         },
       }
     );
+
     if (!res.ok) throw new Error(`Google API ${res.status}`);
     const data = await res.json();
     return {

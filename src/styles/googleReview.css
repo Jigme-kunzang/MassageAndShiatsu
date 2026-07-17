@@ -1,3 +1,5 @@
+/* Importe globals.css AVANT ce fichier. */
+
 /* ============================================================
    AVIS GOOGLE — bloc encadré et centré
    ============================================================ */
@@ -6,7 +8,7 @@
     margin: clamp(3rem, 6vw, 5rem) auto;
     padding: clamp(2.5rem, 5vw, 4rem) 0;
 
-    background: #1B4053;                    /* bleu canard, rappel des autres pages */
+    background: var(--teal);               /* rappel des autres pages */
     border-radius: 20px;
     box-shadow: 0 20px 50px rgba(27, 64, 83, 0.25);
     overflow: hidden;
@@ -26,17 +28,17 @@
     font-size: clamp(1.8rem, 4vw, 2.6rem);
     font-weight: 500;
     line-height: 1.1;
-    color: #f0eee9;
+    color: var(--cream-light);
     margin: 0 0 0.8rem;
 }
 .gr-summary {
     font-size: 1rem;
-    color: #d8cfc2;
+    color: var(--cream-muted);
     margin: 0;
 }
-.gr-summary strong { color: #f0eee9; }
+.gr-summary strong { color: var(--cream-light); }
 .gr-summary a {
-    color: #b89a6a;
+    color: var(--gold);
     font-weight: 700;
     text-decoration: none;
 }
@@ -102,7 +104,7 @@
 }
 .gr-author {
     font-weight: 700;
-    color: #3a261f;
+    color: var(--brown-deep);
     font-size: 1rem;
     text-decoration: none;
 }
@@ -114,7 +116,7 @@
     margin-top: 0.15rem;
 }
 .gr-stars {
-    color: #e8b84b;
+    color: #e8b84b;                /* jaune étoile, propre aux avis */
     font-size: 0.95rem;
     letter-spacing: 1px;
     line-height: 1;
@@ -122,12 +124,12 @@
 }
 .gr-date {
     font-size: 0.82rem;
-    color: #6b5548;
+    color: var(--brown-soft);
     white-space: nowrap;
 }
 .gr-text {
     margin: 0;
-    color: #3a261f;
+    color: var(--brown-deep);
     font-size: 1rem;
     line-height: 1.6;
 }
@@ -142,8 +144,8 @@
     height: 44px;
     border: none;
     border-radius: 50%;
-    background: #b89a6a;
-    color: #1B4053;
+    background: var(--gold);
+    color: var(--teal);
     font-size: 1.6rem;
     line-height: 1;
     cursor: pointer;
@@ -154,7 +156,7 @@
     z-index: 2;
 }
 .gr-nav:hover {
-    background: #cbb08a;
+    background: #cbb08a;           /* doré un peu plus clair au survol */
     transform: translateY(-50%) scale(1.08);
 }
 .gr-prev { left: 0; }
@@ -179,7 +181,7 @@
     transition: background 0.2s ease, transform 0.2s ease;
 }
 .gr-dot.is-active {
-    background: #b89a6a;
+    background: var(--gold);
     transform: scale(1.25);
 }
 
@@ -187,7 +189,7 @@
 /* ---- message d'erreur ---- */
 .gr-error {
     text-align: center;
-    color: #6b5548;
+    color: var(--brown-soft);
     padding: 2rem 1.5rem;
     font-style: italic;
 }

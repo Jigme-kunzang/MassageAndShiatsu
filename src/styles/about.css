@@ -1,3 +1,6 @@
+/* Univers visuel propre à la page "à propos" (palette sage, polices Cormorant / Hanken).
+   Importe globals.css avant ce fichier ; le reset y est déjà. */
+
 :root{
   /* fonds */
   --linen:#F5F0E6;
@@ -12,8 +15,6 @@
   --clay:#AE7E66;
 }
 
-*{box-sizing:border-box;}
-html{scroll-behavior:smooth;}
 body{
   margin:0;
   background:var(--linen);

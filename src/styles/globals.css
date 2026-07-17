@@ -1,3 +1,14 @@
+/* ============================================================
+   GLOBALS — socle commun à toutes les pages
+   Source unique pour : reset, polices, palette (variables),
+   styles de base. Chaque page importe CE fichier EN PREMIER,
+   puis sa propre feuille (ex. contact.css) qui ne fait plus
+   que surcharger ce qui lui est spécifique.
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   1. POLICES
+   ------------------------------------------------------------ */
 @font-face {
     font-family: "Lora";
     src: url("/fonts/Lora-VariableFont_wght.ttf") format("truetype-variations");
@@ -5,7 +16,6 @@
     font-style: normal;
     font-display: swap;
 }
-
 @font-face {
     font-family: "Lora";
     src: url("/fonts/Lora-Italic-VariableFont_wght.ttf") format("truetype-variations");
@@ -14,8 +24,69 @@
     font-display: swap;
 }
 
-body{
-    font-family: "Lora", Georgia, serif;
-    background-color: #FCF0E2;
-    margin: 0%;
+/* ------------------------------------------------------------
+   2. DESIGN TOKENS — la charte, en un seul endroit
+   ------------------------------------------------------------ */
+:root {
+    /* Typographie */
+    --font-serif:   "Lora", Georgia, serif;
+
+    /* Fonds */
+    --cream:        #FCF0E2;   /* fond crème (pages claires + header) */
+    --cream-card:   #FFF9F0;   /* cartes, champs de formulaire */
+    --teal:         #1B4053;   /* bleu canard (pages foncées) */
+
+    /* Bruns */
+    --brown-deep:   #3a261f;   /* texte foncé, bas de footer */
+    --brown:        #4a3128;   /* footer, boutons */
+    --brown-logo:   #5a3a2e;   /* brun du logo (survol liens header) */
+    --brown-soft:   #6b5548;   /* texte secondaire, labels */
+
+    /* Crèmes clairs (texte sur fond foncé) */
+    --cream-light:  #f0eee9;
+    --cream-muted:  #d8cfc7;   /* paragraphes footer, résumé avis */
+
+    /* Accents */
+    --gold:         #b89a6a;   /* doré : titres, liens accent */
+    --gold-light:   #d4bd94;   /* doré au survol */
+    --slate-light:  #8fb0c2;   /* bleu ardoise clair (survol footer) */
+
+    /* Divers */
+    --border:       #e3d3c0;   /* traits fins des cartes / champs */
+
+    /* Mesures partagées */
+    --content-narrow: 780px;                       /* colonne de lecture */
+    --page-padding:   clamp(2.5rem, 6vw, 5rem) 1.5rem;
+    --radius:         14px;
+}
+
+/* ------------------------------------------------------------
+   3. RESET LÉGER
+   ------------------------------------------------------------ */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+img { max-width: 100%; }
+
+/* ------------------------------------------------------------
+   4. BASE
+   ------------------------------------------------------------ */
+body {
+    margin: 0;
+    font-family: var(--font-serif);
+    background-color: var(--cream);
+    color: var(--brown-deep);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
+/* ------------------------------------------------------------
+   5. ACCESSIBILITÉ — mouvement réduit
+   ------------------------------------------------------------ */
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
 }
