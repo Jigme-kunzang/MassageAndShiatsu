@@ -1,0 +1,152 @@
+---
+// Gabarit RÉUTILISABLE d'une page de prestation (méthode du tutoriel, unité 4).
+// Appliqué depuis le frontmatter du Markdown :  layout: ../../layouts/Prestation.astro
+// -> toutes les valeurs du frontmatter arrivent dans Astro.props.frontmatter
+// -> le <slot /> reçoit le corps du Markdown (les paragraphes d'intro).
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import Signature from "../components/Signatures.astro";
+import "../styles/globals.css";
+import "../styles/prestations.css";
+
+const { frontmatter } = Astro.props;
+const {
+  title, description,
+  signature,                       // "meridian" | "ripples" | "spiral" | (absent = aucune)
+  eyebrow = "La prestation",
+  lang, heading, headingEm, lead, translation,
+  introHeading,
+  bienfaits, highlight, balance, deroule,
+  closingQuote,
+  booking = "https://terapiz.com/masseur/le-lavandou/carole-renaud",
+  tarifs = "/cabinet/tarifs",
+} = frontmatter;
+---
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{title}</title>
+<meta name="description" content={description}>
+<script>import '../scripts/display'</script>
+</head>
+<body class={signature ? `sig-${signature}` : undefined}>
+  <Header/>
+
+  <main>
+
+    <!-- ===================== HERO ===================== -->
+    <section class="hero">
+      <Signature type={signature} />
+      <div class="wrap">
+        <p class="eyebrow anim a1">{eyebrow}</p>
+        <h1 class="anim a1">{heading}<br><em>{headingEm}</em></h1>
+        <span class="lang anim a2">{lang}</span>
+        <p class="lead anim a3">{lead}</p>
+        <p class="translation anim a4">{translation}</p>
+      </div>
+    </section>
+
+    <!-- ===================== INTRO ===================== -->
+    <section class="intro">
+      <div class="wrap">
+        <div class="grid">
+          <h2 class="reveal">{introHeading}</h2>
+          <div class="reveal">
+            <slot />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== BIENFAITS ===================== -->
+    <section class="bienfaits">
+      <div class="wrap">
+        <div class="head reveal">
+          <p class="eyebrow">{bienfaits.eyebrow ?? "Sur le corps"}</p>
+          <h2>{bienfaits.heading}</h2>
+          <p>{bienfaits.lead}</p>
+        </div>
+        <div class="cards">
+          {bienfaits.cards.map((c: any, i: number) => (
+            <article class="b-card reveal">
+              <span class="num">{String(i + 1).padStart(2, "0")}</span>
+              <h3>{c.title}</h3>
+              <p>{c.text}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ BANDEAU MIS EN AVANT ============ -->
+    <section class="highlight">
+      <div class="wrap">
+        <div class="panel reveal">
+          <div>
+            <p class="eyebrow">{highlight.eyebrow}</p>
+            <h2>{highlight.heading}<br><em>{highlight.headingEm}</em></h2>
+            {highlight.paragraphs.map((p: String) => <p set:html={p} />)}
+          </div>
+          <ul>
+            {highlight.points.map((pt: String) => <li set:html={pt} />)}
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FORTS / LIMITES ============ -->
+    <section class="balance">
+      <div class="wrap">
+        <h2 class="reveal">En toute honnêteté.</h2>
+        <div class="cols">
+          <div class="bal-col forts reveal">
+            <h3>{balance.fortsHeading}</h3>
+            <ul>{balance.forts.map((li: String) => <li set:html={li} />)}</ul>
+          </div>
+          <div class="bal-col limites reveal">
+            <h3>{balance.limitesHeading}</h3>
+            <ul>{balance.limites.map((li: String) => <li set:html={li} />)}</ul>
+          </div>
+        </div>
+        <p class="note reveal">{balance.note}</p>
+      </div>
+    </section>
+
+    <!-- ============ DÉROULÉ ============ -->
+    <section class="deroule">
+      <div class="wrap">
+        <div class="head reveal">
+          <p class="eyebrow">{deroule.eyebrow ?? "La séance"}</p>
+          <h2>{deroule.heading ?? "Comment se passe une séance."}</h2>
+          <p>{deroule.lead}</p>
+        </div>
+        <ol class="steps">
+          {deroule.steps.map((s:any) => (
+            <li class="reveal">
+              <h3>{s.title}</h3>
+              <p>{s.text}</p>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
+
+    <!-- ============ CLÔTURE ============ -->
+    <section class="closing">
+      <div class="wrap">
+        <span class="mark" aria-hidden="true">“</span>
+        <blockquote class="reveal">{closingQuote}</blockquote>
+        <div class="cta-row reveal">
+          <a class="btn btn-primary" href={booking}>Réserver un créneau</a>
+          <a class="btn btn-ghost" href={tarifs}>Voir les tarifs</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <Footer/>
+</body>
+</html>

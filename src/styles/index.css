@@ -29,6 +29,13 @@
     object-fit: cover;
 }
 
+.card--image img:hover {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+    -webkit-transition: 0.5s ease-in-out;
+    transition: 0.5s ease-in-out
+}
+
 /* voile dégradé derrière le texte du bas, pour la lisibilité */
 .card--image .inner::after {
     content: "";

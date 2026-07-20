@@ -7,6 +7,9 @@ nav {
     margin: 0 auto;
     padding: 10px 10px;
     background-color: var(--cream);
+    box-shadow: 0 6px 18px rgba(58, 38, 31, 0.10);  /* ombre brune, chaude */
+    position: relative;
+    z-index: 10;   /* pour que l'ombre passe au-dessus du contenu */
 }
 
 .logo {
@@ -28,7 +31,6 @@ nav ul {
     list-style: none;
     margin: 0;
     padding: 0;
-    /* la colonne "auto" du milieu est déjà centrée par les 1fr de chaque côté */
 }
 
 nav li a {
@@ -58,7 +60,7 @@ nav li a:hover {
 .submenu {
     position: absolute;
     top: 100%;
-    left: 100%;
+    left: 75%;
     transform: translateX(-50%) translateY(8px);
 
     /* on repasse en colonne (le nav ul est en flex ligne) */
@@ -70,7 +72,6 @@ nav li a:hover {
     min-width: 190px;
     padding: 20px 24px;
     background-color: var(--cream);
-    border-radius: 10px;
     box-shadow: 0 14px 32px rgba(90, 58, 46, .15);
 
     /* caché par défaut */

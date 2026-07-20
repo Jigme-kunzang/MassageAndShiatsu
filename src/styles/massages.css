@@ -1,0 +1,275 @@
+/* Importe globals.css AVANT ce fichier.
+   Palette chaude empruntée à la page about. */
+
+:root {
+    --linen:#F5F0E6; --band:#EFE8DA;
+    --ink:#2B342C;   --ink-soft:#586051;
+    --sage:#7C8C6C;  --sage-deep:#5C6B4E;
+    --amber:#BC8A4C; --clay:#AE7E66;
+}
+
+body {
+    background-color: var(--linen);
+    color: var(--ink);
+}
+
+/* ============================================================
+   TITRE DE PAGE
+   ============================================================ */
+body > h1 {
+    max-width: 1080px;
+    margin: clamp(2.5rem, 6vw, 4rem) auto 0;
+    padding: 0 1.5rem;
+    font-size: clamp(2.2rem, 5vw, 3.4rem);
+    font-weight: 600; line-height: 1.1;
+    text-align: center;
+    color: var(--ink);
+}
+body > h1::after {
+    content: ""; display: block;
+    width: 64px; height: 2px;
+    margin: 1.4rem auto 0;
+    background: var(--amber);
+}
+
+/* ============================================================
+   VIDÉO D'EN-TÊTE
+   ============================================================ */
+.massage {
+    max-width: 1080px;
+    margin: clamp(1.5rem, 4vw, 2.5rem) auto 0;
+    padding: 0 1.5rem;
+}
+.massage video {
+    display: block; width: 100%;
+    max-height: 55vh; object-fit: cover;
+    border-radius: 14px;
+}
+
+/* ============================================================
+   CONTENEUR
+   ============================================================ */
+section {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: clamp(2rem, 5vw, 3.5rem) 1.5rem;
+}
+
+/* ============================================================
+   SOMMAIRE
+   ============================================================ */
+.massages-list { margin-bottom: clamp(2.5rem, 6vw, 4rem); }
+.massages-list ul {
+    list-style: none; margin: 0; padding: 0;
+    display: flex; flex-wrap: wrap;
+    justify-content: center; gap: 0.6rem 2rem;
+}
+.massages-list a {
+    text-decoration: none; color: var(--sage-deep);
+    transition: color 0.2s ease;
+}
+.massages-list a:hover { color: var(--amber); }
+.massages-list a h2 {
+    margin: 0; font-size: 0.82rem; font-weight: 700;
+    letter-spacing: 1.5px; text-transform: uppercase;
+}
+
+/* ============================================================
+   BLOCS MASSAGE — texte + image (2 enfants : .txt et img)
+   ============================================================ */
+.recup-muscu,
+.detente-muscu,
+.conva {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(1.5rem, 4vw, 3rem);
+    align-items: center;
+    padding: clamp(1.5rem, 4vw, 2.5rem) 0;
+    scroll-margin-top: 1.5rem;
+}
+.detente-muscu,
+.conva { border-top: 1px solid rgba(188, 138, 76, 0.28); }  /* filet amber discret */
+
+.recup-muscu img,
+.detente-muscu img,
+.conva img {
+    width: 100%; height: 100%;
+    max-height: 380px; object-fit: cover;
+    border-radius: 12px;
+}
+
+/* image à gauche pour "détente" */
+.detente-muscu .txt { order: 2; }
+.detente-muscu img  { order: 1; }
+
+.txt h2 {
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    font-weight: 600; line-height: 1.15;
+    color: var(--brown);
+    margin: 0 0 1rem;
+}
+.txt p { color: var(--ink-soft); margin: 0 0 0.9rem; }
+.txt p:last-child { margin-bottom: 0; }
+
+/* ============================================================
+   ZONE EN PARTICULIER — timeline, posée sur le lin (comme about)
+   ============================================================ */
+.zone-parcours {
+    margin-top: clamp(3.5rem, 8vw, 6rem);
+    padding-top: clamp(2.5rem, 5vw, 3.5rem);
+    border-top: 1px solid rgba(188, 138, 76, 0.28);
+}
+.zone-parcours .parcours-head {
+    max-width: 60ch;
+    margin: 0 auto clamp(3rem, 6vh, 4.5rem);
+    text-align: center;
+}
+.zone-parcours .eyebrow {
+    font-size: 0.78rem; font-weight: 700;
+    letter-spacing: 3px; text-transform: uppercase;
+    color: var(--amber); margin: 0 0 1rem;
+}
+.zone-parcours .parcours-head h2 {
+    font-size: clamp(2rem, 1.6rem + 3vw, 3.2rem);
+    font-weight: 500; line-height: 1.06;
+    color: var(--brown); margin: 0 0 1rem;
+}
+.zone-parcours .parcours-head p { color: var(--brown-soft); margin: 0; }
+
+.timeline { position: relative; max-width: 880px; margin: 0 auto; }
+
+.spine {
+    position: absolute; top: 6px; bottom: 6px; left: 50%;
+    width: 22px; transform: translateX(-50%);
+    z-index: 0; pointer-events: none;
+}
+.spine svg { width: 100%; height: 100%; display: block; }
+.spine path { fill: none; stroke: var(--sage); stroke-width: 1.5; opacity: 0.55; }
+.spine .grow { transform-origin: top center; transition: transform 1.8s cubic-bezier(.22,.61,.36,1); }
+
+.chapter { position: relative; padding: clamp(1.6rem, 3vh, 2.6rem) 0; }
+.dot {
+    position: absolute; left: 50%; top: calc(clamp(1.6rem, 3vh, 2.6rem) + 6px);
+    width: 15px; height: 15px; border-radius: 50%;
+    transform: translateX(-50%);
+    background: var(--linen); border: 1.5px solid var(--sage-deep);
+    box-shadow: 0 0 0 5px var(--linen); z-index: 2;
+}
+.dot::after {
+    content: ""; position: absolute; inset: 0; margin: auto;
+    width: 5px; height: 5px; border-radius: 50%; background: var(--amber);
+}
+
+.card { width: 43%; }
+.chapter:nth-child(odd) .card  { margin-right: auto; text-align: right; }
+.chapter:nth-child(even) .card { margin-left: auto;  text-align: left; }
+
+.card .tag {
+    display: block; margin-bottom: 0.7rem;
+    font-size: 0.7rem; font-weight: 700;
+    letter-spacing: 2px; text-transform: uppercase;
+    color: var(--sage-deep);
+}
+.card h3 {
+    font-size: clamp(1.6rem, 1.3rem + 1.2vw, 2.2rem);
+    font-weight: 500; line-height: 1.1;
+    color: var(--brown); margin: 0 0 0.8rem;
+}
+.card p { font-size: 0.98rem; line-height: 1.7; color: var(--ink-soft); margin: 0; }
+
+/* révélation au scroll (activée par le script) */
+.timeline.js-reveal .spine .grow { transform: scaleY(0); }
+.timeline.js-reveal.in .spine .grow { transform: scaleY(1); }
+.timeline.js-reveal .dot {
+    opacity: 0; transform: translateX(-50%) scale(.2);
+    transition: transform .7s cubic-bezier(.22,.61,.36,1), opacity .6s ease;
+}
+.timeline.js-reveal .chapter.in .dot { opacity: 1; transform: translateX(-50%) scale(1); }
+.timeline.js-reveal .card {
+    opacity: 0; transform: translateY(20px);
+    transition: opacity .9s ease, transform .9s ease;
+}
+.timeline.js-reveal .chapter.in .card { opacity: 1; transform: none; }
+
+/* ------------------------------------------------------------
+   CLÔTURE — citation + appels à l'action
+   ------------------------------------------------------------ */
+.closing {
+    text-align: center;
+    padding: clamp(4rem, 8vh, 7rem) 0;
+    border-top: 1px solid rgba(184, 154, 106, 0.18);
+}
+.closing .mark {
+    display: block;
+    font-size: 4.5rem;
+    line-height: 0;
+    height: 2rem;
+    color: var(--gold);
+    opacity: 0.5;
+}
+.closing blockquote {
+    margin: 0 auto;
+    max-width: 26ch;
+    font-weight: 300;
+    font-style: italic;
+    font-size: clamp(1.8rem, 1.3rem + 2.4vw, 3rem);
+    line-height: 1.25;
+    color: var(--brown);
+}
+.cta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 2.8rem;
+}
+.btn {
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 0.85rem 2rem;
+    border-radius: 8px;
+    transition: background 0.2s ease, color 0.2s ease, transform 0.1s ease;
+}
+.btn-primary {
+    background: var(--gold);
+    color: var(--brown);
+}
+.btn-primary:hover { background: var(--gold-light); }
+.btn-primary:active { transform: translateY(1px); }
+.btn-ghost {
+    border: 1px solid var(--gold);
+    color: var(--gold);
+}
+.btn-ghost:hover { background: rgba(184, 154, 106, 0.12); }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 720px) {
+    .recup-muscu, .detente-muscu, .conva {
+        grid-template-columns: 1fr; gap: 1.2rem;
+    }
+    .detente-muscu .txt, .detente-muscu img { order: 0; }
+    .recup-muscu img, .detente-muscu img, .conva img { max-height: 260px; }
+
+    .spine { left: 18px; transform: none; }
+    .dot { left: 18px; }
+    .card,
+    .chapter:nth-child(odd) .card,
+    .chapter:nth-child(even) .card {
+        width: auto; margin: 0 0 0 48px; text-align: left;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .timeline.js-reveal .card,
+    .timeline.js-reveal .dot,
+    .timeline.js-reveal .spine .grow {
+        opacity: 1 !important; transform: none !important;
+    }
+    .timeline.js-reveal .dot { transform: translateX(-50%) scale(1) !important; }
+    .timeline.js-reveal .spine .grow { transform: scaleY(1) !important; }
+}

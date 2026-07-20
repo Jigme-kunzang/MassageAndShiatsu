@@ -1,0 +1,588 @@
+/* ============================================================
+   PRESTATIONS — feuille PARTAGÉE, pilotée par le gabarit
+   Prestation.astro et les données du Markdown de chaque soin.
+   Importe globals.css AVANT ce fichier : palette (variables),
+   reset et police Lora y sont déjà définis.
+   L'en-tête et le pied de page viennent des composants
+   Header.astro / Footer.astro (header.css / footer.css).
+   Signatures : .meridian (shiatsu), .ripples (abhyanga),
+   .spiral (chi nei tsang) — pilotées par la classe du <body>.
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   BASE — page foncée, comme tarifs / contact / mentions
+   ------------------------------------------------------------ */
+body {
+    background-color: var(--teal);
+    color: var(--cream-light);
+}
+
+.wrap {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 28px;
+}
+
+/* éléments partagés ------------------------------------------ */
+.eyebrow {
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin: 0 0 1.1rem;
+}
+
+.lead {
+    font-size: clamp(1.15rem, 1rem + 0.7vw, 1.4rem);
+    line-height: 1.6;
+    color: var(--cream-muted);
+    max-width: 56ch;
+}
+
+/* ------------------------------------------------------------
+   HERO
+   ------------------------------------------------------------ */
+.hero {
+    position: relative;
+    overflow: hidden;
+    padding: clamp(4.5rem, 9vh, 8rem) 0 clamp(3.5rem, 7vh, 6rem);
+}
+.hero .wrap { position: relative; z-index: 2; }
+
+.hero .lang {
+    display: block;
+    font-size: clamp(2.4rem, 6vw, 4rem);
+    color: var(--gold);
+    opacity: 0.85;
+    line-height: 1;
+    margin-bottom: 0.6rem;
+    letter-spacing: 0.1em;
+}
+.hero h1 {
+    font-size: clamp(3.2rem, 2rem + 8vw, 7rem);
+    font-weight: 300;
+    line-height: 0.98;
+    letter-spacing: -0.01em;
+    margin: 0 0 1.4rem;
+    color: var(--cream-light);
+}
+.hero h1 em {
+    font-style: italic;
+    color: var(--gold-light);
+    font-weight: 400;
+}
+.hero .lead { margin: 0; }
+
+.hero .translation {
+    margin-top: 0.4rem;
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--slate-light);
+}
+
+/* le « méridien » : fil vertical de points, décoratif */
+.meridian {
+    position: absolute;
+    top: -6%;
+    right: 4%;
+    height: 112%;
+    width: auto;
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0.9;
+}
+.meridian path {
+    fill: none;
+    stroke: var(--gold);
+    stroke-width: 1.3;
+    opacity: 0.4;
+    stroke-linecap: round;
+}
+.meridian circle {
+    fill: var(--gold);
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: pulse 3.6s ease-in-out infinite;
+}
+.meridian circle:nth-of-type(2) { animation-delay: 0.5s; }
+.meridian circle:nth-of-type(3) { animation-delay: 1.0s; }
+.meridian circle:nth-of-type(4) { animation-delay: 1.5s; }
+.meridian circle:nth-of-type(5) { animation-delay: 2.0s; }
+@keyframes pulse {
+    0%, 100% { opacity: 0.35; transform: scale(0.8); }
+    50%      { opacity: 1;    transform: scale(1.25); }
+}
+
+/* ------------------------------------------------------------
+   INTRO — ce qu'est le shiatsu
+   ------------------------------------------------------------ */
+.intro {
+    padding: clamp(3rem, 6vh, 5rem) 0;
+    border-top: 1px solid rgba(184, 154, 106, 0.18);
+}
+.intro .grid {
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    gap: clamp(2rem, 5vw, 4.5rem);
+    align-items: start;
+}
+.intro h2 {
+    font-size: clamp(2rem, 1.4rem + 2.4vw, 3.2rem);
+    font-weight: 300;
+    line-height: 1.08;
+    margin: 0;
+    color: var(--cream-light);
+}
+.intro p {
+    margin: 0 0 1.2rem;
+    color: var(--cream-muted);
+}
+.intro p:last-child { margin-bottom: 0; }
+.intro p strong { color: var(--cream-light); font-weight: 600; }
+
+/* ------------------------------------------------------------
+   BIENFAITS — grille de cartes
+   ------------------------------------------------------------ */
+.bienfaits {
+    padding: clamp(3rem, 6vh, 5.5rem) 0;
+}
+.bienfaits .head {
+    max-width: 60ch;
+    margin-bottom: clamp(2.2rem, 4vw, 3.2rem);
+}
+.bienfaits .head h2 {
+    font-size: clamp(2rem, 1.4rem + 2.4vw, 3.2rem);
+    font-weight: 300;
+    line-height: 1.08;
+    margin: 0 0 1rem;
+    color: var(--cream-light);
+}
+.bienfaits .head p { margin: 0; color: var(--cream-muted); }
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.4rem;
+}
+.b-card {
+    background: rgba(255, 249, 240, 0.04);
+    border: 1px solid rgba(184, 154, 106, 0.22);
+    border-radius: var(--radius);
+    padding: 1.8rem 1.6rem;
+    transition: border-color 0.25s ease, transform 0.25s ease, background 0.25s ease;
+}
+.b-card:hover {
+    border-color: var(--gold);
+    background: rgba(255, 249, 240, 0.07);
+    transform: translateY(-4px);
+}
+.b-card .num {
+    display: block;
+    font-size: 0.78rem;
+    letter-spacing: 2px;
+    color: var(--gold);
+    margin-bottom: 0.9rem;
+}
+.b-card h3 {
+    font-size: 1.35rem;
+    font-weight: 500;
+    line-height: 1.2;
+    margin: 0 0 0.6rem;
+    color: var(--cream-light);
+}
+.b-card p {
+    margin: 0;
+    font-size: 0.98rem;
+    line-height: 1.6;
+    color: var(--cream-muted);
+}
+
+/* ------------------------------------------------------------
+   BANDEAU RÉASSURANCE — « sans contact avec la peau »
+   La carte claire qui tranche : c'est le point clé de la page.
+   ------------------------------------------------------------ */
+.highlight {
+    padding: clamp(1rem, 3vh, 2.5rem) 0 clamp(3rem, 6vh, 5.5rem);
+}
+.highlight .panel {
+    background: var(--cream-card);
+    color: var(--brown-deep);
+    border-radius: 20px;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.28);
+    padding: clamp(2.5rem, 5vw, 4rem);
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: clamp(2rem, 4vw, 3.5rem);
+    align-items: center;
+}
+.highlight .eyebrow { color: var(--brown-soft); }
+.highlight h2 {
+    font-size: clamp(1.8rem, 1.3rem + 2vw, 2.8rem);
+    font-weight: 400;
+    line-height: 1.12;
+    margin: 0 0 1rem;
+    color: var(--brown-deep);
+}
+.highlight h2 em { font-style: italic; color: var(--gold); }
+.highlight p {
+    margin: 0 0 1rem;
+    color: var(--brown-soft);
+}
+.highlight p:last-child { margin-bottom: 0; }
+
+.highlight ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+.highlight li {
+    position: relative;
+    padding-left: 1.8rem;
+    color: var(--brown-deep);
+    font-size: 1.02rem;
+    line-height: 1.5;
+}
+.highlight li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.55em;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--gold);
+    box-shadow: 0 0 0 4px rgba(184, 154, 106, 0.18);
+}
+.highlight li strong { font-weight: 700; }
+
+/* ------------------------------------------------------------
+   FORTS / LIMITES — deux colonnes honnêtes
+   ------------------------------------------------------------ */
+.balance {
+    padding: clamp(3rem, 6vh, 5.5rem) 0;
+    border-top: 1px solid rgba(184, 154, 106, 0.18);
+}
+.balance > .wrap > h2 {
+    font-size: clamp(2rem, 1.4rem + 2.4vw, 3rem);
+    font-weight: 300;
+    text-align: center;
+    margin: 0 0 clamp(2.2rem, 4vw, 3.2rem);
+    color: var(--cream-light);
+}
+.balance .cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.4rem;
+}
+.bal-col {
+    border-radius: var(--radius);
+    padding: clamp(1.8rem, 3vw, 2.4rem);
+    border: 1px solid rgba(184, 154, 106, 0.22);
+}
+.bal-col.forts, .bal-col.limites { background: var(--brown) }
+
+.bal-col h3 {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    font-size: 1.3rem;
+    font-weight: 500;
+    margin: 0 0 1.3rem;
+    color: var(--cream-light);
+}
+.bal-col h3 .sig {
+    font-size: 1.5rem;
+    line-height: 1;
+    color: var(--gold);
+}
+.bal-col ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+}
+.bal-col li {
+    position: relative;
+    padding-left: 1.5rem;
+    color: var(--cream-muted);
+    line-height: 1.55;
+    font-size: 0.99rem;
+}
+.bal-col li::before {
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--gold);
+    font-weight: 700;
+}
+.bal-col.forts   li::before, .bal-col.limites li::before { content: "-" }
+.bal-col li strong { color: var(--cream-light); font-weight: 600; }
+
+.balance .note {
+    margin: 1.8rem auto 0;
+    max-width: 62ch;
+    text-align: center;
+    font-size: 0.9rem;
+    font-style: italic;
+    color: var(--slate-light);
+}
+
+/* ------------------------------------------------------------
+   DÉROULÉ — étapes d'une séance
+   ------------------------------------------------------------ */
+.deroule {
+    padding: clamp(3rem, 6vh, 5.5rem) 0;
+    border-top: 1px solid rgba(184, 154, 106, 0.18);
+}
+.deroule .head {
+    text-align: center;
+    max-width: 56ch;
+    margin: 0 auto clamp(2.5rem, 5vw, 3.5rem);
+}
+.deroule .head h2 {
+    font-size: clamp(2rem, 1.4rem + 2.4vw, 3rem);
+    font-weight: 300;
+    margin: 0 0 0.8rem;
+    color: var(--cream-light);
+}
+.deroule .head p { margin: 0; color: var(--cream-muted); }
+
+.steps {
+    list-style: none;
+    counter-reset: step;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.2rem;
+}
+.steps li {
+    counter-increment: step;
+    position: relative;
+    padding-top: 2.8rem;
+}
+.steps li::before {
+    content: counter(step, decimal-leading-zero);
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 1.05rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: var(--gold);
+}
+.steps li::after {
+    content: "";
+    position: absolute;
+    top: 0.55rem;
+    left: 2.6rem;
+    right: 0;
+    height: 1px;
+    background: rgba(184, 154, 106, 0.3);
+}
+.steps li:last-child::after { display: none; }
+.steps h3 {
+    font-size: 1.15rem;
+    font-weight: 500;
+    margin: 0 0 0.5rem;
+    color: var(--cream-light);
+}
+.steps p {
+    margin: 0;
+    font-size: 0.94rem;
+    line-height: 1.55;
+    color: var(--cream-muted);
+}
+
+/* ------------------------------------------------------------
+   CLÔTURE — citation + appels à l'action
+   ------------------------------------------------------------ */
+.closing {
+    text-align: center;
+    padding: clamp(4rem, 8vh, 7rem) 0;
+    border-top: 1px solid rgba(184, 154, 106, 0.18);
+}
+.closing .mark {
+    display: block;
+    font-size: 4.5rem;
+    line-height: 0;
+    height: 2rem;
+    color: var(--gold);
+    opacity: 0.5;
+}
+.closing blockquote {
+    margin: 0 auto;
+    max-width: 26ch;
+    font-weight: 300;
+    font-style: italic;
+    font-size: clamp(1.8rem, 1.3rem + 2.4vw, 3rem);
+    line-height: 1.25;
+    color: var(--cream-light);
+}
+.cta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 2.8rem;
+}
+.btn {
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 0.85rem 2rem;
+    border-radius: 8px;
+    transition: background 0.2s ease, color 0.2s ease, transform 0.1s ease;
+}
+.btn-primary {
+    background: var(--gold);
+    color: var(--teal);
+}
+.btn-primary:hover { background: var(--gold-light); }
+.btn-primary:active { transform: translateY(1px); }
+.btn-ghost {
+    border: 1px solid var(--gold);
+    color: var(--gold);
+}
+.btn-ghost:hover { background: rgba(184, 154, 106, 0.12); }
+
+/* ------------------------------------------------------------
+   APPARITION AU SCROLL  (piloté par scripts/display.js)
+   ------------------------------------------------------------ */
+.reveal {
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity 0.9s ease, transform 0.9s ease;
+}
+.reveal.in { opacity: 1; transform: none; }
+
+/* entrée du hero */
+.anim {
+    opacity: 0;
+    transform: translateY(22px);
+    animation: rise 1.1s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+}
+.a1 { animation-delay: 0.1s; }
+.a2 { animation-delay: 0.28s; }
+.a3 { animation-delay: 0.5s; }
+.a4 { animation-delay: 0.72s; }
+@keyframes rise { to { opacity: 1; transform: none; } }
+
+/* ------------------------------------------------------------
+   RESPONSIVE
+   ------------------------------------------------------------ */
+@media (max-width: 860px) {
+    .intro .grid { grid-template-columns: 1fr; gap: 1.6rem; }
+    .cards { grid-template-columns: 1fr 1fr; }
+    .highlight .panel { grid-template-columns: 1fr; }
+    .balance .cols { grid-template-columns: 1fr; }
+    .steps { grid-template-columns: 1fr 1fr; }
+    .steps li::after { display: none; }
+}
+
+@media (max-width: 560px) {
+    .cards { grid-template-columns: 1fr; }
+    .steps { grid-template-columns: 1fr; }
+    .meridian { opacity: 0.35; right: -40px; }
+}
+
+/* ------------------------------------------------------------
+   ACCESSIBILITÉ — mouvement réduit
+   ------------------------------------------------------------ */
+@media (prefers-reduced-motion: reduce) {
+    .anim, .reveal, .b-card {
+        animation: none !important;
+        transition: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+    }
+    .meridian circle { animation: none !important; opacity: 0.7; }
+}
+/* ============================================================
+   SIGNATURES ABHYANGA & CHI NEI TSANG
+   (le <body> porte .sig-meridian / .sig-ripples / .sig-spiral ;
+    une seule signature est présente dans le DOM à la fois)
+   ============================================================ */
+
+/* Abhyanga : halo doré chaud */
+.sig-ripples .hero::before {
+    content: "";
+    position: absolute;
+    top: -20%;
+    right: -10%;
+    width: 70%;
+    height: 130%;
+    background: radial-gradient(circle at 70% 30%,
+                rgba(212, 189, 148, 0.20), rgba(212, 189, 148, 0) 62%);
+    z-index: 0;
+    pointer-events: none;
+}
+/* Abhyanga : ondes concentriques */
+.ripples {
+    position: absolute;
+    top: -8%;
+    right: -4%;
+    width: min(520px, 52%);
+    height: auto;
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0.85;
+}
+.ripples circle {
+    fill: none;
+    stroke: var(--gold);
+    stroke-width: 1.2;
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: ripple 5.6s ease-out infinite;
+}
+.ripples circle:nth-of-type(2) { animation-delay: 1.4s; }
+.ripples circle:nth-of-type(3) { animation-delay: 2.8s; }
+.ripples circle:nth-of-type(4) { animation-delay: 4.2s; }
+@keyframes ripple {
+    0%   { opacity: 0;    transform: scale(0.45); }
+    30%  { opacity: 0.55; }
+    100% { opacity: 0;    transform: scale(1.15); }
+}
+
+/* Chi Nei Tsang : spirale de l'énergie */
+.spiral {
+    position: absolute;
+    top: 50%;
+    right: -2%;
+    transform: translateY(-50%);
+    width: min(440px, 46%);
+    height: auto;
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0.5;
+}
+.spiral path {
+    fill: none;
+    stroke: var(--gold);
+    stroke-width: 1.3;
+    stroke-linecap: round;
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: turn 44s linear infinite;
+}
+.spiral circle { fill: var(--gold); }
+@keyframes turn { to { transform: rotate(360deg); } }
+
+@media (max-width: 560px) {
+    .ripples { opacity: 0.4; right: -60px; }
+    .spiral  { opacity: 0.28; right: -70px; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .ripples circle { animation: none !important; opacity: 0.4; }
+    .spiral path    { animation: none !important; }
+}

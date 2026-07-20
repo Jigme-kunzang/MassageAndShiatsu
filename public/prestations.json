@@ -1,13 +1,13 @@
 [
-    {"nom": "Massage Récupération musculaire des 12 méridiens", "durée": 60, "tarif": 90},
-    {"nom": "Massage détente musculaire", "durée": 30, "tarif": 50},
-    {"nom": "Massage convalescence®", "durée": 60, "tarif": 90},
-    {"nom": "Massage convalescence®", "durée": 30, "tarif": 50},
-    {"nom": "Massage du dos", "durée": 30, "tarif": 50},
-    {"nom": "Massage des jambes", "durée": 30, "tarif": 50},
-    {"nom": "Massage sur mesure", "durée": 90, "tarif": 130},
-    {"nom": "Abhyanga (massage indien ayurvédique)", "durée": 60, "tarif": 90},
-    {"nom": "Shiatsu", "durée": 60, "tarif": 90},
-    {"nom": "Chi Nei Tsang (massage du ventre)", "durée": 60, "tarif": 80},
-    {"nom": "Prestation à domicile", "durée": 60, "tarif": 110}
+    {"nom": "Massage Récupération musculaire des 12 méridiens", "id": "meridiens", "durée": 60,  "tarif": 90},
+    {"nom": "Massage détente musculaire", "id": "musculaire", "durée": 30,  "tarif": 50},
+    {"nom": "Massage convalescence®",  "id": "convalescence",  "durée": 60,  "tarif": 90},
+    {"nom": "Massage convalescence®",  "id": "convalescence",  "durée": 30,  "tarif": 50},
+    {"nom": "Massage du dos",  "id": "corp",  "durée": 30,  "tarif": 50},
+    {"nom": "Massage des jambes", "id": "corp", "durée": 30, "tarif": 50},
+    {"nom": "Massage sur mesure", "id": "corp", "durée": 90, "tarif": 130},
+    {"nom": "Abhyanga (massage indien ayurvédique)", "id": "abhyanga", "durée": 60, "tarif": 90},
+    {"nom": "Shiatsu", "id": "shiatsu", "durée": 60, "tarif": 90},
+    {"nom": "Chi Nei Tsang (massage du ventre)", "id": "chiNeiTsang", "durée": 60, "tarif": 80},
+    {"nom": "Prestation à domicile", "id": "domicile", "durée": 60, "tarif": 110}
 ]

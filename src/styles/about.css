@@ -15,7 +15,13 @@
   --clay:#AE7E66;
 }
 
-body{
+nav {
+    box-shadow: 0 6px 18px rgba(58, 38, 31, 0.10);  /* ombre brune, chaude */
+    position: relative;
+    z-index: 10;   /* pour que l'ombre passe au-dessus du contenu */
+}
+
+main{
   margin:0;
   background:var(--linen);
   color:var(--ink);
