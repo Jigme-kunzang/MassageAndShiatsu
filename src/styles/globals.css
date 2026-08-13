@@ -34,7 +34,9 @@
     /* Fonds */
     --cream:        #FCF0E2;   /* fond crème (pages claires + header) */
     --cream-card:   #FFF9F0;   /* cartes, champs de formulaire */
-    --teal:         #1B4053;   /* bleu canard (pages foncées) */
+    --blanc:        #FFFFFF;   /* blanc : pages de prestation */
+    --lien:         #F5F0E6;   /* beige lin : pages de propositions */
+    --teal:         #1B4053;   /* bleu canard (bandeaux mis en avant) */
 
     /* Bruns */
     --brown-deep:   #3a261f;   /* texte foncé, bas de footer */

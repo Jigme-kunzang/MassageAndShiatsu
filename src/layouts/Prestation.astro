@@ -1,144 +1,203 @@
 ---
-// Gabarit RÉUTILISABLE d'une page de prestation (méthode du tutoriel, unité 4).
+// Gabarit RÉUTILISABLE d'une page de prestation.
 // Appliqué depuis le frontmatter du Markdown :  layout: ../../layouts/Prestation.astro
 // -> toutes les valeurs du frontmatter arrivent dans Astro.props.frontmatter
-// -> le <slot /> reçoit le corps du Markdown (les paragraphes d'intro).
+// -> le <slot /> reçoit le corps du Markdown (les paragraphes d'ouverture).
+//
+// MISE EN PAGE : zig-zag + lecture en F.
+//   - En F : tout est aligné à gauche. Une large barre d'en-tête, une
+//     deuxième barre plus courte (durée/tarif/mots-clés), puis les titres
+//     de section qui descendent le long du bord gauche — le trajet que
+//     l'œil suit naturellement.
+//   - Zig-zag : le corps alterne texte/image puis image/texte, ce qui
+//     raccourcit la page (deux colonnes au lieu d'un empilement) et
+//     relance l'attention à chaque rangée.
+//
+// La durée et le tarif ne sont JAMAIS écrits ici : ils viennent de
+// public/prestations.json via la clé `nom` du frontmatter, qui reprend
+// mot pour mot le libellé du module de réservation Terapiz.
+import prestations from "../../public/prestations.json";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
-import Signature from "../components/Signatures.astro";
 import "../styles/globals.css";
 import "../styles/prestations.css";
+
+// même écriture des durées que Terapiz : 30 -> « 30 min », 60 -> « 1 h »,
+// 90 -> « 1 h 30 ». Plusieurs lignes pour un même nom sont fusionnées.
+const enDuree = (minutes: number) => {
+  if (minutes < 60) return `${minutes} min`;
+  const h = Math.floor(minutes / 60);
+  const reste = minutes % 60;
+  return reste ? `${h} h ${reste}` : `${h} h`;
+};
+const fusion = (valeurs: number[], ecrire: (v: number) => string) =>
+  [...new Set(valeurs)].sort((a, b) => a - b).map(ecrire).join(" ou ");
 
 const { frontmatter } = Astro.props;
 const {
   title, description,
-  signature,                       // "meridian" | "ripples" | "spiral" | (absent = aucune)
   eyebrow = "La prestation",
-  lang, heading, headingEm, lead, translation,
-  introHeading,
+  heading, headingEm, lead,
+  nom, motsCles = [],
+  lieu = "Au cabinet, au Lavandou - ou chez vous",
+  image, imageAlt,
+  image2, image2Alt,
   bienfaits, highlight, balance, deroule,
+  pourQui, pratique = [],
   closingQuote,
   booking = "https://terapiz.com/masseur/le-lavandou/carole-renaud",
   tarifs = "/cabinet/tarifs",
 } = frontmatter;
+
+const lignes = nom ? prestations.filter((p) => p.nom === nom) : [];
+const duree = lignes.length ? fusion(lignes.map((l) => l["durée"]), enDuree) : "";
+const tarif = lignes.length ? fusion(lignes.map((l) => l.tarif), (t) => `${t} €`) : "";
+
+// « En pratique » : durée, tarif et lieu d'abord — les trois questions que
+// tout le monde se pose — puis les précisions propres à la prestation.
+const enPratique = [
+  duree && { label: "Durée", value: duree },
+  tarif && { label: "Tarif", value: tarif },
+  { label: "Où", value: lieu },
+  ...pratique,
+  nom && { label: "Réservation", value: `En ligne, rubrique <strong>« ${nom} »</strong>` },
+].filter(Boolean);
 ---
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>{title}</title>
-<meta name="description" content={description}>
-<script>import '../scripts/display'</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{title}</title>
+  <meta name="description" content={description}>
 </head>
-<body class={signature ? `sig-${signature}` : undefined}>
+<body class="page-prestation">
   <Header/>
 
   <main>
 
-    <!-- ===================== HERO ===================== -->
-    <section class="hero">
-      <Signature type={signature} />
+    <!-- ====== BARRE HAUTE DU F — titre, chapô, l'essentiel ====== -->
+    <header class="entete">
       <div class="wrap">
-        <p class="eyebrow anim a1">{eyebrow}</p>
-        <h1 class="anim a1">{heading}<br><em>{headingEm}</em></h1>
-        <span class="lang anim a2">{lang}</span>
-        <p class="lead anim a3">{lead}</p>
-        <p class="translation anim a4">{translation}</p>
-      </div>
-    </section>
+        <p class="rubrique">{eyebrow}</p>
+        <h1>{heading} <em>{headingEm}</em></h1>
+        <p class="chapo">{lead}</p>
 
-    <!-- ===================== INTRO ===================== -->
-    <section class="intro">
-      <div class="wrap">
-        <div class="grid">
-          <h2 class="reveal">{introHeading}</h2>
-          <div class="reveal">
-            <slot />
-          </div>
+        <!-- deuxième barre du F, plus courte -->
+        <div class="barre">
+          <ul class="reperes">
+            {duree && <li><span>Durée</span>{duree}</li>}
+            {tarif && <li><span>Tarif</span>{tarif}</li>}
+            <li><span>Où</span>{lieu}</li>
+          </ul>
+          {motsCles.length > 0 && (
+            <ul class="mots-cles">
+              {motsCles.map((m: string) => <li>{m}</li>)}
+            </ul>
+          )}
         </div>
       </div>
-    </section>
+    </header>
 
-    <!-- ===================== BIENFAITS ===================== -->
-    <section class="bienfaits">
+    <!-- ====== ZIG — texte à gauche, image à droite ====== -->
+    <section class="rangee">
       <div class="wrap">
-        <div class="head reveal">
-          <p class="eyebrow">{bienfaits.eyebrow ?? "Sur le corps"}</p>
+        <div class="texte">
+          <div class="chapeau"><slot /></div>
           <h2>{bienfaits.heading}</h2>
-          <p>{bienfaits.lead}</p>
+          <ul class="liste">
+            {bienfaits.cards.map((c: any) => (
+              <li><strong>{c.title}</strong>{c.text && <> — {c.text}</>}</li>
+            ))}
+          </ul>
         </div>
-        <div class="cards">
-          {bienfaits.cards.map((c: any, i: number) => (
-            <article class="b-card reveal">
-              <span class="num">{String(i + 1).padStart(2, "0")}</span>
-              <h3>{c.title}</h3>
-              <p>{c.text}</p>
-            </article>
-          ))}
-        </div>
+        <figure class="visuel">
+          <img src={image} alt={imageAlt ?? title} />
+        </figure>
       </div>
     </section>
 
-    <!-- ============ BANDEAU MIS EN AVANT ============ -->
-    <section class="highlight">
+    <!-- ====== ZAG — image à gauche, texte à droite ====== -->
+    <section class="rangee inverse">
       <div class="wrap">
-        <div class="panel reveal">
-          <div>
-            <p class="eyebrow">{highlight.eyebrow}</p>
-            <h2>{highlight.heading}<br><em>{highlight.headingEm}</em></h2>
-            {highlight.paragraphs.map((p: String) => <p set:html={p} />)}
-          </div>
-          <ul>
-            {highlight.points.map((pt: String) => <li set:html={pt} />)}
+        <figure class="visuel">
+          <img src={image2 ?? image} alt={image2Alt ?? title} loading="lazy" />
+        </figure>
+        <div class="texte">
+          <h2>{highlight.heading} {highlight.headingEm}</h2>
+          {highlight.paragraphs.map((p: string) => <p set:html={p} />)}
+          <ul class="liste serree">
+            {highlight.points.map((pt: string) => <li set:html={pt} />)}
           </ul>
         </div>
       </div>
     </section>
 
-    <!-- ============ FORTS / LIMITES ============ -->
-    <section class="balance">
-      <div class="wrap">
-        <h2 class="reveal">En toute honnêteté.</h2>
-        <div class="cols">
-          <div class="bal-col forts reveal">
-            <h3>{balance.fortsHeading}</h3>
-            <ul>{balance.forts.map((li: String) => <li set:html={li} />)}</ul>
-          </div>
-          <div class="bal-col limites reveal">
-            <h3>{balance.limitesHeading}</h3>
-            <ul>{balance.limites.map((li: String) => <li set:html={li} />)}</ul>
-          </div>
-        </div>
-        <p class="note reveal">{balance.note}</p>
-      </div>
-    </section>
+    <!-- ====== CITATION — respiration entre deux rangées ====== -->
+    {closingQuote && (
+      <section class="citation">
+        <div class="wrap"><blockquote>{closingQuote}</blockquote></div>
+      </section>
+    )}
 
-    <!-- ============ DÉROULÉ ============ -->
+    <!-- ====== POUR QUI — balayage vertical, colonne de gauche ====== -->
+    {pourQui && (
+      <section class="pour-qui">
+        <div class="wrap">
+          <div class="titre">
+            <p class="rubrique">Pour qui ?</p>
+            <h2>{pourQui.heading}</h2>
+            {pourQui.note && <p class="incise" set:html={pourQui.note} />}
+          </div>
+          <ul class="liste cochee">
+            {pourQui.items.map((it: string) => <li set:html={it} />)}
+          </ul>
+        </div>
+      </section>
+    )}
+
+    <!-- ====== DÉROULÉ — barre horizontale, 4 étapes ====== -->
     <section class="deroule">
       <div class="wrap">
-        <div class="head reveal">
-          <p class="eyebrow">{deroule.eyebrow ?? "La séance"}</p>
+        <div class="titre">
+          <p class="rubrique">La séance</p>
           <h2>{deroule.heading ?? "Comment se passe une séance."}</h2>
-          <p>{deroule.lead}</p>
         </div>
-        <ol class="steps">
-          {deroule.steps.map((s:any) => (
-            <li class="reveal">
-              <h3>{s.title}</h3>
-              <p>{s.text}</p>
-            </li>
+        <ol class="etapes">
+          {deroule.steps.map((s: any) => (
+            <li><strong>{s.title}</strong><span>{s.text}</span></li>
           ))}
         </ol>
+        {deroule.apres && (
+          <p class="incise"><strong>Après la séance :</strong> <span set:html={deroule.apres} /></p>
+        )}
       </div>
     </section>
 
-    <!-- ============ CLÔTURE ============ -->
-    <section class="closing">
+    <!-- ====== EN PRATIQUE + RÉSERVATION ====== -->
+    <section class="pratique">
       <div class="wrap">
-        <span class="mark" aria-hidden="true">“</span>
-        <blockquote class="reveal">{closingQuote}</blockquote>
-        <div class="cta-row reveal">
+        <div class="titre">
+          <p class="rubrique">Avant de venir</p>
+          <h2>En pratique.</h2>
+        </div>
+        <div class="fiches">
+          <dl class="fiche">
+            {enPratique.map((l: any) => (
+              <div class="ligne">
+                <dt>{l.label}</dt>
+                <dd set:html={l.value} />
+              </div>
+            ))}
+          </dl>
+          <div class="savoir">
+            <h3>{balance.limitesHeading ?? "Ce qu'il faut savoir"}</h3>
+            <ul class="limites">{balance.limites.map((li: string) => <li set:html={li} />)}</ul>
+            {balance.note && <p class="note">{balance.note}</p>}
+          </div>
+        </div>
+        <div class="cta-row">
           <a class="btn btn-primary" href={booking}>Réserver un créneau</a>
           <a class="btn btn-ghost" href={tarifs}>Voir les tarifs</a>
         </div>

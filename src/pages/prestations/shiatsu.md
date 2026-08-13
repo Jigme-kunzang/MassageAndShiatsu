@@ -1,58 +1,44 @@
 ---
 layout: ../../layouts/Prestation.astro
-title: "Le Shiatsu — la pression juste, à travers le vêtement"
+title: "Shiatsu — la pression juste, à travers le vêtement"
 description: "Découvrez le shiatsu : ses bienfaits sur le corps, ses points forts et ses limites. Une pratique reçue tout habillé, sans huile ni contact avec la peau."
-signature: "meridian"
+nom: "Shiatsu"
+eyebrow: "Massages énergétiques"
+motsCles: ["Reçu habillé", "Sans huile", "Stress", "Sommeil", "Tensions profondes"]
+image: "/pictures/shiatsu1.jpg"
+image2: "/pictures/shiatsu2.jpg"
 lang: "指圧"
-heading: "Le shiatsu,"
-headingEm: "la pression juste."
-lead: "Une pression lente et profonde, exercée du bout des pouces et des paumes, le long des lignes d'énergie du corps. On la reçoit allongé, tout habillé — un temps suspendu où le corps se dénoue sans jamais être exposé."
-translation: "指圧 · « shi-atsu » : pression des doigts"
-introHeading: "Une écoute par les mains, née au Japon."
+heading: "Le"
+headingEm: "shiatsu."
+lead: "Le shiatsu est une communication du coeur à coeur l'art du bien être, de la détente."
+translation: "指圧 · « shi-atsu » : pression avec le pouce"
+introHeading: "Une discipline énergétique japonaise ancestrale."
 bienfaits:
   heading: "Ce que la séance dénoue."
   lead: "Les effets s'installent séance après séance. Voici ce que les corps racontent le plus souvent."
   cards:
-    - title: "Tensions relâchées"
-      text: "Nuque, épaules, bas du dos : les zones qui portent le stress se desserrent sous la pression maintenue."
-    - title: "Circulation relancée"
-      text: "Le travail sur les méridiens stimule la circulation sanguine et lymphatique, et réveille les jambes lourdes."
-    - title: "Système nerveux apaisé"
-      text: "Le rythme lent fait basculer le corps en mode repos. Beaucoup repartent avec un sommeil plus profond."
-    - title: "Digestion soutenue"
-      text: "Les pressions sur l'abdomen accompagnent le transit et relâchent un ventre trop souvent noué."
-    - title: "Énergie rééquilibrée"
-      text: "Là où l'énergie stagne ou déborde, le shiatsu cherche à rétablir une circulation plus régulière."
-    - title: "Mental plus clair"
-      text: "En relâchant le corps, on relâche aussi le flot des pensées : moins d'anxiété, plus de présence."
+    - title: "Apaisement du corps et de l'esprit"
+    - title: "Régulation douce de l'équilibre global"
+    - title: "Sensation de recentrage et de la vitalité"
 highlight:
   eyebrow: "Le point qui change tout"
-  heading: "Tout habillé. Sans huile."
-  headingEm: "Sans un centimètre de peau exposé."
+  heading: "Le shiatsu"
+  headingEm: "Une pratique habillée"
   paragraphs:
-    - "Le shiatsu ne se pratique pas sur peau nue. Vous restez vêtu·e d'une tenue souple et confortable, allongé·e sur un futon. La pression passe à travers le tissu — jamais directement sur la peau."
-    - "C'est ce qui en fait une porte d'entrée précieuse pour toutes les personnes que le contact peau à peau met mal à l'aise : on profite pleinement de la détente, sans se dévêtir, sans huile, sans sensation d'intrusion."
+    - "Vous êtes vêtu·e d'une tenue souple et confortable, allongé·e sur un futon. Une pression douce et profonde passe à travers le tissu — jamais directement sur la peau."
+    - "Le shiatsu une alternative idéale il lève les freins liés à la pudeur et au toucher, tout en offrant les bénéfices physique et nerveux de la relaxation."
   points:
-    - "<strong>On garde ses vêtements</strong> — une tenue souple suffit."
-    - "<strong>Aucune huile, aucune crème</strong> — la peau reste intacte."
-    - "<strong>Une pression, pas une caresse</strong> — un geste franc et rassurant."
-    - "<strong>Vous fixez la limite</strong> — chaque zone se travaille avec votre accord."
+    - "Une prestation <strong>Sans huile</strong>"
+    - "<strong>Des Accupressions</strong> pour une prestation relaxante"
+    - "<strong>Une tenue souple suffit</strong>"
 balance:
-  fortsHeading: "Ce que le shiatsu vous offre"
-  forts:
-    - "Un <strong>Reçu habillé</strong>, sans huile ni contact direct avec la peau."
-    - "Une <strong>approche globale</strong> : le corps, le souffle, l'énergie, ensemble."
-    - "Une <strong>détente profonde</strong> du système nerveux, durable."
-    - "Une <strong>Adaptabilité</strong> pour chacun : la pression se module selon votre sensibilité."
-    - "Une pratique <strong>naturelle</strong>."
-    - "Une prestation idéal pour qui <strong>n'aime pas être touché à même la peau</strong>."
   limitesHeading: "Ce qu'il faut savoir sur cette prestation"
   limites:
     - "Les effets sont <strong>progressifs</strong> — rarement spectaculaires dès la première fois."
     - "Une pression ferme peut <strong>surprendre</strong> ; de légères courbatures sont possibles le lendemain."
     - "Des <strong>contre-indications</strong> existent : fièvre, inflammation aiguë, phlébite, certaines pathologies, grossesse."
     - "Ce n'est <strong>pas un acte médical</strong> : il ne remplace ni diagnostic ni traitement."
-  note: "En cas de doute — grossesse, traitement en cours, problème de santé — parlez-en à votre médecin avant la séance. Nous en discutons aussi ensemble avant de commencer."
+  note: "En cas de doute — grossesse, traitement en cours, problème de santé — parlez-en à votre médecin avant la séance. Nous en discutons ensemble à chaque début de séance."
 deroule:
   lead: "Environ une heure, à votre rythme, sans jamais vous dévêtir."
   steps:
@@ -64,11 +50,32 @@ deroule:
       text: "Pressions lentes le long des méridiens, du haut du corps jusqu'aux pieds."
     - title: "Le retour"
       text: "Un temps de repos pour laisser le corps intégrer, avant de repartir apaisé."
+pourQui:
+  heading: "Le shiatsu est fait pour vous si…"
+  items:
+    - "Vous vivez une période de <strong>stress</strong> ou de surmenage, et l'agitation ne redescend plus."
+    - "Vous <strong>dormez mal</strong> et cherchez à retrouver un sommeil plus profond."
+    - "Vous n'êtes <strong>pas à l'aise avec le contact direct</strong> sur la peau : ici, on reste habillé."
+    - "Vous n'aimez pas l'<strong>huile</strong>, ou vous enchaînez avec autre chose juste après."
+    - "Vous portez des <strong>tensions installées</strong> dans la nuque, les épaules, le dos."
+    - "Vous voulez essayer une approche <strong>énergétique</strong> sans vous dévêtir."
+  note: "Vous restez habillé du début à la fin, et le shiatsu se pratique sans huile : c'est la porte d'entrée la plus douce vers un massage quand on est pudique ou hésitant."
+pratique:
+  - label: "Tenue"
+    value: "<strong>Vêtements souples et confortables</strong>, en matière naturelle de préférence : jogging, legging, tee-shirt à manches. Vous restez habillé pendant toute la séance."
+  - label: "Sans huile"
+    value: "Aucune huile, aucune crème, <strong>aucun contact direct avec la peau</strong>. Vous pouvez reprendre vos activités tout de suite après."
+  - label: "À prévoir"
+    value: "Évitez un <strong>repas lourd</strong> dans l'heure qui précède. Prévoyez de boire un peu d'eau après la séance."
+  - label: "Contre-indications"
+    value: "Fièvre, infection en cours, inflammation aiguë, fracture récente, phlébite. En cas de grossesse ou de traitement lourd, un <strong>avis médical préalable</strong> est nécessaire."
 closingQuote: "Se détendre sans se dévoiler."
 ---
 
-Le shiatsu est un art du toucher issu de la tradition japonaise. Le praticien applique des **pressions rythmées** le long des méridiens — ces trajets par lesquels circule le **Ki**, l'énergie vitale. Là où le corps retient la tension, la pression invite au relâchement.
+Issue de la médecine traditionnelle chinoise, il est comforme à une pratique occidentale qui agit sur les 12 méridiens tendino musculaires (canaux immateriels d'énergie) permettant à l'energie du corps de circuler et de renforcer l'immunité. 
 
-Rien n'est brusque. La séance suit le souffle : on appuie, on maintient, on relâche, on écoute la réponse du corps avant d'avancer. C'est autant une conversation qu'un soin.
+Il agit de façon immédiate sur le système nerveux autonome. Le praticien applique des **accupressions** le long des méridiens.
+
+Rien n'est brusque. La séance suit son souffle : on appuie, on maintient, on relâche, on écoute la réponse du corps avant d'avancer.
 
 En France, le shiatsu est reconnu comme une pratique de **bien-être et de détente**. Il n'a pas vocation à soigner, mais à accompagner : relâcher le stress, retrouver du sommeil, remettre le corps en mouvement.

@@ -11,12 +11,17 @@ import '../styles/header.css'
 		<li><a href="https://terapiz.com/masseur/le-lavandou/carole-renaud">Réserver un Créneau</a></li>
 		<li><a href="/cabinet/tarifs">Tarifs</a></li>
 		<li class="dropdown">
-    		<a href="/">Prestations</a>
+    		<!-- bouton et non lien : il n'y a pas de page « toutes les
+    		     prestations », et au doigt sur mobile le focus ouvre le
+    		     menu au lieu de partir sur une page au hasard -->
+    		<button type="button" class="dropdown-toggle" aria-haspopup="true">
+    		    Prestations<span class="caret" aria-hidden="true"></span>
+    		</button>
     		<ul class="submenu">
-    		    <li><a href="/prestations/massages">Massages</a></li>
-    		    <li><a href="/prestations/abhyanga">Abhyanga</a></li>
-    		    <li><a href="/prestations/shiatsu">Shiatsu</a></li>
-    		    <li><a href="/prestations/chiNeiTsang">Chi Nei Tsang</a></li>
+    		    <li><a href="/prestations/energetiques">Énergétiques</a></li>
+    		    <li><a href="/prestations/relaxant">Relaxants</a></li>
+    		    <li><a href="/prestations/sportifs">Sportifs</a></li>
+    		    <li><a href="/prestations/other">Autres</a></li>
     		</ul>
 		</li>
 	</ul>

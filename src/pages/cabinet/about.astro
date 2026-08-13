@@ -3,6 +3,21 @@ import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
 import '../../styles/globals.css'
 import '../../styles/about.css';
+
+// ================================================================
+//  CHIFFRES CLÉS — VALEURS PROVISOIRES, À REMPLACER
+//  Les nombres ci-dessous sont inventés : ce sont des ordres de
+//  grandeur plausibles, posés en attendant les chiffres exacts.
+//  Écrivez la valeur en NOMBRE (sans espace ni séparateur) : le
+//  formatage français et le décompte animé s'en chargent.
+// ================================================================
+const chiffres = [
+  { nombre: 1240, label: "corps soulagés",        precision: "depuis l'ouverture du cabinet" },
+  { nombre: 5,    label: "années de pratique",    precision: "formée aux massages bien-être" },
+  { nombre: 6,    label: "techniques maîtrisées", precision: "shiatsu, abhyanga, chi nei tsang…" },
+];
+
+const enFrancais = new Intl.NumberFormat("fr-FR");
 ---
 
 <!DOCTYPE html>
@@ -11,10 +26,8 @@ import '../../styles/about.css';
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>À propos</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Hanken+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
 <script>import '../../scripts/display'</script>
+<script>import '../../scripts/compteur'</script>
 </head>
 <body>
   <Header/>
@@ -22,28 +35,50 @@ import '../../styles/about.css';
   <main>
     <!-- HERO -->
     <section class="hero">
-      <svg class="meander" viewBox="0 0 220 720" preserveAspectRatio="xMidYMin meet" aria-hidden="true">
-        <path d="M150,-10 C 70,90 200,170 110,260 C 30,345 180,420 120,520 C 80,590 150,640 130,712"/>
-        <circle cx="130" cy="712" r="5"/>
-      </svg>
+      <!-- 1re barre du Z : le texte à gauche, le portrait à droite -->
       <div class="wrap">
-        <p class="eyebrow anim a1">À propos de moi</p>
-        <h1>
-          <span class="l anim a2">Ralentir.</span>
-          <span class="l anim a3">Écouter.</span>
-          <span class="l anim a4">Accompagner.</span>
-        </h1>
-        <p class="lead anim a4">
-          Dans un monde en perpétuelle accélération, je choisis de prendre le temps —
-          celui du toucher, du souffle, et du retour à soi.
-        </p>
-        <span class="scrollcue anim a4"><span class="bar"></span>Mon histoire</span>
+        <div class="hero-texte">
+          <p class="eyebrow anim a1">À propos de moi</p>
+          <h1>
+            <span class="l anim a2">Ralentir.</span>
+            <span class="l anim a3">Écouter.</span>
+            <span class="l anim a4">Accompagner.</span>
+          </h1>
+          <p class="lead anim a4">
+            Dans un monde en perpétuelle accélération, je choisis de prendre le temps —
+            celui du toucher, du souffle, et du retour à soi.
+          </p>
+          <span class="scrollcue anim a4">Mon histoire</span>
+        </div>
+        <figure class="portrait anim a4">
+          <img src="/pictures/carole.jpg" alt="Carole Renaud, praticienne en massages bien-être" />
+        </figure>
       </div>
     </section>
 
-    <!-- PRÉSENCE -->
+    <!-- CHIFFRES — une seule ligne, pleine largeur -->
+    <section class="chiffres">
+      <div class="wrap">
+        <ul>
+          {chiffres.map((c) => (
+            <li class="reveal">
+              <!-- la valeur finale est écrite dans le HTML : sans
+                   JavaScript, le chiffre juste s'affiche sans animation -->
+              <span class="nombre" data-cible={c.nombre}>{enFrancais.format(c.nombre)}</span>
+              <span class="label">{c.label}</span>
+              <span class="precision">{c.precision}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <!-- PRÉSENCE — 2e barre du Z : l'image à gauche, le texte à droite -->
     <section class="presence">
       <div class="wrap grid">
+        <figure class="visuel reveal">
+          <img src="/pictures/massage1.jpg" alt="Séance de massage au cabinet" loading="lazy" />
+        </figure>
         <div class="reveal">
           <p>
             Spécialisée dans l'art du massage bien-être depuis plus de cinq ans, j'ai à cœur
@@ -51,8 +86,6 @@ import '../../styles/about.css';
             Mon approche allie écoute, expertise et passion, pour vous accompagner vers un
             mieux-être tant physique qu'émotionnel.
           </p>
-        </div>
-        <div class="reveal">
           <p>
             Je reçois des personnes de tous horizons : certaines pour un moment de détente,
             d'autres pour récupérer après le sport, ou parce qu'elles traversent une période
@@ -66,14 +99,20 @@ import '../../styles/about.css';
     <!-- PARCOURS -->
     <section class="parcours">
       <div class="wrap">
+        <!-- 3e barre du Z : le texte à gauche, l'image à droite -->
         <div class="parcours-head reveal">
-          <p class="eyebrow">Mon parcours</p>
-          <h2>Qui suis-je&nbsp;?</h2>
-          <p>
-            Mon parcours n'est pas linéaire. Il est fait de détours, de bifurcations,
-            de retours à soi. Mais chaque étape a eu du sens — et chacune m'a préparée
-            à la suivante.
-          </p>
+          <div>
+            <p class="eyebrow">Mon parcours</p>
+            <h2>Qui suis-je&nbsp;?</h2>
+            <p>
+              Mon parcours n'est pas linéaire. Il est fait de détours, de bifurcations,
+              de retours à soi. Mais chaque étape a eu du sens — et chacune m'a préparée
+              à la suivante.
+            </p>
+          </div>
+          <figure class="visuel">
+            <img src="/pictures/certification.jpg" alt="Certification en massages bien-être" loading="lazy" />
+          </figure>
         </div>
 
         <div class="timeline" id="timeline">

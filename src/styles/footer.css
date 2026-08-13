@@ -19,13 +19,16 @@
     flex: 1.6;
 }
 
+/* Fond uni : l'image porte déjà son propre fond clair. Aucune
+   marge intérieure, donc aucun liseré d'une autre teinte autour
+   d'elle — on ne voit qu'un seul aplat. */
 .footer-brand img {
-    height: 52px;
+    height: 64px;
     width: auto;
     margin-bottom: 1.2rem;
-    /* le logo a un fond clair : on lui donne un petit cadre crème */
-    background: var(--cream-light);
-    padding: 6px;
+    display: block;
+    background: var(--blanc);
+    padding: 0;
     border-radius: 4px;
 }
 
@@ -69,13 +72,42 @@
     color: var(--slate-light);
 }
 
-/* Barre de copyright */
+/* Barre brun foncé : la certification à gauche, le copyright à droite */
 .footer-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem 2rem;
     background: var(--brown-deep);
-    padding: 1rem 40px;
-    text-align: right;
+    padding: 1.1rem 40px;
     font-size: 13px;
     color: #b8aaa0;                 /* teinte utilisée uniquement ici */
+}
+
+.footer-bottom p { margin: 0; }
+
+/* La certification : même traitement que le logo — fond uni,
+   aucune marge intérieure, aucun liseré */
+.footer-certif {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+}
+
+.footer-certif img {
+    height: 56px;
+    width: auto;
+    display: block;
+    background: var(--blanc);
+    padding: 0;
+    border-radius: 4px;
+}
+
+.footer-certif span {
+    line-height: 1.45;
+    letter-spacing: 0.5px;
+    color: var(--cream-muted);
 }
 
 .footer-bottom a {
