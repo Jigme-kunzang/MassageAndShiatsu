@@ -208,21 +208,8 @@ main{
 
 .timeline{position:relative;max-width:940px;margin:0 auto;}
 
-/* fil vertical animé */
-.spine{
-  position:absolute;top:6px;bottom:6px;left:50%;
-  width:22px;transform:translateX(-50%);
-  z-index:0;pointer-events:none;
-}
-.spine svg{width:100%;height:100%;display:block;}
-.spine .grow{
-  transform:scaleY(0);transform-origin:top center;
-  transition:transform 1.8s cubic-bezier(.22,.61,.36,1);
-}
-.timeline.in .spine .grow{transform:scaleY(1);}
-.spine path{fill:none;stroke:var(--sage);stroke-width:1.5;opacity:.55;}
-
-/* étapes */
+/* étapes — pas de fil vertical : les pastilles suffisent à
+   marquer la succession des chapitres */
 .chapter{position:relative;padding:clamp(1.6rem,3vh,2.6rem) 0;}
 .dot{
   position:absolute;left:50%;top:calc(clamp(1.6rem,3vh,2.6rem) + 6px);
@@ -317,7 +304,6 @@ main{
   .presence .grid{grid-template-columns:1fr;gap:1.4rem;}
   /* la ligne ne tient plus : les chiffres s'empilent */
   .chiffres ul{grid-auto-flow:row;gap:1.8rem;}
-  .spine{left:18px;transform:none;}
   .dot{left:18px;transform:translateX(-50%) scale(.2);}
   .chapter.in .dot{transform:translateX(-50%) scale(1);}
   .card,
@@ -330,10 +316,9 @@ main{
 /* ---------- accessibilité : mouvement réduit ---------- */
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto;}
-  .anim,.reveal,.card,.dot,.spine .grow,.scrollcue .bar{
+  .anim,.reveal,.card,.dot{
     animation:none!important;transition:none!important;
     opacity:1!important;transform:none!important;
   }
   .dot{transform:translateX(-50%) scale(1)!important;}
-  .spine .grow{transform:scaleY(1)!important;}
 }

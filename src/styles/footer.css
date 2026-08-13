@@ -119,3 +119,24 @@
 .footer-bottom a:hover {
     color: var(--slate-light);
 }
+
+/* ------------------------------------------------------------
+   MOBILE — les quatre colonnes s'empilent
+   ------------------------------------------------------------ */
+@media (max-width: 860px) {
+    .site-footer { margin-top: 2.5rem; }
+
+    .footer-main {
+        flex-direction: column;
+        gap: 2.2rem;
+        padding: 2.5rem 22px;
+    }
+    .footer-brand p { max-width: none; }
+
+    .footer-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.2rem;
+        padding: 1.4rem 22px;
+    }
+}

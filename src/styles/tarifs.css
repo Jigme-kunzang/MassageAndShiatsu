@@ -96,37 +96,51 @@ main tbody tr:hover {
 /* ============================================================
    RESPONSIVE — cartes empilées sur mobile
    ============================================================ */
-@media (max-width: 520px) {
+/* seuil relevé à 760px : trois colonnes deviennent illisibles bien
+   avant 520px, y compris sur les grands téléphones */
+@media (max-width: 760px) {
     main thead { display: none; }               /* on masque les en-têtes */
 
     main table, main tbody, main tr, main td { display: block; width: 100%; }
 
+    /* chaque ligne devient une petite fiche */
     main tbody tr {
-        border: 1px solid rgba(90, 58, 46, 0.15);
+        border: 1px solid rgba(240, 238, 233, 0.18);
         border-radius: 10px;
-        padding: 0.4rem 1rem;
-        margin-bottom: 1rem;
+        padding: 0.3rem 1.1rem;
+        margin-bottom: 0.9rem;
     }
+    main tbody tr:hover { background-color: transparent; }
 
     main td {
         border: none;
-        border-bottom: 1px solid rgba(90, 58, 46, 0.10);
-        padding: 0.7rem 0;
+        border-bottom: 1px solid rgba(240, 238, 233, 0.12);
+        padding: 0.6rem 0;
         text-align: right;
         display: flex;
         justify-content: space-between;
-        align-items: center;
+        align-items: baseline;
         gap: 1rem;
     }
     main td:last-child { border-bottom: none; }
 
-    /* libellé de colonne rappelé à gauche de chaque cellule */
+    /* la prestation garde toute la largeur, en tête de fiche */
+    main td:first-child {
+        display: block;
+        text-align: left;
+        font-size: 1.05rem;
+        padding-bottom: 0.5rem;
+    }
+    main td:first-child::before { display: none; }
+
+    /* libellé de colonne rappelé à gauche de chaque valeur */
     main td::before {
         content: attr(data-label);
-        font-size: 0.72rem;
+        font-size: 0.7rem;
         font-weight: 700;
         letter-spacing: 1.5px;
         text-transform: uppercase;
         color: var(--gold);
+        white-space: nowrap;
     }
 }

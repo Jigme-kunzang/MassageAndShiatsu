@@ -1,4 +1,13 @@
 const section = document.querySelector(".feature-cards");
+
+/* Sur petit écran, le carrousel horizontal n'a pas de sens : les
+   cartes deviennent une simple pile (voir index.css). On sort donc
+   avant de poser la moindre largeur en vw ou de figer la hauteur
+   de la section. */
+if (!section || window.matchMedia("(max-width: 900px)").matches) {
+  // rien à animer
+} else {
+
 const cards   = [...section.querySelectorAll(".card")];
 
 const startW = [49, 49, 49, 49];   // largeurs de DÉPART (vw)
@@ -45,3 +54,5 @@ function onScroll() {
 window.addEventListener("load",   () => { setHeight(); onScroll(); });
 window.addEventListener("scroll",  onScroll, { passive: true });
 window.addEventListener("resize",  () => { setHeight(); onScroll(); });
+
+}

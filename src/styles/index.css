@@ -322,3 +322,58 @@
 
 .card.is-narrow .body .long  { position: absolute; top: 0; left: 0; right: 0; opacity: 0; }
 .card.is-narrow .body .short { position: relative; opacity: 1; line-height: 1.4; }
+
+
+/* ============================================================
+   MOBILE
+   Le carrousel se déplie : les quatre cartes deviennent une pile
+   verticale, chacune plein écran en largeur. Le script cards.js
+   se désactive sous 900px, donc plus aucune largeur en vw n'est
+   posée — les !important ne servent qu'à couvrir un éventuel
+   style resté en ligne après un redimensionnement.
+   ============================================================ */
+@media (max-width: 900px) {
+    .hero { min-height: 78vh; }
+    .hero::before { width: 340px; height: 340px; top: -120px; }
+
+    .feature-cards { height: auto !important; }
+
+    .sticky {
+        position: static;
+        height: auto;
+        overflow: visible;
+    }
+
+    .cards { display: block; height: auto; }
+
+    .card {
+        width: 100% !important;
+        height: auto;
+    }
+    /* c'est .inner qui porte la hauteur : l'image, l'étiquette et le
+       texte sont positionnés en absolu PAR RAPPORT À LUI. Avec une
+       hauteur auto il s'effondrait à zéro et on ne voyait plus que
+       le fond brun de la section. */
+    .card .inner {
+        width: 100% !important;
+        height: auto;
+        min-height: 72vh;
+    }
+
+    /* l'étiquette et le texte se recalent sur les bords de l'écran,
+       le texte ancré en bas de carte plutôt qu'à 32rem du haut */
+    .label { left: 1.4rem; top: 1.4rem; font-size: 0.9rem; }
+
+    .card--image .body {
+        top: auto;
+        left: 1.4rem;
+        right: 1.4rem;
+        bottom: 1.4rem;
+    }
+    .card--image .body h2 { font-size: 1.4rem; }
+    .card--image .body .subtitle { font-size: 1rem; }
+    .card--image .body .long,
+    .card--image .body .short { text-align: left; font-size: 0.95rem; }
+    /* la largeur figée du texte court n'a plus de sens à pleine largeur */
+    .card--image .body .short { width: auto; }
+}

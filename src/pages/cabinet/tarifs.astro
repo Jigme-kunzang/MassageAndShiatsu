@@ -18,16 +18,19 @@ import '../../styles/tarifs.css'
         <h1>Les tarifs</h1>
         <table>
             <tr>
-                <th>Prestions</th>
+                <th>Prestations</th>
                 <th>Durées</th>
                 <th>Tarifs</th>
             </tr>
             <tbody>
                 {prestations.map((prestation) => (
                     <tr>
-                        <td>{prestation.nom}</td>
-                        <td>{prestation.durée} minutes</td>
-                        <td>{prestation.tarif} €</td>
+                        {/* data-label : sur mobile les en-têtes sont masqués,
+                            c'est cet attribut qui réaffiche le nom de la
+                            colonne à gauche de chaque valeur */}
+                        <td data-label="Prestation">{prestation.nom}</td>
+                        <td data-label="Durée">{prestation.durée} minutes</td>
+                        <td data-label="Tarif">{prestation.tarif} €</td>
                     </tr>
                 ))}
             </tbody>
