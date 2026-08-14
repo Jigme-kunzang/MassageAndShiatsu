@@ -15,7 +15,9 @@ const W3F_API_KEY = import.meta.env.W3F_API_KEY;
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://web3forms.com/client/script.js" async defer></script>
     <script>import "../../scripts/form"</script>
-    <title>Contactez nous</title>
+    <title>Me contacter</title>
+    <meta name="description" content="Contacter le cabinet de massages bien-être du Lavandou : adresse, téléphone et formulaire. Rue des Bugadières, au Lavandou (Var).">
+
 </head>
 <body>
     <Header/>
@@ -41,7 +43,7 @@ const W3F_API_KEY = import.meta.env.W3F_API_KEY;
                 </iframe>
             </div>
             <div class="formulaire">
-                <img class="picture" src="../../../pictures/carole.jpg" alt="photo Carole Renaud">
+                <img class="picture" src="/pictures/carole.jpg" alt="Carole Renaud, praticienne en massages bien-être et shiatsu au Lavandou">
                 <h2>Vous souhaitez me contacter ?</h2>
                 <form action="https://api.web3forms.com/submit" method="POST" id="form">
                     <input type="hidden" name="access_key" value={W3F_API_KEY}>

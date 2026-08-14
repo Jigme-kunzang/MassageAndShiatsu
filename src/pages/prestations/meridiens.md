@@ -1,7 +1,7 @@
 ---
 layout: ../../layouts/Prestation.astro
 title: "Massage énergétique — le myo-fascial des 12 méridiens"
-description: "Le myo-fascial des 12 méridiens tendino-musculaires : un massage de bien-être qui stimule la circulation des énergies et des fluides, pour un corps aligné et apaisé."
+description: "Le myo-fascial des 12 méridiens : un massage de bien-être qui relance la circulation des énergies, pour un corps aligné et apaisé."
 nom: "Massage énergétique"
 motsCles: ["Reçu habillé", "Sans huile", "Corps entier", "Énergie", "Après le sport"]
 image: "/pictures/meridiens.jpg"

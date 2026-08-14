@@ -1,7 +1,7 @@
 ---
 layout: ../../layouts/Prestation.astro
 title: "Massage détente musculaire — récupération et fascias"
-description: "Un massage axé sur la détente et la récupération musculaire : mouvements lents et pression ferme pour dénouer les nœuds, libérer les tensions chroniques et améliorer la mobilité."
+description: "Détente et récupération musculaire : mouvements lents et pression ferme pour dénouer les nœuds et libérer les tensions chroniques du dos."
 nom: "Massage détente musculaire"
 motsCles: ["Pression ferme", "Muscles profonds", "Fascias", "Sport", "Récupération"]
 image: "/pictures/detente-musculaire.jpg"

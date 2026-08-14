@@ -193,10 +193,25 @@ p { margin: 0 0 1.1rem; }
     margin-top: 1.2rem;
     text-align: center;
     font-style: italic;
+    line-height: 1.6;
     color: var(--brown-soft);
 }
 #result:empty {
     margin-top: 0;
+}
+
+/* trois états, posés par form.js via data-etat */
+#result[data-etat="succes"] {
+    font-style: normal;
+    font-weight: 600;
+    color: var(--brown-deep);
+}
+#result[data-etat="erreur"] {
+    font-style: normal;
+    color: #9a3b28;              /* rouge brique, lisible sur le crème */
+}
+#result[data-etat="attente"] {
+    opacity: 0.75;
 }
 
 /* ============================================================

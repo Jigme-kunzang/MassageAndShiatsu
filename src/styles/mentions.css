@@ -49,6 +49,51 @@ p {
 
 b { font-weight: 600; }
 
+/* ---- listes ---- */
+ul {
+    margin: 0 0 1.1rem;
+    padding: 0;
+    list-style: none;
+}
+li {
+    position: relative;
+    margin-bottom: 0.8rem;
+    padding-left: 1.4rem;
+    font-size: 1.02rem;
+    line-height: 1.6;
+}
+li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.7em;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--gold);
+}
+
+/* ---- emplacements restant à renseigner ----
+   Volontairement voyants : ils ne doivent pas passer en ligne tels quels. */
+.a-completer {
+    background: rgba(184, 154, 106, 0.22);
+    border: 1px dashed var(--gold);
+    border-radius: 4px;
+    padding: 0.1rem 0.45rem;
+    color: var(--gold-light);
+    font-style: italic;
+}
+
+/* ---- date de mise à jour ---- */
+.maj {
+    margin-top: 3rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid rgba(240, 238, 233, 0.15);
+    font-size: 0.9rem;
+    font-style: italic;
+    color: var(--cream-muted);
+}
+
 /* ---- liens ---- */
 a {
     color: var(--gold);                    /* lisible sur le bleu */

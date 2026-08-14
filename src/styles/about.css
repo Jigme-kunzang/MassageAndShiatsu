@@ -208,8 +208,25 @@ main{
 
 .timeline{position:relative;max-width:940px;margin:0 auto;}
 
-/* étapes — pas de fil vertical : les pastilles suffisent à
-   marquer la succession des chapitres */
+/* fil vertical animé — ORDINATEUR UNIQUEMENT.
+   Il se déroule de haut en bas quand la frise entre dans l'écran.
+   Sous 760px la frise se replie à gauche : le fil est alors masqué
+   (voir la requête média en bas de fichier). */
+.spine{
+  position:absolute;top:6px;bottom:6px;left:50%;
+  width:22px;transform:translateX(-50%);
+  z-index:0;pointer-events:none;
+}
+.spine svg{width:100%;height:100%;display:block;}
+.spine path{fill:none;stroke:var(--sage);stroke-width:1.5;opacity:.55;}
+.spine .grow{
+  transform:scaleY(0);transform-origin:top center;
+  transition:transform 1.8s cubic-bezier(.22,.61,.36,1);
+}
+/* la classe .in est posée par scripts/display.js */
+.timeline.in .spine .grow{transform:scaleY(1);}
+
+/* étapes */
 .chapter{position:relative;padding:clamp(1.6rem,3vh,2.6rem) 0;}
 .dot{
   position:absolute;left:50%;top:calc(clamp(1.6rem,3vh,2.6rem) + 6px);
@@ -232,8 +249,8 @@ main{
   transition:opacity .9s ease,transform .9s ease;
 }
 .chapter.in .card{opacity:1;transform:none;}
-.chapter:nth-child(odd) .card{margin-right:auto;text-align:right;}
-.chapter:nth-child(even) .card{margin-left:auto;text-align:left;}
+.chapter:nth-of-type(odd) .card{margin-right:auto;text-align:right;}
+.chapter:nth-of-type(even) .card{margin-left:auto;text-align:left;}
 
 .card .tag{
   font-weight:500;
@@ -304,11 +321,13 @@ main{
   .presence .grid{grid-template-columns:1fr;gap:1.4rem;}
   /* la ligne ne tient plus : les chiffres s'empilent */
   .chiffres ul{grid-auto-flow:row;gap:1.8rem;}
+  /* le fil vertical est réservé à l'ordinateur */
+  .spine{display:none;}
   .dot{left:18px;transform:translateX(-50%) scale(.2);}
   .chapter.in .dot{transform:translateX(-50%) scale(1);}
   .card,
-  .chapter:nth-child(odd) .card,
-  .chapter:nth-child(even) .card{
+  .chapter:nth-of-type(odd) .card,
+  .chapter:nth-of-type(even) .card{
     width:auto;margin:0 0 0 48px;text-align:left;
   }
 }
@@ -316,9 +335,11 @@ main{
 /* ---------- accessibilité : mouvement réduit ---------- */
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto;}
-  .anim,.reveal,.card,.dot{
+  .anim,.reveal,.card,.dot,.spine .grow{
     animation:none!important;transition:none!important;
     opacity:1!important;transform:none!important;
   }
+  /* le fil reste tracé en entier, il ne se déroule simplement pas */
+  .spine .grow{transform:scaleY(1)!important;}
   .dot{transform:translateX(-50%) scale(1)!important;}
 }

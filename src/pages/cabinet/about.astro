@@ -25,7 +25,9 @@ const enFrancais = new Intl.NumberFormat("fr-FR");
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>À propos</title>
+<title>À propos de moi</title>
+<meta name="description" content="Voyages, nature, relation d'aide : le parcours de Carole Renaud, praticienne en massages bien-être et shiatsu au Lavandou depuis cinq ans.">
+
 <script>import '../../scripts/display'</script>
 <script>import '../../scripts/compteur'</script>
 </head>
@@ -116,6 +118,13 @@ const enFrancais = new Intl.NumberFormat("fr-FR");
         </div>
 
         <div class="timeline" id="timeline">
+          <!-- fil vertical : décoratif, et masqué sous 760px -->
+          <div class="spine" aria-hidden="true">
+            <svg viewBox="0 0 22 1000" preserveAspectRatio="none">
+              <path class="grow" d="M11,0 C13,140 9,280 11,420 C13,560 9,700 11,840 C12,910 10,960 11,1000"/>
+            </svg>
+          </div>
+
           <article class="chapter">
             <span class="dot"></span>
             <div class="card">

@@ -1,7 +1,7 @@
 ---
 layout: ../../layouts/Prestation.astro
 title: "Massage convalescence® — l'art de l'adaptation"
-description: "Le massage Convalescence® accompagne pendant et après la maladie, le choc, l'épreuve. Une main qui observe, ressent et s'adapte aux douleurs, aux cicatrices, aux sensibilités."
+description: "Le massage Convalescence® accompagne pendant et après la maladie, le choc, l'épreuve. Une main qui s'adapte aux douleurs et aux cicatrices."
 nom: "Massage convalescence®"
 motsCles: ["Sur mesure", "En douceur", "Cicatrices", "Après l'épreuve", "Zones sensibles"]
 image: "/pictures/convalescence.png"
