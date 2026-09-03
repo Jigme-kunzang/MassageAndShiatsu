@@ -1,6 +1,10 @@
 ---
 import Header from "../../components/Header.astro"
 import Footer from "../../components/Footer.astro"
+import Meta from "../../components/Meta.astro"
+// globals.css EN PREMIER : palette, police et reset, dont mentions.css
+// a besoin. À ne pas retirer même s'il semble déjà chargé ailleurs.
+import '../../styles/globals.css'
 import '../../styles/mentions.css'
 
 // Date affichée en bas de page. À changer à chaque modification
@@ -11,12 +15,12 @@ const majPage = "13 août 2026";
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mentions légales - Massages et Shiatsu</title>
-    <meta name="description" content="Mentions légales du site Massages et Shiatsu : éditeur, hébergeur, traitement des données personnelles, cookies et médiation de la consommation.">
+    <Meta
+        title="Mentions légales — Massages et Shiatsu"
+        description="Mentions légales du site Massages et Shiatsu : éditeur, hébergeur, traitement des données personnelles, cookies et médiation de la consommation."
+    />
 </head>
-<body>
+<body class="page-teal">
     <Header/>
     <main>
         <h1>Mentions légales</h1>
@@ -134,26 +138,30 @@ const majPage = "13 août 2026";
             Certains contenus fournis par des tiers sont toutefois susceptibles
             de déposer des traceurs sur votre appareil :
         </p>
-        <ul>
+        <ul class="text">
             <li>
-                <b>Carte Google Maps</b> — page « Contactez-nous » uniquement.
-                L'affichage de la carte entraîne une connexion aux serveurs de
-                Google, qui peut déposer des traceurs.
+                <b>hCaptcha</b> — sur la page « Me contacter » uniquement, et
+                uniquement parce qu'elle contient un formulaire. Ce dispositif
+                est nécessaire à la sécurité de l'envoi : il empêche les
+                messages automatisés. Il est chargé par le service Web3Forms.
             </li>
             <li>
-                <b>hCaptcha</b> — page « Contactez-nous » uniquement. Nécessaire
-                à la sécurité du formulaire, il empêche les envois automatisés.
-            </li>
-            <li>
-                <b>Photographies de profil des avis</b> — chargées depuis les
-                serveurs de Google au moment de l'affichage.
+                <b>Photographies de profil des avis</b> — les vignettes des
+                personnes ayant laissé un avis sont chargées depuis les serveurs
+                de Google au moment de l'affichage de la page d'accueil.
             </li>
         </ul>
         <p>
+            <b>Ce que le Site ne fait pas.</b> Aucune carte n'est intégrée dans
+            les pages : le plan d'accès est une simple image hébergée sur le
+            Site, et un lien vous conduit vers Google Maps <i>si vous le
+            choisissez</i>. De même, le texte des avis est récupéré lors de la
+            fabrication des pages : le consulter n'entraîne aucune transmission
+            de vos données à Google.
+        </p>
+        <p>
             Vous pouvez à tout moment configurer votre navigateur pour refuser
-            ces traceurs. Les avis affichés sur le Site sont, eux, récupérés lors
-            de la fabrication des pages : leur consultation n'entraîne aucune
-            transmission de vos données à Google.
+            ces traceurs.
         </p>
 
         <h2>Réservation en ligne</h2>

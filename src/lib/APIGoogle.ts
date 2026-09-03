@@ -1,8 +1,12 @@
 const PLACE_ID = import.meta.env.GOOGLE_PLACE_ID;
 const API_KEY = import.meta.env.GOOGLE_PLACES_API_KEY;
 
-const query = encodeURIComponent("Carole Renaud Massage Bien être, 43 Rue des Bugadières, Le Lavandou, France");
-export const mapSrc = `https://www.google.com/maps/embed/v1/place?key=${API_KEY}&q=${query}`;
+// NOTE — l'ancien `mapSrc` (carte Google en iframe) a été retiré :
+// il publiait API_KEY en clair dans le HTML de la page contact et
+// déposait des traceurs Google sans consentement. La page affiche
+// désormais une image locale et un simple lien vers Maps.
+// API_KEY ne sert donc plus QUE côté serveur, ci-dessous, au moment
+// de la construction du site : elle ne quitte jamais la machine de build.
 
 export async function getGoogleReviews() {
   try {

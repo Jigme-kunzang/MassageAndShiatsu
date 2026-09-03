@@ -1,35 +1,23 @@
-/* Importe globals.css AVANT ce fichier. */
+/* Importe globals.css AVANT ce fichier.
+   Le fond bleu canard, la colonne de lecture, le h1 et son filet
+   doré viennent de la classe `page-teal` de globals.css, partagée
+   avec les pages mentions et contact. */
 
 /* ============================================================
-   PAGE TARIFS
+   PAGE TARIFS — le titre est ici centré, et un cran plus léger
    ============================================================ */
-body {
-    background-color: var(--teal);
-}
-
-main {
-    max-width: var(--content-narrow);
-    margin: 0 auto;
-    padding: var(--page-padding);
-}
-
-main h1 {
+/* le sélecteur reprend `body.page-teal` : sans lui, la règle de
+   globals.css (même spécificité, mais chargée avant) l'emporterait
+   et le titre repasserait à gauche */
+body.page-teal main h1 {
     font-size: clamp(1.9rem, 4vw, 2.8rem);
     font-weight: 500;
-    line-height: 1.15;
-    color: var(--cream-light);
     text-align: center;
     margin: 0 0 0.8rem;
 }
-
-/* petit trait doré sous le titre */
-main h1::after {
-    content: "";
-    display: block;
+body.page-teal main h1::after {
     width: 64px;
-    height: 2px;
     margin: 1.2rem auto 0;
-    background: var(--gold);
 }
 
 

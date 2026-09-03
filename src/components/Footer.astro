@@ -1,6 +1,9 @@
 ---
 import '../styles/globals.css'
 import '../styles/footer.css'
+
+// mêmes intitulés que le menu : public/prestations.json fait foi
+import { familles } from '../../public/prestations.json'
 ---
 
 <footer class="site-footer">
@@ -19,10 +22,9 @@ import '../styles/footer.css'
     <div class="footer-col">
       <h3>Prestations</h3>
       <ul>
-        <li><a href="/prestations/relaxant">Relaxantes</a></li>
-            <li><a href="/prestations/energetiques">Energétiques</a></li>
-        <li><a href="/prestations/sportifs">Sportifs</a></li>
-        <li><a href="/prestations/other">Autres</a></li>
+        {familles.map((f) => (
+          <li><a href={f.href}>{f.menu}</a></li>
+        ))}
       </ul>
     </div>
 

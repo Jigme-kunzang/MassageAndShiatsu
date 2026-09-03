@@ -1,58 +1,55 @@
 const section = document.querySelector(".feature-cards");
 
 /* Sur petit écran, le carrousel horizontal n'a pas de sens : les
-   cartes deviennent une simple pile (voir index.css). On sort donc
-   avant de poser la moindre largeur en vw ou de figer la hauteur
-   de la section. */
+   cartes deviennent une simple pile (voir index.css). */
 if (!section || window.matchMedia("(max-width: 900px)").matches) {
   // rien à animer
 } else {
 
-const cards   = [...section.querySelectorAll(".card")];
+  const cards = [...section.querySelectorAll(".card")];
 
-const startW = [49, 49, 49, 49];   // largeurs de DÉPART (vw)
-const endW   = [17, 17, 17, 49];   // largeurs d'ARRIVÉE (vw) -> panorama
+  const startW = [49, 49, 49, 49, 39];   // largeurs de DÉPART (vw)
+  const endW   = [15, 15, 15, 15, 40];   // largeurs d'ARRIVÉE — la somme DOIT faire 100
 
-// fige la largeur du contenu = largeur de départ, pour qu'il se fasse rogner
-cards.forEach((card, i) => {
+  const NARROW = 30;   // seuil (vw) sous lequel on bascule sur le texte court
+
+  // fige la largeur du contenu = largeur de départ, pour qu'il se fasse rogner
+  cards.forEach((card, i) => {
+    card.style.width = `${startW[i]}vw`;
+    card.style.setProperty("--card-w", `${startW[i]}vw`);
     card.querySelector(".inner").style.width = `${startW[i]}vw`;
-});
+  });
 
-const REVEAL = () => window.innerHeight * 3;   // distance de scroll dédiée à l'anim
-function setHeight() { section.style.height = `${window.innerHeight + REVEAL()}px`; }
+  // les cartes qui changent vraiment de largeur, dans l'ordre
+  const movers = startW.map((_, i) => i).filter(i => startW[i] !== endW[i]);
+  const steps  = movers.length;          // = 5 maintenant
 
-const clamp = v => Math.min(Math.max(v, 0), 1);
-const ease  = t => 1 - Math.pow(1 - t, 3);
+  // durée de scroll proportionnelle au nombre d'étapes
+  const REVEAL = () => window.innerHeight * steps * 0.8;
+  function setHeight() { section.style.height = `${window.innerHeight + REVEAL()}px`; }
 
-function subProgress(p, start, end) {
-    return clamp((p - start) / (end - start));
-}
+  const clamp = v => Math.min(Math.max(v, 0), 1);
+  const ease  = t => 1 - Math.pow(1 - t, 3);
+  const sub   = (p, a, b) => clamp((p - a) / (b - a));
 
-// les cartes qui changent vraiment de largeur, dans l'ordre
-const movers = startW
-    .map((_, i) => i)
-    .filter(i => startW[i] !== endW[i]);
-
-const steps = movers.length;               // = 3
-
-function onScroll() {
+  function onScroll() {
     const scrollable = section.offsetHeight - window.innerHeight;
     const p = clamp((window.scrollY - section.offsetTop) / scrollable);
 
-    movers.forEach((cardIndex, k) => {
-    const start = k / steps;
-    const end   = (k + 1) / steps;
-    const local = ease(subProgress(p, start, end));
+    movers.forEach((i, k) => {
+      const local = ease(sub(p, k / steps, (k + 1) / steps));
+      const w = startW[i] + (endW[i] - startW[i]) * local;
 
-    cards[cardIndex].style.width =
-        `${startW[cardIndex] + (endW[cardIndex] - startW[cardIndex]) * local}vw`;
+      cards[i].style.width = `${w}vw`;
+      // largeur visible courante, exposée au CSS : le titre s'y contraint
+      // et se replie au lieu d'être rogné par le bord de la carte
+      cards[i].style.setProperty("--card-w", `${w}vw`);
+      // basé sur la largeur réelle, pas sur l'avancement
+      cards[i].classList.toggle("is-narrow", w < NARROW);
+    });
+  }
 
-    cards[cardIndex].classList.toggle("is-narrow", local > 0.5);   // <-- ici, dans la boucle
-});
-}
-
-window.addEventListener("load",   () => { setHeight(); onScroll(); });
-window.addEventListener("scroll",  onScroll, { passive: true });
-window.addEventListener("resize",  () => { setHeight(); onScroll(); });
-
+  window.addEventListener("load",   () => { setHeight(); onScroll(); });
+  window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("resize", () => { setHeight(); onScroll(); });
 }

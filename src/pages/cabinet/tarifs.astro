@@ -1,31 +1,43 @@
 ---
-import prestations from '../../../public/prestations.json'
+// `tarifs` : une ligne par durée proposée. Les intitulés ne sont
+// écrits qu'à cet endroit (voir public/prestations.json).
+import { tarifs } from '../../../public/prestations.json'
 import Header from '../../components/Header.astro'
 import Footer from '../../components/Footer.astro'
+import Meta from '../../components/Meta.astro'
+// globals.css EN PREMIER : il porte la palette, la police et le reset,
+// dont tarifs.css a besoin. L'importer ici plutôt que de compter sur
+// un composant garantit l'ordre de chargement.
+import '../../styles/globals.css'
 import '../../styles/tarifs.css'
 ---
 
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tarifs</title>
-    <meta name="description" content="Tarifs et durées de tous les massages : énergétique, détente musculaire, convalescence®, shiatsu, abhyanga, chi nei tsang et séance à domicile.">
-
+    <Meta
+        title="Tarifs des massages — cabinet du Lavandou"
+        description="Tarifs et durées de tous les massages : énergétique, détente musculaire, convalescence®, shiatsu, abhyanga, chi nei tsang et séance à domicile."
+    />
 </head>
-<body>
+<body class="page-teal">
     <Header/>
     <main>
         <h1>Les tarifs</h1>
         <table>
-            <tr>
-                <th>Prestations</th>
-                <th>Durées</th>
-                <th>Tarifs</th>
-            </tr>
+            <!-- la ligne d'en-tête DOIT être dans un <thead> : sans lui le
+                 navigateur la range dans le <tbody>, et la règle mobile
+                 `main thead { display: none }` de tarifs.css ne s'applique
+                 jamais — l'en-tête s'affichait alors comme une fiche de plus -->
+            <thead>
+                <tr>
+                    <th>Prestations</th>
+                    <th>Durées</th>
+                    <th>Tarifs</th>
+                </tr>
+            </thead>
             <tbody>
-                {prestations.map((prestation) => (
+                {tarifs.map((prestation) => (
                     <tr>
                         {/* data-label : sur mobile les en-têtes sont masqués,
                             c'est cet attribut qui réaffiche le nom de la

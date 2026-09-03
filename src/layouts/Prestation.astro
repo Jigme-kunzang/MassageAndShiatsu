@@ -16,9 +16,10 @@
 // La durée et le tarif ne sont JAMAIS écrits ici : ils viennent de
 // public/prestations.json via la clé `nom` du frontmatter, qui reprend
 // mot pour mot le libellé du module de réservation Terapiz.
-import prestations from "../../public/prestations.json";
+import { tarifs as lignesTarifs } from "../../public/prestations.json";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+import Meta from "../components/Meta.astro";
 import "../styles/globals.css";
 import "../styles/prestations.css";
 
@@ -37,40 +38,33 @@ const { frontmatter } = Astro.props;
 const {
   title, description,
   eyebrow = "La prestation",
-  heading, headingEm, lead,
+  lead,
   nom, motsCles = [],
   lieu = "Au cabinet, au Lavandou - ou chez vous",
   image, imageAlt,
   image2, image2Alt,
-  bienfaits, highlight, balance, deroule,
-  pourQui, pratique = [],
+  bienfaits, highlight, balance,
+  pourQui,
   closingQuote,
   booking = "https://terapiz.com/masseur/le-lavandou/carole-renaud",
   tarifs = "/cabinet/tarifs",
 } = frontmatter;
 
-const lignes = nom ? prestations.filter((p) => p.nom === nom) : [];
+// Le grand titre de la page reprend par défaut l'intitulé `nom`,
+// celui de prestations.json : inutile de l'écrire une seconde fois
+// dans le Markdown. `headingEm` ne sert plus qu'aux rares cas où la
+// typographie affichée diffère du libellé de réservation.
+const headingEm = frontmatter.headingEm ?? nom;
+
+const lignes = nom ? lignesTarifs.filter((p) => p.nom === nom) : [];
 const duree = lignes.length ? fusion(lignes.map((l) => l["durée"]), enDuree) : "";
 const tarif = lignes.length ? fusion(lignes.map((l) => l.tarif), (t) => `${t} €`) : "";
-
-// « En pratique » : durée, tarif et lieu d'abord — les trois questions que
-// tout le monde se pose — puis les précisions propres à la prestation.
-const enPratique = [
-  duree && { label: "Durée", value: duree },
-  tarif && { label: "Tarif", value: tarif },
-  { label: "Où", value: lieu },
-  ...pratique,
-  nom && { label: "Réservation", value: `En ligne, rubrique <strong>« ${nom} »</strong>` },
-].filter(Boolean);
 ---
 
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{title}</title>
-  <meta name="description" content={description}>
+  <Meta title={title} description={description} image={image} />
 </head>
 <body class="page-prestation">
   <Header/>
@@ -81,7 +75,7 @@ const enPratique = [
     <header class="entete">
       <div class="wrap">
         <p class="rubrique">{eyebrow}</p>
-        <h1>{heading} <em>{headingEm}</em></h1>
+        <h1><em>{headingEm}</em></h1>
         <p class="chapo">{lead}</p>
 
         <!-- deuxième barre du F, plus courte -->
@@ -127,9 +121,6 @@ const enPratique = [
         <div class="texte">
           <h2>{highlight.heading} {highlight.headingEm}</h2>
           {highlight.paragraphs.map((p: string) => <p set:html={p} />)}
-          <ul class="liste serree">
-            {highlight.points.map((pt: string) => <li set:html={pt} />)}
-          </ul>
         </div>
       </div>
     </section>
@@ -157,40 +148,14 @@ const enPratique = [
       </section>
     )}
 
-    <!-- ====== DÉROULÉ — barre horizontale, 4 étapes ====== -->
-    <section class="deroule">
-      <div class="wrap">
-        <div class="titre">
-          <p class="rubrique">La séance</p>
-          <h2>{deroule.heading ?? "Comment se passe une séance."}</h2>
-        </div>
-        <ol class="etapes">
-          {deroule.steps.map((s: any) => (
-            <li><strong>{s.title}</strong><span>{s.text}</span></li>
-          ))}
-        </ol>
-        {deroule.apres && (
-          <p class="incise"><strong>Après la séance :</strong> <span set:html={deroule.apres} /></p>
-        )}
-      </div>
-    </section>
-
     <!-- ====== EN PRATIQUE + RÉSERVATION ====== -->
     <section class="pratique">
       <div class="wrap">
         <div class="titre">
           <p class="rubrique">Avant de venir</p>
-          <h2>En pratique.</h2>
+          <h2>En pratique</h2>
         </div>
         <div class="fiches">
-          <dl class="fiche">
-            {enPratique.map((l: any) => (
-              <div class="ligne">
-                <dt>{l.label}</dt>
-                <dd set:html={l.value} />
-              </div>
-            ))}
-          </dl>
           <div class="savoir">
             <h3>{balance.limitesHeading ?? "Ce qu'il faut savoir"}</h3>
             <ul class="limites">{balance.limites.map((li: string) => <li set:html={li} />)}</ul>

@@ -1,5 +1,38 @@
 /* Importe globals.css AVANT ce fichier. */
 
+/* en haut de index.css */
+:root {
+    --card-narrow: 15vw;   /* doit correspondre à endW[] dans cards.js */
+    --card-pad-narrow: 1.4rem;
+}
+
+/* remplace .card--image .body .short { width: calc(17vw - 5rem); } */
+.card--image .body .short {
+    width: calc(var(--card-narrow) - var(--card-pad-narrow) * 2);
+}
+
+/* les colonnes sont plus étroites qu'avant : on récupère de la place
+   sur les marges et on calme un peu le titre */
+.card.is-narrow .label {
+    left: var(--card-pad-narrow);
+}
+.card.is-narrow .body {
+    left: var(--card-pad-narrow);
+    right: var(--card-pad-narrow);
+}
+.card.is-narrow .body h2 {
+    font-size: 1.35rem;
+}
+.card.is-narrow .body .subtitle {
+    font-size: 1rem;
+}
+/* en mode étroit le body est collé à 1.4rem des bords : le titre
+   dispose de la largeur de carte moins ces deux marges */
+.card.is-narrow .body .title,
+.card.is-narrow .body h2,
+.card.is-narrow .body .subtitle {
+    max-width: calc(var(--card-w, 100%) - var(--card-pad-narrow) * 2);
+}
 /* ============================================================
    HERO + INTRO — un seul bloc bleu canard continu
    ============================================================ */
@@ -20,7 +53,7 @@
         linear-gradient(160deg, rgba(27, 64, 83, 0.55) 0%,
                                  rgba(27, 64, 83, 0.78) 55%,
                                  var(--cream) 100%),   /* ← teal remplacé par cream */
-        url("/pictures/abhyanga.jpg");
+        url("/pictures/logo3.jpg");
     background-size: cover;
     background-position: center;
 }
@@ -39,13 +72,12 @@
 }
 .hero > * { position: relative; z-index: 1; }
 
+/* forme de base (capitales, graisse, interlettrage) dans globals.css */
 .hero .eyebrow {
     font-size: 0.8rem;
-    font-weight: 700;
     letter-spacing: 4px;
-    text-transform: uppercase;
     color: var(--gold-light);
-    margin: 0 0 1.4rem;
+    margin-bottom: 1.4rem;
 }
 
 .hero h1 {
@@ -115,20 +147,100 @@
     list-style: none;
     padding: 0;
     margin: 0 auto;
-    max-width: 480px;
+    max-width: 250px;
     display: flex;
     flex-direction: column;
     gap: 0.9rem;
-    text-align: left;
+    text-align: center;
 }
 
 .prestations-list li {
     padding-bottom: 0.9rem;
-    border-bottom: 1px solid rgba(90, 58, 46, 0.15);   /* ← était rgba(240,238,233,0.12) */
+    border-bottom: 1.5px solid var(--gold-light) ;   /* ← était rgba(240,238,233,0.12) */
     font-size: 1.05rem;
 }
 
 .prestations-list strong { font-weight: 700; }
+
+/* ============================================================
+   DÉROULÉ — barre horizontale de 4 étapes
+   Reprise du bloc « Comment se passe une séance » des pages de
+   prestation (prestations.css) : même filet doré, mêmes compteurs
+   01→04 reliés par un trait. Ici tout est centré, dans l'axe de
+   la section d'intro qui l'accueille.
+   ============================================================ */
+.deroule {
+    max-width: 1120px;
+    margin: clamp(3rem, 7vh, 4.5rem) auto 0;
+    text-align: center;
+}
+.deroule .titre { margin-bottom: clamp(1.6rem, 3vw, 2.2rem); }
+.deroule .titre h2 {
+    font-size: clamp(1.25rem, 1.1rem + 0.7vw, 1.6rem);
+    font-weight: 600;
+    line-height: 1.2;
+    margin: 0;
+    color: var(--brown-deep);
+}
+/* le filet doré, arrondi aux deux bouts */
+.deroule .titre h2::before {
+    content: "";
+    display: block;
+    width: 64px;
+    height: 3px;
+    border-radius: 3px;
+    margin: 0 auto 0.9rem;
+    background: var(--gold);
+}
+/* la grille est centrée dans la page, mais chaque étape garde sa
+   lecture à gauche : numéro en haut à gauche, texte aligné dessous */
+.etapes {
+    counter-reset: etape;
+    list-style: none;
+    margin: 0 auto;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.4rem;
+    text-align: left;
+}
+.etapes li {
+    counter-increment: etape;
+    padding-top: 2.4rem;
+    position: relative;
+}
+.etapes li::before {
+    content: counter(etape, decimal-leading-zero);
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: var(--brown-logo);
+}
+.etapes li::after {
+    content: "";
+    position: absolute;
+    top: 0.5rem;
+    left: 2.2rem;
+    right: 0;
+    height: 1px;
+    background: var(--border);
+}
+.etapes li:last-child::after { display: none; }
+.etapes li strong {
+    display: block;
+    margin-bottom: 0.35rem;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--brown-deep);
+}
+.etapes li span {
+    font-size: 0.93rem;
+    line-height: 1.6;
+    color: var(--brown-soft);
+}
 
 /* ============================================================
    CITATION + accroche
@@ -165,14 +277,6 @@
     letter-spacing: 1px;
     color: var(--gold);
 }
-.prestations-accroche {
-    margin: 2.5rem auto 0;
-    max-width: 520px;
-    font-size: 1.15rem;
-    line-height: 1.6;
-    opacity: 0.7;
-}
-
 /* ============================================================
    CARROUSEL — section et structure
    ============================================================ */
@@ -245,7 +349,7 @@
     left: 2.5rem;
     right: 2.5rem;
     top: 32rem;                 /* titre ancré ici, identique sur toutes les cartes */
-    bottom: 2.5rem;            /* borne basse : le texte ne descend pas plus bas */
+    bottom: 5.5rem;            /* borne basse : le texte ne descend pas plus bas */
     z-index: 2;
     display: flex;
     flex-direction: column;
@@ -267,9 +371,20 @@
     opacity: 0.85;
     margin: 0 0 1rem;
 }
+
+/* .inner garde la largeur de DÉPART, donc le titre déborderait sous la
+   carte voisine et serait rogné pendant la fermeture. On le contraint à
+   la largeur visible réelle (--card-w, posée par cards.js à chaque
+   scroll) : il se replie ligne à ligne au lieu d'être coupé. */
+.card--image .body .title,
+.card--image .body h2,
+.card--image .body .subtitle {
+    max-width: calc(var(--card-w, 100%) - 5rem);   /* 2.5rem de marge de chaque côté */
+    overflow-wrap: break-word;
+}
 .card--image .body .long,
 .card--image .body .short {
-    text-align: justify;
+    text-align: left;
     line-height: 1.5;
     font-size: 1rem;
     margin: 0;
@@ -279,10 +394,11 @@
     width: 100%;
 }
 
-/* le short est contraint à la largeur FINALE, donc jamais coupé par la voisine */
-.card--image .body .short {
-    width: calc(17vw - 5rem);
-}
+/* le short est contraint à la largeur FINALE de la carte, donc
+   jamais rogné par la voisine quand elle se referme.
+   La règle est en haut de ce fichier, calée sur --card-narrow :
+   l'ancienne copie en dur (17vw - 5rem) vivait ici et, plus bas
+   dans la feuille, l'emportait — elle a été supprimée. */
 
 
 /* ============================================================
@@ -336,6 +452,10 @@
     .hero { min-height: 78vh; }
     .hero::before { width: 340px; height: 340px; top: -120px; }
 
+    /* les étapes passent en 2×2 : le trait de liaison n'a plus de sens */
+    .etapes { grid-template-columns: 1fr 1fr; }
+    .etapes li::after { display: none; }
+
     .feature-cards { height: auto !important; }
 
     .sticky {
@@ -372,8 +492,17 @@
     }
     .card--image .body h2 { font-size: 1.4rem; }
     .card--image .body .subtitle { font-size: 1rem; }
+    /* pleine largeur : la contrainte calée sur --card-w n'a plus de sens
+       (et le !important couvre un --card-w resté en ligne après resize) */
+    .card--image .body .title,
+    .card--image .body h2,
+    .card--image .body .subtitle { max-width: none !important; }
     .card--image .body .long,
     .card--image .body .short { text-align: left; font-size: 0.95rem; }
     /* la largeur figée du texte court n'a plus de sens à pleine largeur */
     .card--image .body .short { width: auto; }
+}
+
+@media (max-width: 560px) {
+    .etapes { grid-template-columns: 1fr; }
 }

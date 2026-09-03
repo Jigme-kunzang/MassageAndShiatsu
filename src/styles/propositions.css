@@ -23,20 +23,14 @@ body.page-propositions {
     color: var(--brown-deep);
 }
 
-.wrap {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 0 28px;
-}
+/* .wrap : socle dans globals.css, seule la largeur est propre à la page */
+:root { --wrap-max: 1100px; }
 
 /* éléments partagés ------------------------------------------ */
+/* forme de base dans globals.css : on n'ajuste ici que taille et couleur */
 .eyebrow {
     font-size: 0.78rem;
-    font-weight: 700;
-    letter-spacing: 3px;
-    text-transform: uppercase;
     color: var(--gold);
-    margin: 0 0 1.1rem;
 }
 
 .lead {
@@ -55,17 +49,20 @@ body.page-propositions {
     text-align: center;
     padding: clamp(3rem, 6vw, 4.5rem) 0 clamp(2.5rem, 5vh, 3.5rem);
 }
+/* titre en graisse normale : à cette taille le gras alourdit, c'est
+   le corps du texte qui porte déjà tout le contraste */
 .hero h1 {
     font-size: clamp(2.4rem, 1.8rem + 4vw, 4rem);
-    font-weight: 600;
+    font-weight: 400;
     line-height: 1.08;
     margin: 0 0 1.4rem;
     color: var(--brown-deep);
 }
+/* l'italique ne se distingue plus que par sa forme : même graisse et
+   même couleur que le reste du titre, il hérite du h1 */
 .hero h1 em {
     font-style: italic;
-    font-weight: 500;
-    color: var(--brown-logo);
+    font-weight: 400;
 }
 .hero h1::after {
     content: "";
@@ -92,7 +89,6 @@ body.page-propositions {
     color: var(--brown-soft);
 }
 .intro p:last-child { margin-bottom: 0; }
-.intro p strong { color: var(--brown-deep); font-weight: 600; }
 .intro a { color: var(--brown-logo); }
 .intro a:hover { color: var(--gold); }
 
@@ -158,10 +154,10 @@ body.page-propositions {
     text-align: left;
 }
 
-/* titre en capitales */
+/* titre en capitales grasses */
 .p-card h2 {
     font-size: clamp(1rem, 0.95rem + 0.25vw, 1.2rem);
-    font-weight: 500;
+    font-weight: 700;
     letter-spacing: 0.5px;
     text-transform: uppercase;
     line-height: 1.3;
@@ -187,22 +183,16 @@ body.page-propositions {
     color: var(--brown-soft);
 }
 
-/* mots-clés : ce que le massage fait, en un coup d'œil -------- */
+/* mots-clés : ce que le massage fait, en un coup d'œil --------
+   la gélule vient de globals.css ; dans une carte elle est un
+   peu plus serrée et laisse une marge sous la liste */
 .p-card .mots-cles {
-    list-style: none;
-    margin: 0 0 1rem;
-    padding: 0;
-    display: flex;
-    flex-wrap: wrap;
+    margin-bottom: 1rem;
     gap: 0.35rem;
 }
 .p-card .mots-cles li {
     padding: 0.22rem 0.65rem;
-    border-radius: 999px;
     font-size: 0.7rem;
-    font-weight: 600;
-    color: var(--brown-deep);
-    background: var(--cream);
 }
 
 /* le bouton de la carte, aplat sable comme sur la maquette ---- */
@@ -249,55 +239,23 @@ body.page-propositions {
     line-height: 1.25;
     color: var(--brown-deep);
 }
+/* boutons : socle dans globals.css — ici la rangée est centrée et
+   les gélules deviennent des rectangles à coins arrondis */
 .cta-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
     justify-content: center;
     margin-top: 2.8rem;
 }
-.btn {
-    font-size: 0.9rem;
-    font-weight: 600;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    text-decoration: none;
-    padding: 0.85rem 2rem;
-    border-radius: 8px;
-    transition: background 0.2s ease, color 0.2s ease, transform 0.1s ease;
-}
-.btn-primary {
-    background: var(--gold);
-    color: var(--brown);
-}
-.btn-primary:hover { background: var(--gold-light); }
-.btn-primary:active { transform: translateY(1px); }
-.btn-ghost {
-    border: 1px solid var(--gold);
-    color: var(--brown-logo);
-}
+.btn { border-radius: 8px; }
 .btn-ghost:hover { background: rgba(184, 154, 106, 0.14); }
 
 /* ------------------------------------------------------------
    APPARITION AU SCROLL  (piloté par scripts/display.js)
+   .reveal, .anim et @keyframes rise vivent dans globals.css :
+   il ne reste ici que les délais propres à cette page.
    ------------------------------------------------------------ */
-.reveal {
-    opacity: 0;
-    transform: translateY(22px);
-    transition: opacity 0.9s ease, transform 0.9s ease;
-}
-.reveal.in { opacity: 1; transform: none; }
-
-/* entrée du hero */
-.anim {
-    opacity: 0;
-    transform: translateY(22px);
-    animation: rise 1.1s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
-}
 .a1 { animation-delay: 0.1s; }
 .a2 { animation-delay: 0.28s; }
 .a3 { animation-delay: 0.5s; }
-@keyframes rise { to { opacity: 1; transform: none; } }
 
 /* ------------------------------------------------------------
    RESPONSIVE
@@ -311,9 +269,10 @@ body.page-propositions {
 
 /* ------------------------------------------------------------
    ACCESSIBILITÉ — mouvement réduit
+   .anim et .reveal sont déjà traités dans globals.css.
    ------------------------------------------------------------ */
 @media (prefers-reduced-motion: reduce) {
-    .anim, .reveal, .p-card, .p-card .media img {
+    .p-card, .p-card .media img {
         animation: none !important;
         transition: none !important;
         opacity: 1 !important;

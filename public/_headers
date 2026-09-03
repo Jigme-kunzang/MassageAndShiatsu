@@ -1,0 +1,50 @@
+# ============================================================
+#  EN-TÊTES DE SÉCURITÉ — lus par Netlify au déploiement.
+#  Ce fichier est copié tel quel dans dist/ par Astro.
+#  Toute modification doit être suivie d'un test de la page
+#  contact : c'est la seule qui charge des ressources tierces.
+# ============================================================
+
+/*
+  # interdit l'affichage du site dans une iframe (détournement de clic)
+  X-Frame-Options: DENY
+
+  # empêche le navigateur de deviner un type de fichier
+  X-Content-Type-Options: nosniff
+
+  # ne transmet l'URL complète qu'en interne ; vers l'extérieur,
+  # seul le domaine est envoyé
+  Referrer-Policy: strict-origin-when-cross-origin
+
+  # aucune de ces fonctions n'est utilisée : on les coupe
+  Permissions-Policy: geolocation=(), camera=(), microphone=(), payment=(), usb=()
+
+  # force le HTTPS pendant un an, sous-domaines compris
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
+
+  # ----------------------------------------------------------
+  #  Politique de sécurité du contenu.
+  #  Le HTML ne contient AUCUN script ni style en ligne : le
+  #  script-src reste donc strict, sans 'unsafe-inline'.
+  #
+  #  Origines autorisées, et pourquoi :
+  #   - web3forms.com    : script client du formulaire de contact
+  #   - *.hcaptcha.com   : la vérification anti-spam, chargée par
+  #                        web3forms (script, iframe et appels)
+  #   - api.web3forms.com: destination de l'envoi du message
+  #   - lh3.googleuser…  : photos de profil des avis Google
+  #
+  #  'unsafe-inline' n'est présent que sur style-src, car hCaptcha
+  #  applique des styles en ligne à son widget. Une injection de
+  #  style est sans commune mesure avec une injection de script.
+  # ----------------------------------------------------------
+  Content-Security-Policy: default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; img-src 'self' data: https://lh3.googleusercontent.com; font-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' https://web3forms.com https://*.hcaptcha.com; frame-src https://*.hcaptcha.com; connect-src 'self' https://api.web3forms.com https://*.hcaptcha.com; form-action 'self' https://api.web3forms.com; upgrade-insecure-requests
+
+# les polices et le CSS/JS compilés portent une empreinte dans leur
+# nom : ils ne changent jamais sans changer de nom, on peut donc les
+# mettre en cache définitivement
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/fonts/*
+  Cache-Control: public, max-age=31536000, immutable

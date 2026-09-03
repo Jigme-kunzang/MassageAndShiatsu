@@ -1,5 +1,14 @@
 ---
+// header.css utilise --cream, --gold, --brown-logo… : le composant
+// déclare donc lui-même sa dépendance, plutôt que de supposer que la
+// page l'a chargée avant lui.
+import '../styles/globals.css'
 import '../styles/header.css'
+
+// Les cinq familles de prestations ne sont écrites qu'à un seul
+// endroit : public/prestations.json. Le menu utilise le libellé
+// court (`menu`), le pied de page et l'accueil s'y réfèrent aussi.
+import { familles } from '../../public/prestations.json'
 ---
 <nav>
 	<a href="/" class="logo">
@@ -20,10 +29,9 @@ import '../styles/header.css'
     		    Prestations<span class="caret" aria-hidden="true"></span>
     		</button>
     		<ul class="submenu">
-    		    <li><a href="/prestations/energetiques">Énergétiques</a></li>
-    		    <li><a href="/prestations/relaxant">Relaxants</a></li>
-    		    <li><a href="/prestations/sportifs">Sportifs</a></li>
-    		    <li><a href="/prestations/other">Autres</a></li>
+    		    {familles.map((f) => (
+    		        <li><a href={f.href}>{f.menu}</a></li>
+    		    ))}
     		</ul>
 		</li>
 	</ul>

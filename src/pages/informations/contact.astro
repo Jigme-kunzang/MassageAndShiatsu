@@ -1,25 +1,35 @@
 ---
 import Header from "../../components/Header.astro"
 import Footer from "../../components/Footer.astro"
-import { mapSrc } from '../../lib/APIGoogle'
-
+import Meta from "../../components/Meta.astro"
+// globals.css EN PREMIER : palette, police et reset, dont contact.css
+// a besoin. À ne pas retirer même s'il semble déjà chargé ailleurs.
+import '../../styles/globals.css'
 import '../../styles/contact.css'
 
 const W3F_API_KEY = import.meta.env.W3F_API_KEY;
+
+const adresse = "43 rue des Bugadières, Appart Fitness, 83980 Le Lavandou";
+
+// Lien vers Google Maps : ouvert par le visiteur, sur son initiative.
+const lienMaps =
+  "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(adresse);
+
+const planAcces: string = "/pictures/maps.png";
 ---
 
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <Meta
+        title="Me contacter — cabinet de massages au Lavandou"
+        description="Contacter le cabinet de massages bien-être du Lavandou : adresse, téléphone et formulaire. Rue des Bugadières, au Lavandou (Var)."
+        image="/pictures/maps.png"
+    />
     <script src="https://web3forms.com/client/script.js" async defer></script>
     <script>import "../../scripts/form"</script>
-    <title>Me contacter</title>
-    <meta name="description" content="Contacter le cabinet de massages bien-être du Lavandou : adresse, téléphone et formulaire. Rue des Bugadières, au Lavandou (Var).">
-
 </head>
-<body>
+<body class="page-teal">
     <Header/>
     <main>
         <div>
@@ -27,20 +37,23 @@ const W3F_API_KEY = import.meta.env.W3F_API_KEY;
             <div class="map">
                 <div class="informations">
                     <h2>Adresse</h2>
-                    <p>43 Rue des Bugadières Appart fitness 83980 Le Lavandou</p>
+                    <p>{adresse}</p>
 
                     <h2>Téléphone</h2>
                     <p>+33 6 83 65 65 02</p>
                 </div>
 
-                <iframe 
-                    width="450"
-                    height="250"
-                    frameborder="0" style="border:0"
-                    referrerpolicy="strict-origin-when-cross-origin"
-                    src={mapSrc}
-                    allowfullscreen>
-                </iframe>
+                <a class="plan" href={lienMaps} target="_blank" rel="noopener noreferrer">
+                    {planAcces ? (
+                        <img src={planAcces} alt={`Plan d'accès au cabinet, ${adresse}`} loading="lazy" />
+                    ) : (
+                        <span class="plan-vide" aria-hidden="true"></span>
+                    )}
+                    <span class="plan-legende">
+                        <strong>Ouvrir dans Google Maps</strong>
+                        <span>Itinéraire et horaires — nouvel onglet</span>
+                    </span>
+                </a>
             </div>
             <div class="formulaire">
                 <img class="picture" src="/pictures/carole.jpg" alt="Carole Renaud, praticienne en massages bien-être et shiatsu au Lavandou">
@@ -72,6 +85,16 @@ const W3F_API_KEY = import.meta.env.W3F_API_KEY;
                     <div class="button">
                         <input type="submit" value="Envoyé">
                     </div>
+                    <!-- RGPD art. 13 : l'information doit être donnée
+                         AU MOMENT de la collecte, pas seulement dans les
+                         mentions légales. Une ligne suffit, à condition
+                         qu'elle renvoie au détail. -->
+                    <p class="rgpd">
+                        Vos coordonnées servent uniquement à répondre à ce message. Elles ne
+                        sont ni cédées ni utilisées à des fins commerciales. Vous pouvez
+                        demander leur suppression à tout moment —
+                        <a href="/informations/mentions">en savoir plus</a>.
+                    </p>
                 </form>
                 <div id="result"></div>
             </div>

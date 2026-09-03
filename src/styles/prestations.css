@@ -26,11 +26,7 @@ body.page-prestation {
     color: var(--brown-deep);
 }
 
-.wrap {
-    max-width: 1120px;
-    margin: 0 auto;
-    padding: 0 28px;
-}
+/* .wrap : socle dans globals.css, largeur par défaut (--wrap-max: 1120px) */
 
 /* rubrique : le petit label qui ouvre chaque bloc ------------ */
 .rubrique {
@@ -89,7 +85,7 @@ h2::before {
 
 .entete h1 {
     font-size: clamp(2.1rem, 1.6rem + 2.8vw, 3.4rem);
-    font-weight: 600;
+    font-weight: 400;
     line-height: 1.08;
     letter-spacing: -0.01em;
     margin: 0 0 1rem;
@@ -144,22 +140,7 @@ h2::before {
     color: var(--brown-logo);
 }
 
-.mots-cles {
-    list-style: none;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.4rem;
-    margin: 0;
-    padding: 0;
-}
-.mots-cles li {
-    padding: 0.3rem 0.85rem;
-    border-radius: 999px;
-    font-size: 0.74rem;
-    font-weight: 600;
-    color: var(--brown-deep);
-    background: var(--cream);
-}
+/* .mots-cles : gélules définies dans globals.css, reprises telles quelles */
 
 /* ------------------------------------------------------------
    ZIG-ZAG — texte / image, puis image / texte
@@ -258,7 +239,6 @@ h2::before {
     color: var(--brown-soft);
 }
 .texte p:last-child { margin-bottom: 0; }
-.texte p strong { color: var(--brown-deep); font-weight: 600; }
 .texte a { color: var(--brown-logo); }
 .texte a:hover { color: var(--gold); }
 
@@ -286,8 +266,10 @@ h2::before {
     color: var(--brown-soft);
 }
 .liste li:last-child { margin-bottom: 0; }
-/* le losange doré : puce unique de toutes les listes de la page */
-.liste li::before {
+/* le losange doré : puce unique de TOUTES les listes de la page,
+   celles du corps (.liste) comme celles du panneau (.limites) */
+.liste li::before,
+.limites li::before {
     content: "◆";
     position: absolute;
     left: 0;
@@ -297,14 +279,6 @@ h2::before {
     line-height: 1.9;
 }
 .liste li strong { color: var(--brown-deep); font-weight: 700; }
-
-.liste.serree {
-    margin-top: 1.2rem;
-    padding-top: 1.2rem;
-    /* pas de trait de séparation : c'est l'espace et le filet doré des titres qui découpent */
-}
-.liste.serree li { margin-bottom: 0.5rem; font-size: 0.95rem; }
-
 
 /* incise : une remarque en retrait, filet doré ---------------- */
 .incise {
@@ -316,7 +290,6 @@ h2::before {
     line-height: 1.65;
     color: var(--brown-soft);
 }
-.incise strong { font-style: normal; color: var(--brown-deep); }
 
 /* ------------------------------------------------------------
    CITATION — respiration pleine largeur entre deux rangées
@@ -352,61 +325,7 @@ h2::before {
 .pour-qui .liste li { margin-bottom: 0.85rem; }
 
 /* ------------------------------------------------------------
-   DÉROULÉ — barre horizontale de 4 étapes
-   ------------------------------------------------------------ */
-.deroule {
-    padding: clamp(2rem, 4vw, 3.2rem) 0;
-    /* pas de trait de séparation : c'est l'espace et le filet doré des titres qui découpent */
-}
-.etapes {
-    counter-reset: etape;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1.4rem;
-}
-.etapes li {
-    counter-increment: etape;
-    padding-top: 2.4rem;
-    position: relative;
-}
-.etapes li::before {
-    content: counter(etape, decimal-leading-zero);
-    position: absolute;
-    top: 0;
-    left: 0;
-    font-size: 0.82rem;
-    font-weight: 700;
-    letter-spacing: 1px;
-    color: var(--brown-logo);
-}
-.etapes li::after {
-    content: "";
-    position: absolute;
-    top: 0.5rem;
-    left: 2.2rem;
-    right: 0;
-    height: 1px;
-    background: var(--border);
-}
-.etapes li:last-child::after { display: none; }
-.etapes li strong {
-    display: block;
-    margin-bottom: 0.35rem;
-    font-size: 1.05rem;
-    font-weight: 600;
-    color: var(--brown-deep);
-}
-.etapes li span {
-    font-size: 0.93rem;
-    line-height: 1.6;
-    color: var(--brown-soft);
-}
-
-/* ------------------------------------------------------------
-   EN PRATIQUE — fiche + ce qu'il faut savoir, côte à côte
+   EN PRATIQUE — le panneau « ce qu'il faut savoir »
    ------------------------------------------------------------ */
 .pratique {
     padding: clamp(2rem, 4vw, 3.2rem) 0 clamp(3rem, 6vw, 4.5rem);
@@ -414,57 +333,24 @@ h2::before {
 }
 .fiches {
     display: grid;
-    grid-template-columns: 1.15fr 0.85fr;
+    grid-template-columns: 1fr;
     gap: clamp(1.4rem, 3vw, 2.4rem);
     align-items: start;
 }
-/* deux cadres ORGANIQUES : quatre angles arrondis, mais aucun
-   identique à un autre. Les rayons sont elliptiques (valeurs
-   avant / après la barre oblique), donc chaque courbe est un peu
-   étirée dans un sens — c'est ce qui donne le tracé à main levée
-   plutôt qu'un rectangle à coins ronds. */
-.fiche,
+/* cadre ORGANIQUE : quatre angles arrondis, mais aucun identique à
+   un autre. Les rayons sont elliptiques (valeurs avant / après la
+   barre oblique), donc chaque courbe est un peu étirée dans un sens
+   — c'est ce qui donne le tracé à main levée plutôt qu'un rectangle
+   à coins ronds. Le crème très clair ne se détachant pas du blanc,
+   un filet sable redonne au panneau son contour. */
 .savoir {
     margin: 0;
     padding: clamp(1.7rem, 3vw, 2.3rem);
     box-shadow: 0 14px 34px rgba(58, 38, 31, 0.09);
-}
-.fiche {
-    background: linear-gradient(155deg, var(--cream-card) 0%, var(--cream) 62%);
-    border-radius: 72px 40px 64px 48px / 56px 64px 44px 72px;
-}
-/* le crème très clair ne se détache pas du blanc : un filet sable
-   redonne au panneau son contour. Courbes et dégradé inversés par
-   rapport à la fiche, pour que les deux cadres ne se répètent pas. */
-.savoir {
     background: linear-gradient(200deg, var(--blanc) 0%, var(--cream-card) 70%);
     border: 1px solid var(--border);
     border-radius: 44px 68px 40px 72px / 68px 48px 72px 52px;
 }
-.fiche .ligne {
-    display: grid;
-    grid-template-columns: 8rem 1fr;
-    gap: 1rem;
-    padding: 0.65rem 0;
-    border-bottom: 1px solid var(--border);
-}
-.fiche .ligne:first-child { padding-top: 0; }
-.fiche .ligne:last-child { border-bottom: none; padding-bottom: 0; }
-.fiche dt {
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    color: var(--brown-soft);
-    padding-top: 0.25rem;
-}
-.fiche dd {
-    margin: 0;
-    font-size: 0.95rem;
-    line-height: 1.6;
-    color: var(--brown-deep);
-}
-.fiche dd strong { font-weight: 700; }
 
 .savoir h3 {
     margin: 0 0 1rem;
@@ -483,16 +369,6 @@ h2::before {
     line-height: 1.6;
     color: var(--brown-soft);
 }
-.limites li::before {
-    content: "◆";
-    position: absolute;
-    left: 0;
-    top: 0.12em;
-    color: var(--gold);
-    font-size: 0.62em;
-    line-height: 1.9;
-}
-.limites li strong { color: var(--brown-deep); font-weight: 700; }
 .savoir .note {
     margin: 1rem 0 0;
     font-size: 0.86rem;
@@ -503,36 +379,14 @@ h2::before {
 
 /* ------------------------------------------------------------
    BOUTONS
+   Gélule dorée, contour doré : le tout est dans globals.css.
+   Ne restent ici que les écarts propres à la page.
    ------------------------------------------------------------ */
 .cta-row {
-    display: flex;
-    flex-wrap: wrap;
     gap: 0.8rem;
     margin-top: clamp(1.6rem, 3vw, 2.2rem);
 }
-/* boutons en gélule : la forme la plus douce possible */
-.btn {
-    font-size: 0.85rem;
-    font-weight: 600;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    text-decoration: none;
-    padding: 0.85rem 2rem;
-    border-radius: 999px;
-    transition: background 0.2s ease, color 0.2s ease, transform 0.1s ease;
-}
-/* mêmes boutons que le reste du site : doré plein, texte brun */
-.btn-primary {
-    background: var(--gold);
-    color: var(--brown);
-}
-.btn-primary:hover { background: var(--gold-light); }
-.btn-primary:active { transform: translateY(1px); }
-.btn-ghost {
-    border: 1px solid var(--gold);
-    color: var(--brown-logo);
-}
-.btn-ghost:hover { background: var(--cream); }
+.btn { font-size: 0.85rem; }
 
 /* ------------------------------------------------------------
    RESPONSIVE
@@ -556,14 +410,9 @@ h2::before {
         margin: -2.5rem 1.2rem 0;
     }
     .pour-qui .wrap { grid-template-columns: 1fr; }
-    .fiches { grid-template-columns: 1fr; }
-    .etapes { grid-template-columns: 1fr 1fr; }
-    .etapes li::after { display: none; }
 }
 
 @media (max-width: 560px) {
-    .etapes { grid-template-columns: 1fr; }
-    .fiche .ligne { grid-template-columns: 1fr; gap: 0.25rem; }
     .visuel img { aspect-ratio: 3 / 2; }
     .reperes { gap: 1.2rem; }
     .cta-row .btn { flex: 1 1 100%; text-align: center; }

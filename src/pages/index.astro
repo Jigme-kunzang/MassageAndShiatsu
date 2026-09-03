@@ -2,6 +2,11 @@
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import GoogleReview from "../components/GoogleReview.astro";
+import Meta from "../components/Meta.astro";
+
+// intitulés des cinq familles : source unique, partagée avec le
+// menu et le pied de page
+import { familles } from "../../public/prestations.json";
 
 import '../styles/globals.css'
 import '../styles/index.css'
@@ -10,45 +15,70 @@ import '../styles/index.css'
 <!DOCTYPE html>
 <html lang="fr">
 	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
+		<Meta
+			title="Massages et shiatsu au Lavandou — Carole Renaud"
+			description="Massages bien-être et shiatsu traditionnel au Lavandou. Détente, récupération sportive, accompagnement en convalescence — au cabinet ou à domicile."
+			image="/pictures/logo3.jpg"
+		/>
 		<script>import '../scripts/cards'</script>
-		<title>Massages et shiatsu — Carole Renaud</title>
-		<meta name="description" content="Massages bien-être et shiatsu traditionnel au Lavandou. Détente, récupération sportive, accompagnement en convalescence — au cabinet ou à domicile.">
-
 	</head>
 	<body>
 		<Header/>
 
 		<section class="hero">
 		    <p class="eyebrow">Bien-être · Détente · Énergie</p>
-		    <h1>Massage et <em>shiatsu</em></h1>
+		    <h1>Massage & <em>shiatsu</em></h1>
 		    <div class="hero-rule" aria-hidden="true"></div>
 		    <p class="hero-sub">
-		        Un accompagnement simple, humain et personnalisé pour relâcher
-		        les tensions, souffler et retrouver l'énergie.
+		        Un accompagnement humain et personnalisé pour relâcher
+		        les tensions, souffler et retrouver l'énergie
 		    </p>
 		</section>
 
 		<section class="intro-prestations">
 		  	<h2>Un accompagnement adapté à chacun</h2>
 		  	<p class="lead">
-		  	  	Chaque séance est pensée selon votre état du moment : récupération après le
-		  	  	sport, besoin de souffler, traversée d'une période difficile. Mon approche
-		  	  	reste simple, humaine et personnalisée. Découvrez les pratiques que je propose.
+		  	  	Chaque séance est pensée selon votre état du moment. 
+				Mon approche allie écoute, expertise et passion pour vous accompagner vers un mieux être,
+				tant physique qu'émotionnel
 		  	</p>
 
+			<!-- les intitulés viennent de public/prestations.json, comme
+			     le menu et le pied de page : une seule source -->
 			<ul class="prestations-list">
-		  	  	<li><strong>Massages relaxant</strong> - un moment de détente, du cœur à cœur.</li>
-		  	  	<li><strong>Massages énergétiques</strong> - massage reposant mais avant tout revigorant.</li>
-		  	  	<li><strong>Massages sportifs</strong> - massage permettant une ralaxation pour les sportifs.</li>
-		  	  	<li><strong>Massages à Domicile</strong> - un moment de bien être dans son chez soi.</li>
+				{familles.map((f) => (
+					<li><strong>{f.nom}</strong></li>
+				))}
 		  	</ul>
 
+			<!-- ====== DÉROULÉ — barre horizontale, 4 étapes ====== -->
+			<div class="deroule">
+				<div class="titre">
+					<h2>Comment se passe une séance.</h2>
+				</div>
+				<ol class="etapes">
+					<li>
+						<strong>L'échange</strong>
+						<span>On prend le temps de parler de votre état du moment, de vos besoins et des zones sensibles.</span>
+					</li>
+					<li>
+						<strong>L'installation</strong>
+						<span>Vous vous installez confortablement, bien au chaud, et je prépare ce qu'il faut pour la séance.</span>
+					</li>
+					<li>
+						<strong>Le massage</strong>
+						<span>Le geste s'ajuste en permanence à ce que le corps demande — sans jamais forcer.</span>
+					</li>
+					<li>
+						<strong>Le repos</strong>
+						<span>Un temps calme pour laisser l'apaisement continuer d'agir avant de reprendre le fil.</span>
+					</li>
+				</ol>
+			</div>
+
 			<figure class="prestations-quote">
-  			  	<blockquote>Un corps en bonne santé est la chambre d'hôte de l'âme.</blockquote>
-  			  	<figcaption>Francis Bacon</figcaption>
+  			  	<blockquote>L'homme est un trait d'union entre la terre et le ciel</blockquote>
+  			  	<figcaption>Confucius</figcaption>
   			</figure>
 		</section>
 
@@ -61,12 +91,12 @@ import '../styles/index.css'
   			  	  	  	  	<div class="label top"><span class="dot"></span> Relaxant</div>
 							<div class="body">
 								<div class="title">
-									<h2>Massages relaxant</h2>
+									<h2>Massage relaxant</h2>
 									<p class="subtitle">Du cœur à cœur</p>
 								</div>
 								<div class="wap">
-									<p class="long">Des massages tout en douceur, pensés comme une parenthèse pour souffler. On prend le temps d'échanger avant la séance, puis le corps se dépose et les tensions se relâchent. Mon approche reste simple, humaine et personnalisée : un vrai moment de détente, du cœur à cœur, pour se ressourcer pleinement.</p>
-                            		<p class="short">Un moment de détente tout en douceur, du cœur à cœur, pour se ressourcer.</p>
+									<p class="long">Des massages tout en douceur, pensés comme une parenthèse pour souffler. On prend le temps d'échanger avant la séance, puis le corps se dépose et les tensions se relâchent</p>
+                            		<p class="short">Un moment de détente tout en douceur, du cœur à cœur, pour se ressourcer</p>
 								</div>
 							</div>
   			  	  	  	</div>
@@ -80,8 +110,8 @@ import '../styles/index.css'
 							  	<h2>Massages énergétiques</h2>
 							  	<p class="subtitle">Reposant et revigorant</p>
 								<div class="swap">
-									<p class="long">Des massages à la fois reposant et revigorant. En relançant la circulation et l'énergie du corps, il détend les muscles tout en redonnant du tonus. On en ressort apaisé mais plein d'allant, comme rechargé. Idéal quand la fatigue s'installe et qu'on a besoin d'un nouvel élan.</p>
-                            		<p class="short">Des massages reposant mais avant tout revigorant, qui relance l'énergie du corps.</p>
+									<p class="long">Des massages à la fois reposant et revigorant. En relançant la circulation et l'énergie du corps, il détend les muscles tout en redonnant du tonus. On en ressort apaisé mais plein d'allant, comme rechargé. Idéal quand la fatigue s'installe et qu'on a besoin d'un nouvel élan</p>
+                            		<p class="short">Des massages reposant mais avant tout revigorant, qui relance l'énergie du corps</p>
 								</div>
 							</div>
 						</div>
@@ -89,14 +119,29 @@ import '../styles/index.css'
 
   			  	  	<article class="card card--image card--dark">
   			  	  	  	<div class="inner">
-  			  	  	  	  	<a href="/prestations/sportifs"><img src="/pictures/shiatsu2.jpg" alt="Massages sportifs : détente musculaire et massage du dos, avant ou après l'effort" /></a>
+  			  	  	  	  	<a href="/prestations/sportifs"><img src="/pictures/shiatsu2.jpg" alt="Massage sportif : détente et récupération musculaire, avant ou après l'effort" /></a>
   			  	  	  	  	<div class="label top"><span class="dot"></span> Sportif</div>
 							<div class="body">
 							  	<h2>Massages sportifs</h2>
 							  	<p class="subtitle">Récupérer, relâcher</p>
                         		<div class="swap">
-                        		    <p class="long">Pensé pour les sportifs, ce massage accompagne l'effort comme la récupération. Ils dénoues les muscles sollicités, réduit les tensions accumulées à l'entraînement et favorise le retour au calme du corps. Une séance qui allie relâchement et remise en mouvement, avant comme après la performance.</p>
-                        		    <p class="short">Des massages qui relâchent les muscles et accompagne la récupération des sportifs.</p>
+                        		    <p class="long">Pensé pour les sportifs, ce massage accompagne l'effort comme la récupération. Ils dénoues les muscles sollicités, réduit les tensions accumulées à l'entraînement et favorise le retour au calme du corps. Une séance qui allie relâchement et remise en mouvement, avant comme après la performance</p>
+                        		    <p class="short">Des massages qui relâchent les muscles et accompagne la récupération des sportifs</p>
+                        		</div>
+							</div>
+  			  	  	  	</div>
+  			  	  	</article>
+
+					<article class="card card--image card--dark">
+  			  	  	  	<div class="inner">
+  			  	  	  	  	<a href="/prestations/convalescence"><img src="/pictures/convalescence.jpg" alt="Massage convalescence® : un accompagnement en douceur, respectueux des cicatrices" /></a>
+  			  	  	  	  	<div class="label top"><span class="dot"></span> convalescence</div>
+							<div class="body">
+							  	<h2>Massages convalescence®</h2>
+							  	<p class="subtitle">L'art de l'adaptation</p>
+                        		<div class="swap">
+                        		    <p class="long">Un massage conçu comme une rencontre sur-mesure entre le praticien et la mémoire de votre corps. Ici, la main observe, ressent et s'adapte : aux douleurs, aux cicatrices, aux sensibilités</p>
+                        		    <p class="short">Un moment où la main observe, ressent et s'adapte aux douleurs, cicatrices et aux sensibilités</p>
                         		</div>
 							</div>
   			  	  	  	</div>
@@ -104,14 +149,14 @@ import '../styles/index.css'
 						  
   			  	  	<article class="card card--image card--light">
 					    <div class="inner">
-					        <a href="/prestations/other"><img src="/pictures/chiNeiTsang.jpg" alt="Autres prestations : dos, jambes, massage Signature et séance à domicile" /></a>
+					        <a href="/prestations/other"><img src="/pictures/chiNeiTsang.jpg" alt="Autres prestations : massage sur mesure et séance à domicile" /></a>
 					        <div class="label top"><span class="dot"></span> Autres prestations</div>
 					        <div class="body">
 					            <h2>Et bien d'autres prestations</h2>
-					            <p class="subtitle">Ciblé ou à domicile</p>
+					            <p class="subtitle">Sur mesure ou à domicile</p>
 					            <div class="swap">
-					                <p class="long">Au-delà des massages complets, d'autres formules répondent à un besoin précis : le dos pour dénouer les tensions du quotidien, les jambes pour retrouver de la légèreté, ou une séance sur mesure centrée sur les zones qui le demandent. Et si vous préférez rester chez vous, tous ces massages se déplacent : je viens installer la bulle de détente directement dans votre intérieur.</p>
-					                <p class="short">Dos, jambes, séance sur mesure ou massage à domicile : des formules ciblées, selon votre besoin.</p>
+					                <p class="long">Au-delà des massages complets, d'autres formules répondent à un besoin précis : une séance sur mesure centrée sur les zones qui le demandent ou une séance directement dans votre chez vous</p>
+					                <p class="short">Séance sur mesure ou massage à domicile : deux façons de recevoir un massage autrement</p>
 					            </div>
 					        </div>
 					    </div>

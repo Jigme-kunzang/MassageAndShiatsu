@@ -35,7 +35,6 @@
     --cream:        #FCF0E2;   /* fond crème (pages claires + header) */
     --cream-card:   #FFF9F0;   /* cartes, champs de formulaire */
     --blanc:        #FFFFFF;   /* blanc : pages de prestation */
-    --lien:         #F5F0E6;   /* beige lin : pages de propositions */
     --teal:         #1B4053;   /* bleu canard (bandeaux mis en avant) */
 
     /* Bruns */
@@ -60,6 +59,10 @@
     --content-narrow: 780px;                       /* colonne de lecture */
     --page-padding:   clamp(2.5rem, 6vw, 5rem) 1.5rem;
     --radius:         14px;
+
+    /* largeur du conteneur .wrap — chaque page la redéfinit si besoin
+       (about : 1080px, propositions : 1100px, prestations : 1120px) */
+    --wrap-max:       1120px;
 }
 
 /* ------------------------------------------------------------
@@ -87,8 +90,136 @@ body {
 }
 
 /* ------------------------------------------------------------
-   5. ACCESSIBILITÉ — mouvement réduit
+   5. CONTENEUR — la colonne centrée de toutes les pages larges
+   Reprise à l'identique par about.css, prestations.css et
+   propositions.css : seule la largeur change, via --wrap-max.
+   ------------------------------------------------------------ */
+.wrap {
+    max-width: var(--wrap-max);
+    margin: 0 auto;
+    padding: 0 28px;
+}
+
+/* ------------------------------------------------------------
+   6. PAGES DE TEXTE SUR FOND BLEU CANARD
+   Socle commun aux pages mentions, tarifs et contact : même fond,
+   même colonne de lecture, même titre souligné d'un filet doré.
+   Chaque feuille de page ne garde plus que ses écarts.
+   ------------------------------------------------------------ */
+body.page-teal {
+    background-color: var(--teal);
+}
+body.page-teal main {
+    max-width: var(--content-narrow);
+    margin-inline: auto;
+    padding: var(--page-padding);
+    color: var(--cream-light);
+}
+body.page-teal h1 {
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    font-weight: 600;
+    line-height: 1.15;
+    color: var(--cream-light);
+    margin: 0 0 2rem;
+}
+/* le filet doré sous le titre, rappel du logo */
+body.page-teal h1::after {
+    content: "";
+    display: block;
+    width: 60px;
+    height: 2px;
+    margin-top: 1.2rem;
+    background: var(--gold);
+}
+
+/* ------------------------------------------------------------
+   7. ÉLÉMENTS PARTAGÉS
+   ------------------------------------------------------------ */
+
+/* le petit label en capitales qui ouvre une section : la forme est
+   commune, la taille et la couleur restent propres à chaque page */
+.eyebrow {
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin: 0 0 1.1rem;
+}
+
+/* mots-clés en gélule — pages de prestation et cartes propositions */
+.mots-cles {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin: 0;
+    padding: 0;
+}
+.mots-cles li {
+    padding: 0.3rem 0.85rem;
+    border-radius: 999px;
+    font-size: 0.74rem;
+    font-weight: 600;
+    color: var(--brown-deep);
+    background: var(--cream);
+}
+
+/* boutons d'appel à l'action — pages de prestation et propositions */
+.cta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+.btn {
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 0.85rem 2rem;
+    border-radius: 999px;
+    transition: background 0.2s ease, color 0.2s ease, transform 0.1s ease;
+}
+.btn-primary {
+    background: var(--gold);
+    color: var(--brown);
+}
+.btn-primary:hover { background: var(--gold-light); }
+.btn-primary:active { transform: translateY(1px); }
+.btn-ghost {
+    border: 1px solid var(--gold);
+    color: var(--brown-logo);
+}
+.btn-ghost:hover { background: var(--cream); }
+
+/* ------------------------------------------------------------
+   8. APPARITIONS — pilotées par scripts/display.js
+   Identiques sur about.css et propositions.css : seuls les délais
+   .a1….a4 restent propres à chaque page.
+   ------------------------------------------------------------ */
+.reveal {
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity 0.9s ease, transform 0.9s ease;
+}
+.reveal.in { opacity: 1; transform: none; }
+
+.anim {
+    opacity: 0;
+    transform: translateY(22px);
+    animation: rise 1.1s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+}
+@keyframes rise { to { opacity: 1; transform: none; } }
+
+/* ------------------------------------------------------------
+   9. ACCESSIBILITÉ — mouvement réduit
    ------------------------------------------------------------ */
 @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
+
+    .anim, .reveal {
+        animation: none !important;
+        transition: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+    }
 }

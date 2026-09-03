@@ -1,0 +1,86 @@
+# En-têtes de sécurité du site.
+#
+# Ce fichier vit dans public/ : Astro le recopie tel quel à la racine du site
+# publié (dist/.htaccess), qui est l'endroit où Apache va le chercher. C'est
+# donc bien ce dossier dist/ qu'il faut envoyer sur l'hébergeur.
+#
+# Un en-tête de sécurité est une consigne envoyée au navigateur en même temps
+# que la page : « voilà ce que tu as le droit de faire sur ce site ». Sans ces
+# consignes, le navigateur applique des réglages par défaut très permissifs.
+
+<IfModule mod_headers.c>
+
+  # ------------------------------------------------------------------
+  # Content-Security-Policy — le plus important des quatre
+  # ------------------------------------------------------------------
+  # Liste blanche de tout ce que la page a le droit de charger ou de
+  # contacter. L'intérêt concret ici : la page contact fait tourner un
+  # script hébergé par Web3Forms, qui peut lire chaque champ du formulaire.
+  # Si ce script était un jour compromis, `connect-src` et `form-action`
+  # l'empêcheraient d'expédier les messages ailleurs que vers Web3Forms.
+  #
+  #   'self'                     nos propres fichiers (JS, CSS, images, polices)
+  #   web3forms.com              script du formulaire de contact
+  #   api.web3forms.com          destination de l'envoi du formulaire
+  #   *.hcaptcha.com             widget anti-spam, posé par le script Web3Forms
+  #   lh3.googleusercontent.com  photos de profil des avis Google
+  #
+  # 'unsafe-inline' n'est toléré que pour les styles, parce que le widget
+  # hCaptcha pose les siens en ligne. Les scripts restent stricts : aucun
+  # code JavaScript écrit dans le HTML n'est accepté. C'est ce que permet le
+  # réglage `assetsInlineLimit` d'astro.config.mjs — sans lui, Astro
+  # recopierait ses petits scripts dans le HTML et la CSP les bloquerait.
+  # NOTE : doit rester alignée sur public/_headers (version Netlify).
+  # `data:` est indispensable dans img-src — sans lui les images encodées
+  # en ligne (puces SVG, aplats) sont bloquées.
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' https://web3forms.com https://hcaptcha.com https://*.hcaptcha.com; style-src 'self' 'unsafe-inline' https://hcaptcha.com https://*.hcaptcha.com; img-src 'self' data: https://lh3.googleusercontent.com; font-src 'self'; connect-src 'self' https://api.web3forms.com https://hcaptcha.com https://*.hcaptcha.com; frame-src https://hcaptcha.com https://*.hcaptcha.com; form-action 'self' https://api.web3forms.com; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; upgrade-insecure-requests"
+
+  # ------------------------------------------------------------------
+  # HSTS — « pour ce domaine, n'essaie même jamais http »
+  # ------------------------------------------------------------------
+  # Ferme la fenêtre d'interception qui existe le temps de la redirection
+  # http -> https, sur un wifi public par exemple.
+  #
+  # ATTENTION : à n'activer qu'une fois le certificat HTTPS en place et
+  # vérifié. Le navigateur mémorise la consigne pendant un an et refusera
+  # http entre-temps. Tu peux ajouter « ; includeSubDomains » à la fin le
+  # jour où tous tes sous-domaines sont eux aussi en HTTPS.
+  Header always set Strict-Transport-Security "max-age=31536000"
+
+  # ------------------------------------------------------------------
+  # Les trois petits derniers
+  # ------------------------------------------------------------------
+  # Le navigateur s'en tient au type de fichier annoncé, au lieu de le deviner.
+  Header always set X-Content-Type-Options "nosniff"
+
+  # Empêche d'afficher le site dans une iframe sur un autre domaine (quelqu'un
+  # qui le ferait passer pour le sien). Doublon volontaire de `frame-ancestors`
+  # ci-dessus, pour les navigateurs anciens qui ignorent la CSP.
+  Header always set X-Frame-Options "DENY"
+
+  # Ne transmet l'adresse complète de la page qu'aux liens internes ; les sites
+  # externes ne reçoivent que le nom de domaine.
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+
+  # Aucune page n'a besoin de ces capteurs : on les coupe par défaut.
+  Header always set Permissions-Policy "geolocation=(), camera=(), microphone=(), payment=(), usb=()"
+
+</IfModule>
+
+# ------------------------------------------------------------------
+# Redirection http -> https
+# ------------------------------------------------------------------
+# Volontairement laissée inactive : la quasi-totalité des hébergements
+# mutualisés la font déjà depuis leur panneau de configuration, et beaucoup
+# terminent le HTTPS sur un proxy en amont. Dans ce cas la variable %{HTTPS}
+# vaut « off » côté Apache même quand le visiteur est bien en HTTPS, et la
+# règle ci-dessous provoque une boucle de redirection infinie.
+#
+# À n'activer que si ton hébergeur ne propose pas la redirection lui-même, et
+# en vérifiant le site juste après.
+#
+# <IfModule mod_rewrite.c>
+#   RewriteEngine On
+#   RewriteCond %{HTTPS} off
+#   RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+# </IfModule>
