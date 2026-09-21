@@ -1,0 +1,142 @@
+/* Couleurs → variables de globals.css */
+
+.site-footer {
+    margin-top: 4rem;
+    color: var(--cream-light);
+    font-size: 15px;
+}
+
+/* Partie haute : le bloc brun avec les colonnes */
+.footer-main {
+    display: flex;
+    gap: 3rem;
+    background: var(--brown);
+    padding: 3rem 40px;
+}
+
+/* Colonne marque (plus large que les autres) */
+.footer-brand {
+    flex: 1.6;
+}
+
+/* Fond uni : l'image porte déjà son propre fond clair. Aucune
+   marge intérieure, donc aucun liseré d'une autre teinte autour
+   d'elle — on ne voit qu'un seul aplat. */
+.footer-brand img {
+    height: 64px;
+    width: auto;
+    margin-bottom: 1.2rem;
+    display: block;
+    background: var(--blanc);
+    padding: 0;
+    border-radius: 4px;
+}
+
+.footer-brand p {
+    margin: 0;
+    line-height: 1.6;
+    color: var(--cream-muted);
+    max-width: 38ch;
+}
+
+/* Colonnes de liens */
+.footer-col {
+    flex: 1;
+}
+
+.footer-col h3 {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--cream-light);
+    margin: 0.4rem 0 1.4rem 0;
+}
+
+.footer-col ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+}
+
+.footer-col a {
+    color: var(--cream-muted);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.footer-col a:hover {
+    color: var(--slate-light);
+}
+
+/* Barre brun foncé : la certification à gauche, le copyright à droite */
+.footer-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem 2rem;
+    background: var(--brown-deep);
+    padding: 1.1rem 40px;
+    font-size: 13px;
+    color: #b8aaa0;                 /* teinte utilisée uniquement ici */
+}
+
+.footer-bottom p { margin: 0; }
+
+/* La certification : même traitement que le logo — fond uni,
+   aucune marge intérieure, aucun liseré */
+.footer-certif {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+}
+
+.footer-certif img {
+    height: 56px;
+    width: auto;
+    display: block;
+    background: var(--blanc);
+    padding: 0;
+    border-radius: 4px;
+}
+
+.footer-certif span {
+    line-height: 1.45;
+    letter-spacing: 0.5px;
+    color: var(--cream-muted);
+}
+
+.footer-bottom a {
+    color: var(--cream-light);
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.footer-bottom a:hover {
+    color: var(--slate-light);
+}
+
+/* ------------------------------------------------------------
+   MOBILE — les quatre colonnes s'empilent
+   ------------------------------------------------------------ */
+@media (max-width: 860px) {
+    .site-footer { margin-top: 2.5rem; }
+
+    .footer-main {
+        flex-direction: column;
+        gap: 2.2rem;
+        padding: 2.5rem 22px;
+    }
+    .footer-brand p { max-width: none; }
+
+    .footer-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.2rem;
+        padding: 1.4rem 22px;
+    }
+}

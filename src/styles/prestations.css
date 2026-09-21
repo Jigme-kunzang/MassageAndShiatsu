@@ -1,0 +1,419 @@
+/* ============================================================
+   PRESTATIONS — feuille PARTAGÉE, pilotée par le gabarit
+   Prestation.astro et les données du Markdown de chaque massage.
+   Importe globals.css AVANT ce fichier : palette (variables),
+   reset et police Lora y sont déjà définis.
+
+   MISE EN PAGE : zig-zag + lecture en F.
+   - En F  : tout est aligné à gauche. Barre d'en-tête large, barre
+             secondaire plus courte, puis les titres de section qui
+             descendent le long du bord gauche.
+   - Zig-zag : le corps alterne texte/image puis image/texte. Deux
+             colonnes au lieu d'un empilement : la page est deux fois
+             plus courte, et l'œil relance à chaque rangée.
+
+   STYLE : rien de parfaitement carré ni parfaitement
+   symétrique. Formes crème posées derrière les photos, équerres
+   sable qui encadrent, carte blanche qui chevauche la photo,
+   filets dorés plutôt que traits gris. Palette de globals.css.
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   BASE
+   ------------------------------------------------------------ */
+body.page-prestation {
+    background-color: var(--blanc);
+    color: var(--brown-deep);
+}
+
+/* .wrap : socle dans globals.css, largeur par défaut (--wrap-max: 1120px) */
+
+/* rubrique : le petit label qui ouvre chaque bloc ------------ */
+.rubrique {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--brown-logo);
+    margin: 0 0 0.8rem;
+}
+
+/* titre de section — aligné à gauche, c'est la hampe du F ----- */
+.titre { margin-bottom: clamp(1.6rem, 3vw, 2.2rem); }
+h2 {
+    font-size: clamp(1.5rem, 1.2rem + 1.4vw, 2.1rem);
+    font-weight: 600;
+    line-height: 1.15;
+    margin: 0 0 1rem;
+    color: var(--brown-deep);
+}
+/* le filet doré, arrondi aux deux bouts */
+h2::before {
+    content: "";
+    display: block;
+    width: 64px;
+    height: 3px;
+    border-radius: 3px;
+    margin-bottom: 0.9rem;
+    background: var(--gold);
+}
+
+/* ------------------------------------------------------------
+   BARRE HAUTE DU F — en-tête
+   ------------------------------------------------------------ */
+.entete {
+    position: relative;
+    overflow: hidden;
+    padding: clamp(2.2rem, 5vw, 3.4rem) 0 clamp(1.6rem, 3vw, 2.4rem);
+}
+/* forme crème, posée en haut à droite : la page ne démarre
+   pas sur un rectangle blanc mais sur une courbe */
+.entete::before {
+    content: "";
+    position: absolute;
+    top: -55%;
+    right: -12%;
+    width: min(620px, 58%);
+    height: 190%;
+    background: var(--cream);
+    border-radius: 52% 48% 43% 57% / 58% 46% 54% 42%;
+    opacity: 0.55;
+    z-index: 0;
+    pointer-events: none;
+}
+.entete .wrap { position: relative; z-index: 1; }
+
+.entete h1 {
+    font-size: clamp(2.1rem, 1.6rem + 2.8vw, 3.4rem);
+    font-weight: 400;
+    line-height: 1.08;
+    letter-spacing: -0.01em;
+    margin: 0 0 1rem;
+    max-width: 20ch;
+    color: var(--brown-deep);
+}
+.entete h1 em {
+    font-style: italic;
+    font-weight: 500;
+    color: var(--brown-logo);
+}
+.chapo {
+    font-size: clamp(1.05rem, 1rem + 0.4vw, 1.22rem);
+    line-height: 1.6;
+    color: var(--brown-soft);
+    margin: 0;
+    max-width: 62ch;          /* la barre haute reste plus large… */
+}
+
+/* deuxième barre du F : plus courte que la première */
+.barre {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem 2rem;
+    max-width: 52ch;          /* …que celle-ci */
+    margin-top: 1.6rem;
+    padding-top: 1.4rem;
+    border-top: 2px solid var(--border);
+}
+.reperes {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.8rem;
+    margin: 0;
+    padding: 0;
+}
+.reperes li {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    font-size: 0.98rem;
+    font-weight: 600;
+    color: var(--brown-deep);
+}
+.reperes li span {
+    font-size: 0.66rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--brown-logo);
+}
+
+/* .mots-cles : gélules définies dans globals.css, reprises telles quelles */
+
+/* ------------------------------------------------------------
+   ZIG-ZAG — texte / image, puis image / texte
+   ------------------------------------------------------------ */
+.rangee { padding: clamp(2.5rem, 5vw, 4.5rem) 0; }
+.rangee .wrap {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;                       /* pas d'écart : la carte chevauche */
+    align-items: center;
+}
+.rangee.inverse .visuel { order: -1; }
+
+/* ---- LA PHOTO ET SON CADRE ---------------------------------
+   Trois plans superposés, comme sur la maquette :
+     1. un cercle crème qui dépasse au-dessus de la photo
+     2. une équerre sable qui encadre le coin opposé
+     3. la photo, posée par-dessus les deux
+   La rangée « zag » reprend la même construction en miroir.
+   ------------------------------------------------------------ */
+.visuel {
+    position: relative;
+    margin: 0;
+    z-index: 1;
+}
+.visuel img {
+    display: block;
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: 2px;
+    box-shadow: 0 18px 44px rgba(58, 38, 31, 0.18);
+}
+
+/* 1. le cercle, en haut du côté extérieur */
+.visuel::before {
+    content: "";
+    position: absolute;
+    z-index: 0;
+    top: clamp(-3.5rem, -4vw, -2rem);
+    right: clamp(-3rem, -3.5vw, -1.5rem);
+    width: clamp(80px, 11vw, 145px);
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: var(--cream);
+}
+.rangee.inverse .visuel::before {
+    right: auto;
+    left: clamp(-3rem, -3.5vw, -1.5rem);
+}
+
+/* 2. l'équerre, en bas du même côté */
+.visuel::after {
+    content: "";
+    position: absolute;
+    z-index: 0;
+    right: clamp(-2.5rem, -3vw, -1.2rem);
+    bottom: clamp(-2.5rem, -3vw, -1.2rem);
+    width: 62%;
+    height: 58%;
+    border-right: clamp(20px, 2.6vw, 34px) solid var(--border);
+    border-bottom: clamp(20px, 2.6vw, 34px) solid var(--border);
+}
+.rangee.inverse .visuel::after {
+    right: auto;
+    left: clamp(-2.5rem, -3vw, -1.2rem);
+    border-right: none;
+    border-left: clamp(20px, 2.6vw, 34px) solid var(--border);
+}
+
+/* ---- LA CARTE BLANCHE, posée sur la photo ------------------- */
+.texte {
+    position: relative;
+    z-index: 3;
+    padding: clamp(1.8rem, 3vw, 2.6rem);
+    background: var(--blanc);
+    box-shadow: 0 22px 55px rgba(58, 38, 31, 0.14);
+}
+/* rangée « zig » : texte à gauche, il déborde vers la photo */
+.rangee:not(.inverse) .texte { margin-right: clamp(-4rem, -3.5vw, -1.5rem); }
+/* rangée « zag » : texte à droite, il déborde vers la gauche */
+.rangee.inverse .texte { margin-left: clamp(-4rem, -3.5vw, -1.5rem); }
+
+/* dans la carte, le titre est brun logo et se passe du filet */
+.texte h2 {
+    margin-top: 0;
+    color: var(--brown-logo);
+}
+.texte h2::before { display: none; }
+.texte p {
+    margin: 0 0 1rem;
+    font-size: 1rem;
+    line-height: 1.75;
+    color: var(--brown-soft);
+}
+.texte p:last-child { margin-bottom: 0; }
+.texte a { color: var(--brown-logo); }
+.texte a:hover { color: var(--gold); }
+
+/* le chapeau : les paragraphes d'ouverture, un cran plus gros */
+.chapeau { margin-bottom: 1.8rem; }
+.chapeau p {
+    font-size: 1.06rem;
+    color: var(--brown-deep);
+}
+
+/* ------------------------------------------------------------
+   LISTES
+   ------------------------------------------------------------ */
+.liste {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.liste li {
+    position: relative;
+    padding-left: 1.5rem;
+    margin-bottom: 0.75rem;
+    font-size: 0.99rem;
+    line-height: 1.65;
+    color: var(--brown-soft);
+}
+.liste li:last-child { margin-bottom: 0; }
+/* le losange doré : puce unique de TOUTES les listes de la page,
+   celles du corps (.liste) comme celles du panneau (.limites) */
+.liste li::before,
+.limites li::before {
+    content: "◆";
+    position: absolute;
+    left: 0;
+    top: 0.12em;
+    color: var(--gold);
+    font-size: 0.62em;
+    line-height: 1.9;
+}
+.liste li strong { color: var(--brown-deep); font-weight: 700; }
+
+/* incise : une remarque en retrait, filet doré ---------------- */
+.incise {
+    margin: 1.4rem 0 0;
+    padding: 0.2rem 0 0.2rem 1.1rem;
+    border-left: 3px solid var(--gold);
+    font-size: 0.94rem;
+    font-style: italic;
+    line-height: 1.65;
+    color: var(--brown-soft);
+}
+
+/* ------------------------------------------------------------
+   CITATION — respiration pleine largeur entre deux rangées
+   ------------------------------------------------------------ */
+.citation { padding: clamp(1.5rem, 3vw, 2.5rem) 0; }
+.citation blockquote {
+    margin: 0;
+    padding: 0 0 0 1.6rem;
+    border-left: 3px solid var(--gold);
+    max-width: 24ch;
+    font-size: clamp(1.5rem, 1.2rem + 1.6vw, 2.3rem);
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1.25;
+    color: var(--brown-deep);
+}
+
+/* ------------------------------------------------------------
+   POUR QUI — titre à gauche, liste qui balaie vers le bas
+   ------------------------------------------------------------ */
+.pour-qui {
+    padding: clamp(2rem, 4vw, 3.2rem) 0;
+    /* pas de trait de séparation : c'est l'espace et le filet doré des titres qui découpent */
+}
+.pour-qui .wrap {
+    display: grid;
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: clamp(1.6rem, 4vw, 3.5rem);
+    align-items: start;
+}
+.pour-qui .titre { margin-bottom: 0; }
+.pour-qui .titre h2 { margin-bottom: 0; }
+.pour-qui .liste li { margin-bottom: 0.85rem; }
+
+/* ------------------------------------------------------------
+   EN PRATIQUE — le panneau « ce qu'il faut savoir »
+   ------------------------------------------------------------ */
+.pratique {
+    padding: clamp(2rem, 4vw, 3.2rem) 0 clamp(3rem, 6vw, 4.5rem);
+    /* pas de trait de séparation : c'est l'espace et le filet doré des titres qui découpent */
+}
+.fiches {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: clamp(1.4rem, 3vw, 2.4rem);
+    align-items: start;
+}
+/* cadre ORGANIQUE : quatre angles arrondis, mais aucun identique à
+   un autre. Les rayons sont elliptiques (valeurs avant / après la
+   barre oblique), donc chaque courbe est un peu étirée dans un sens
+   — c'est ce qui donne le tracé à main levée plutôt qu'un rectangle
+   à coins ronds. Le crème très clair ne se détachant pas du blanc,
+   un filet sable redonne au panneau son contour. */
+.savoir {
+    margin: 0;
+    padding: clamp(1.7rem, 3vw, 2.3rem);
+    box-shadow: 0 14px 34px rgba(58, 38, 31, 0.09);
+    background: linear-gradient(200deg, var(--blanc) 0%, var(--cream-card) 70%);
+    border: 1px solid var(--border);
+    border-radius: 44px 68px 40px 72px / 68px 48px 72px 52px;
+}
+
+.savoir h3 {
+    margin: 0 0 1rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--brown-logo);
+}
+.limites { list-style: none; margin: 0; padding: 0; }
+.limites li {
+    position: relative;
+    padding-left: 1.3rem;
+    margin-bottom: 0.55rem;
+    font-size: 0.92rem;
+    line-height: 1.6;
+    color: var(--brown-soft);
+}
+.savoir .note {
+    margin: 1rem 0 0;
+    font-size: 0.86rem;
+    font-style: italic;
+    line-height: 1.6;
+    color: var(--brown-soft);
+}
+
+/* ------------------------------------------------------------
+   BOUTONS
+   Gélule dorée, contour doré : le tout est dans globals.css.
+   Ne restent ici que les écarts propres à la page.
+   ------------------------------------------------------------ */
+.cta-row {
+    gap: 0.8rem;
+    margin-top: clamp(1.6rem, 3vw, 2.2rem);
+}
+.btn { font-size: 0.85rem; }
+
+/* ------------------------------------------------------------
+   RESPONSIVE
+   ------------------------------------------------------------ */
+@media (max-width: 900px) {
+    /* sur une colonne : l'image toujours au-dessus, la carte blanche
+       remonte par-dessus son bas, le cadre reste visible sur le côté */
+    .rangee .wrap { grid-template-columns: 1fr; gap: 0; }
+    .rangee.inverse .visuel { order: 0; }
+    .visuel::before { top: -1.8rem; right: -0.5rem; left: auto; }
+    .rangee.inverse .visuel::before { left: auto; right: -0.5rem; }
+    .visuel::after { width: 45%; height: 45%; right: -0.8rem; bottom: -0.8rem; }
+    .rangee.inverse .visuel::after {
+        left: auto;
+        right: -0.8rem;
+        border-left: none;
+        border-right: clamp(20px, 2.6vw, 34px) solid var(--border);
+    }
+    .rangee:not(.inverse) .texte,
+    .rangee.inverse .texte {
+        margin: -2.5rem 1.2rem 0;
+    }
+    .pour-qui .wrap { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 560px) {
+    .visuel img { aspect-ratio: 3 / 2; }
+    .reperes { gap: 1.2rem; }
+    .cta-row .btn { flex: 1 1 100%; text-align: center; }
+}

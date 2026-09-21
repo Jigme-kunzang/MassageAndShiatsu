@@ -1,0 +1,222 @@
+/* Couleurs → variables de globals.css */
+
+nav {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    margin: 0 auto;
+    padding: 10px 10px;
+    background-color: var(--cream);
+    box-shadow: 0 6px 18px rgba(58, 38, 31, 0.10);  /* ombre brune, chaude */
+    position: relative;
+    z-index: 10;   /* pour que l'ombre passe au-dessus du contenu */
+}
+
+.logo {
+    justify-self: start; /* logo collé à gauche */
+}
+
+.logo img {
+    height: 100px;
+    width: auto;
+    display: block;
+    padding-right: 20px;
+    padding-left: 20px;
+}
+
+nav ul {
+    display: flex;
+    align-items: center;
+    column-gap: 40px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav li a {
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #4e4e4e;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+nav li a:hover {
+    color: var(--brown-logo);
+}
+
+/* l'élément parent qui contient le sous-menu */
+.dropdown {
+    position: relative;
+}
+
+/* le bouton reprend exactement l'allure des autres entrées */
+.dropdown-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-family: inherit;
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #4e4e4e;
+    transition: color 0.2s ease;
+}
+.dropdown-toggle:hover,
+.dropdown:focus-within .dropdown-toggle { color: var(--brown-logo); }
+
+/* le petit chevron, qui bascule à l'ouverture */
+.caret {
+    width: 6px;
+    height: 6px;
+    border-right: 1.5px solid currentColor;
+    border-bottom: 1.5px solid currentColor;
+    transform: translateY(-2px) rotate(45deg);
+    transition: transform 0.2s ease;
+}
+.dropdown:hover .caret,
+.dropdown:focus-within .caret {
+    transform: translateY(1px) rotate(225deg);
+}
+
+/* le sous-menu déroulant — panneau aligné sur le bord droit du
+   bouton, pour ne pas déborder de la fenêtre (c'est la dernière
+   entrée du menu) */
+.submenu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    left: auto;
+    transform: translateY(10px);
+
+    /* on repasse en colonne (le nav ul est en flex ligne) */
+    flex-direction: column;
+    align-items: stretch;
+    column-gap: 0;
+    gap: 2px;
+
+    min-width: 180px;
+    padding: 8px;
+    background-color: var(--cream-card);
+    border-top: 2px solid var(--gold);
+    border-radius: 0 0 10px 10px;
+    box-shadow: 0 16px 38px rgba(58, 38, 31, 0.18);
+
+    /* caché par défaut */
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity .2s ease, transform .2s ease, visibility .2s ease;
+    z-index: 100;
+}
+
+/* pont invisible : évite de "perdre" le survol entre le lien et le menu */
+.submenu::before {
+    content: "";
+    position: absolute;
+    top: -14px;
+    left: 0;
+    right: 0;
+    height: 14px;
+}
+
+/* chaque entrée : un mot, rien de plus — le parent « Prestations »
+   donne déjà le contexte */
+.submenu li a {
+    display: block;
+    padding: 9px 14px;
+    border-radius: 6px;
+    font-size: 13px;
+    letter-spacing: 1.5px;
+    color: var(--brown-deep);
+    transition: background 0.18s ease, color 0.18s ease;
+}
+.submenu li a:hover,
+.submenu li a:focus-visible {
+    background: var(--cream);
+    color: var(--brown-logo);
+}
+
+/* affichage au survol ou au focus clavier */
+.dropdown:hover .submenu,
+.dropdown:focus-within .submenu {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0);
+}
+
+/* ------------------------------------------------------------
+   MOBILE
+   Le survol n'existe pas au doigt : plutôt qu'un menu à ouvrir,
+   on déplie tout. Le logo passe au-dessus, les liens se rangent
+   en dessous sur autant de lignes que nécessaire.
+   ------------------------------------------------------------ */
+@media (max-width: 900px) {
+    nav {
+        grid-template-columns: 1fr;
+        justify-items: center;
+        row-gap: 12px;
+        padding: 12px 16px;
+    }
+
+    .logo { justify-self: center; }
+    .logo img { height: 62px; padding: 0; }
+
+    nav > ul {
+        flex-wrap: wrap;
+        justify-content: center;
+        column-gap: 20px;
+        row-gap: 10px;
+    }
+    nav li a { font-size: 12px; letter-spacing: 1.5px; }
+
+    /* le déroulant disparaît : ses quatre liens rejoignent la
+       liste principale (display:contents fait remonter les
+       enfants dans le flex du parent) */
+    .dropdown { display: contents; }
+    .dropdown-toggle { display: none; }
+    .submenu::before { display: none; }
+
+    .submenu {
+        position: static;
+        transform: none;
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+        min-width: 0;
+        padding: 0;
+        background: none;
+        border: none;
+        border-radius: 0;
+        box-shadow: none;
+    }
+    .submenu li a {
+        padding: 0;
+        border-radius: 0;
+        font-size: 12px;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        color: #4e4e4e;
+    }
+    .submenu li a:hover { background: none; color: var(--brown-logo); }
+}
+
+@media (max-width: 480px) {
+    .logo img { height: 52px; }
+    nav > ul { column-gap: 14px; }
+    nav li a, .submenu li a { font-size: 11px; letter-spacing: 1px; }
+}

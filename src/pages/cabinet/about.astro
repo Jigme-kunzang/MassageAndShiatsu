@@ -1,0 +1,230 @@
+---
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import Meta from "../../components/Meta.astro";
+import '../../styles/globals.css'
+import '../../styles/about.css';
+
+// ================================================================
+//  CHIFFRES CLÉS — VALEURS PROVISOIRES, À REMPLACER
+//  Les nombres ci-dessous sont inventés : ce sont des ordres de
+//  grandeur plausibles, posés en attendant les chiffres exacts.
+//  Écrivez la valeur en NOMBRE (sans espace ni séparateur) : le
+//  formatage français et le décompte animé s'en chargent.
+// ================================================================
+const chiffres = [
+  { nombre: 20241, label: "corps soulagés",        precision: "depuis l'ouverture du cabinet" },
+  { nombre: 5,    label: "années de pratique",    precision: "formée aux massages bien-être" },
+  { nombre: 6,    label: "techniques maîtrisées", precision: "shiatsu, abhyanga, chi nei tsang…" },
+];
+
+const enFrancais = new Intl.NumberFormat("fr-FR");
+---
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<Meta
+  title="À propos de moi — Carole Renaud, praticienne au Lavandou"
+  description="Voyages, nature, relation d'aide : le parcours de Carole Renaud, praticienne en massages bien-être et shiatsu au Lavandou depuis cinq ans."
+  image="/pictures/carole.jpg"
+/>
+<script>import '../../scripts/display'</script>
+<script>import '../../scripts/compteur'</script>
+</head>
+<body>
+  <Header/>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <!-- 1re barre du Z : le texte à gauche, le portrait à droite -->
+      <div class="wrap">
+        <div class="hero-texte">
+          <p class="eyebrow anim a1">À propos de moi</p>
+          <h1>
+            <span class="l anim a2">Ralentir.</span>
+            <span class="l anim a3">Écouter.</span>
+            <span class="l anim a4">Accompagner.</span>
+          </h1>
+          <p class="lead anim a4">
+            Dans un monde en perpétuelle accélération, je choisis de prendre le temps —
+            celui du toucher, du souffle, et du retour à soi.
+          </p>
+          <span class="scrollcue anim a4">Mon histoire</span>
+        </div>
+        <figure class="portrait anim a4">
+          <img src="/pictures/carole.jpg" alt="Carole Renaud, praticienne en massages bien-être" />
+        </figure>
+      </div>
+    </section>
+
+    <!-- CHIFFRES — une seule ligne, pleine largeur -->
+    <section class="chiffres">
+      <div class="wrap">
+        <ul>
+          {chiffres.map((c) => (
+            <li class="reveal">
+              <!-- la valeur finale est écrite dans le HTML : sans
+                   JavaScript, le chiffre juste s'affiche sans animation -->
+              <span class="nombre" data-cible={c.nombre}>{enFrancais.format(c.nombre)}</span>
+              <span class="label">{c.label}</span>
+              <span class="precision">{c.precision}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <!-- PRÉSENCE — 2e barre du Z : l'image à gauche, le texte à droite -->
+    <section class="presence">
+      <div class="wrap grid">
+        <figure class="visuel reveal">
+          <img src="/pictures/massage1.jpg" alt="Séance de massage au cabinet" loading="lazy" />
+        </figure>
+        <div class="reveal">
+          <p>
+            Spécialisée dans l'art du massage bien-être depuis plus de cinq ans, j'ai à cœur
+            d'offrir à chacun une expérience <strong>unique, relaxante et adaptée à ses besoins</strong>.
+            Mon approche allie écoute, expertise et passion, pour vous accompagner vers un
+            mieux-être tant physique qu'émotionnel.
+          </p>
+          <p>
+            Je reçois des personnes de tous horizons : certaines pour un moment de détente,
+            d'autres pour récupérer après le sport, ou parce qu'elles traversent une période
+            difficile et se reconnectent à leur corps après une maladie, un burn-out, une
+            transition de vie. À chacune, j'offre <strong>un espace d'écoute et de respect</strong>.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PARCOURS -->
+    <section class="parcours">
+      <div class="wrap">
+        <!-- 3e barre du Z : le texte à gauche, l'image à droite -->
+        <div class="parcours-head reveal">
+          <div>
+            <p class="eyebrow">Mon parcours</p>
+            <h2>Qui suis-je&nbsp;?</h2>
+            <p>
+              Mon parcours n'est pas linéaire. Il est fait de détours, de bifurcations,
+              de retours à soi. Mais chaque étape a eu du sens — et chacune m'a préparée
+              à la suivante.
+            </p>
+          </div>
+          <figure class="visuel">
+            <img src="/pictures/carole2.jpg" alt="carte de visite tenue par une statue" loading="lazy" />
+          </figure>
+        </div>
+
+        <div class="timeline" id="timeline">
+          <!-- fil vertical : décoratif, et masqué sous 760px -->
+          <div class="spine" aria-hidden="true">
+            <svg viewBox="0 0 22 1000" preserveAspectRatio="none">
+              <path class="grow" d="M11,0 C13,140 9,280 11,420 C13,560 9,700 11,840 C12,910 10,960 11,1000"/>
+            </svg>
+          </div>
+
+          <article class="chapter">
+            <span class="dot"></span>
+            <div class="card">
+              <span class="tag">Les voyages</span>
+              <h3>Une école de vie</h3>
+              <p>
+                Voyager n'a jamais été pour moi un simple loisir, mais une quête de sens et
+                de rencontres. Chaque pays, chaque culture m'a appris à observer sans juger,
+                à accueillir l'inconnu avec bienveillance. C'est au fil de ces voyages que j'ai
+                commencé à masser mes proches — un geste naturel, presque intuitif, venu du cœur.
+              </p>
+            </div>
+          </article>
+
+          <article class="chapter">
+            <span class="dot"></span>
+            <div class="card">
+              <span class="tag">La nature</span>
+              <h3>Une vie au plus près des éléments</h3>
+              <p>
+                Mon lien avec la nature est fondamental : une source d'équilibre et
+                d'inspiration. J'ai eu la chance de travailler sur des plages, là où le sable,
+                l'eau, le vent et le soleil rythmaient mes journées. Le sport et le yoga
+                nourrissent encore aujourd'hui ma pratique : une conscience plus fine du
+                mouvement, du souffle et de l'alignement intérieur.
+              </p>
+            </div>
+          </article>
+
+          <article class="chapter">
+            <span class="dot"></span>
+            <div class="card">
+              <span class="tag">Le commerce éthique</span>
+              <h3>Un engagement pour la planète</h3>
+              <p>
+                À mon retour de voyage, je me suis investie dans le commerce de produits
+                écologiques et recyclés. J'y ai appris la relation client et la pédagogie, mais
+                surtout un sens aigu de l'éthique : je ne vendais pas seulement des produits,
+                je portais une vision d'un monde plus durable et plus conscient.
+              </p>
+            </div>
+          </article>
+
+          <article class="chapter">
+            <span class="dot"></span>
+            <div class="card">
+              <span class="tag">L'accompagnement</span>
+              <h3>Révéler les potentiels</h3>
+              <p>
+                J'ai ensuite exercé comme conseillère en insertion professionnelle. Une étape
+                courte mais charnière, où j'ai découvert la richesse de la relation d'aide :
+                écouter sans juger, soutenir sans diriger, poser les bonnes questions. J'y ai
+                appris que chaque personne porte en elle une force insoupçonnée.
+              </p>
+            </div>
+          </article>
+
+          <article class="chapter">
+            <span class="dot"></span>
+            <div class="card">
+              <span class="tag">Le massage</span>
+              <h3>Un retour à soi</h3>
+              <p>
+                Je me suis formée aux massages bien-être il y a cinq ans. Ce n'était pas un
+                simple virage professionnel, mais un retour à moi-même : une manière d'entrer
+                en relation autrement, au-delà des mots. Je me suis formée à plusieurs
+                techniques — chacune un langage du corps, de l'énergie et des émotions.
+              </p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- BIEN-ÊTRE -->
+    <section class="band">
+      <div class="wrap">
+        <div class="inner reveal">
+          <p class="eyebrow">Ma vision</p>
+          <p>
+            Le bien-être ne se résume pas à l'absence de douleur. C'est un état d'équilibre,
+            de présence à soi, de cohérence entre ce que l'on vit, ce que l'on ressent et
+            ce que l'on exprime.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CLOSING -->
+    <section class="closing">
+      <div class="wrap reveal">
+        <span class="mark" aria-hidden="true">&ldquo;</span>
+        <blockquote>
+          Prendre soin de l'autre, c'est prendre soin de soi.
+        </blockquote>
+        <p class="sign">Au plaisir de vous recevoir</p>
+      </div>
+    </section>
+  </main>
+  <Footer/>
+</body>
+</html>

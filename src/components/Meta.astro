@@ -1,0 +1,53 @@
+---
+// ================================================================
+//  EN-TÊTE COMMUN À TOUTES LES PAGES
+//  Le <head> était recopié à l'identique dans les six gabarits :
+//  charset, viewport, titre, description… À la moindre correction
+//  il fallait passer partout. Tout est désormais ici, et chaque
+//  page ne fournit plus que ce qui lui est propre.
+//
+//  Utilisation :
+//    <Meta title="…" description="…" />
+//  et, si la page a une illustration de partage :
+//    <Meta title="…" description="…" image="/pictures/xxx.jpg" />
+// ================================================================
+interface Props {
+  title: string;
+  description?: string;
+  /** visuel repris par les réseaux sociaux et les aperçus de lien */
+  image?: string;
+}
+
+const { title, description, image = "/pictures/logo.png" } = Astro.props;
+
+// URL canonique : indispensable au référencement, elle dit au moteur
+// « voici l'adresse officielle de cette page ». Sans elle, une même
+// page atteinte avec ou sans barre oblique compte pour deux.
+// Astro.site vient de la clé `site` d'astro.config.mjs.
+const canonique = new URL(Astro.url.pathname, Astro.site);
+const visuel = new URL(image, Astro.site);
+---
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="generator" content={Astro.generator} />
+
+<title>{title}</title>
+{description && <meta name="description" content={description} />}
+<link rel="canonical" href={canonique} />
+
+<link rel="icon" href="/pictures/logo.png" />
+
+<!-- aperçu des liens partagés (Facebook, WhatsApp, LinkedIn…) -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Massages & Shiatsu — Carole Renaud" />
+<meta property="og:locale" content="fr_FR" />
+<meta property="og:title" content={title} />
+{description && <meta property="og:description" content={description} />}
+<meta property="og:url" content={canonique} />
+<meta property="og:image" content={visuel} />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+{description && <meta name="twitter:description" content={description} />}
+<meta name="twitter:image" content={visuel} />
