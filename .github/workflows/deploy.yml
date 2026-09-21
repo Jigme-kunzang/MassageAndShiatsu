@@ -1,0 +1,44 @@
+# Construit le site Astro à chaque push sur master,
+# puis publie le dossier dist/ sur la branche "deploy",
+# celle que suit l'hébergement OVH.
+name: Build et déploiement OVH
+
+on:
+  push:
+    branches: [master]
+  workflow_dispatch:        # permet aussi de lancer le déploiement à la main
+
+permissions:
+  contents: write           # nécessaire pour pousser sur la branche deploy
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Récupérer le code
+        uses: actions/checkout@v4
+
+      - name: Installer Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Installer les dépendances
+        run: npm ci
+
+      - name: Construire le site
+        run: npm run build
+        env:
+          GOOGLE_PLACE_ID: ${{ secrets.GOOGLE_PLACE_ID }}
+          GOOGLE_PLACES_API_KEY: ${{ secrets.GOOGLE_PLACES_API_KEY }}
+          W3F_API_KEY: ${{ secrets.W3F_API_KEY }}
+
+      - name: Publier dist/ sur la branche deploy
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: deploy
+          publish_dir: ./dist
+          force_orphan: true          # la branche ne garde que la dernière version
+          commit_message: "Déploiement"
