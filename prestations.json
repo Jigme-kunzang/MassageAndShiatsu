@@ -1,0 +1,24 @@
+{
+    "_lisezmoi": "SOURCE UNIQUE des intitulés. `familles` = les cinq grandes catégories, reprises par le menu (Header), le pied de page (Footer) et la liste de l'accueil : `nom` est le libellé long, `menu` le libellé court du menu. `tarifs` = une ligne par durée proposée ; `nom` reprend MOT POUR MOT le libellé du module de réservation Terapiz et sert de clé aux pages Markdown. Aucun texte rédactionnel ici : uniquement des intitulés.",
+
+    "familles": [
+        {"id": "relaxant",      "nom": "Massage relaxant",      "menu": "Relaxants",      "href": "/prestations/relaxant"},
+        {"id": "energetiques",  "nom": "Massage énergétique",   "menu": "Énergétiques",   "href": "/prestations/energetiques"},
+        {"id": "sportifs",      "nom": "Massage sportif",       "menu": "Sportifs",       "href": "/prestations/sportifs"},
+        {"id": "convalescence", "nom": "Massage convalescence®","menu": "Convalescence®", "href": "/prestations/convalescence"},
+        {"id": "other",         "nom": "Autres prestations",    "menu": "Autres",         "href": "/prestations/other"}
+    ],
+
+    "tarifs": [
+        {"nom": "Myo-fascial des 12 méridiens", "durée": 60, "tarif": 90},
+        {"nom": "Massage détente musculaire", "durée": 30, "tarif": 50},
+        {"nom": "Massage convalescence®", "durée": 60, "tarif": 90},
+        {"nom": "Massage convalescence®", "durée": 30, "tarif": 50},
+        {"nom": "Massage indien ayurvédique", "durée": 60, "tarif": 90},
+        {"nom": "Shiatsu", "durée": 50, "tarif": 90},
+        {"nom": "Massage du ventre CHI NEI TSANG", "durée": 60, "tarif": 80},
+        {"nom": "Séance à domicile", "durée": 60, "tarif": 110},
+        {"nom": "Séance à domicile", "durée": 90, "tarif": 150},
+        {"nom": "Massage sur mesure", "durée": 90, "tarif": 130}
+    ]
+}

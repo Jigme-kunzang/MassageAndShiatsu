@@ -1,0 +1,5 @@
+# Aucune liste de fichiers si une page manque
+Options -Indexes
+
+# Le clone Git d'OVH laisse un dossier .git dans www : on le rend inaccessible
+RedirectMatch 404 /\.git
