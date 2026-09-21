@@ -1,0 +1,60 @@
+---
+import '../styles/globals.css'
+import '../styles/footer.css'
+
+// mêmes intitulés que le menu : public/prestations.json fait foi
+import { familles } from '../../public/prestations.json'
+---
+
+<footer class="site-footer">
+  <div class="footer-main">
+    <!-- Colonne marque -->
+    <div class="footer-brand">
+      <img src="/pictures/logo.png" alt="Logo Massages &amp; Shiatsu, cabinet de Carole Renaud au Lavandou" />
+      <p>
+        Massages bien-être et shiatsu traditionnel, dans un cadre apaisant.
+        Prenez un moment pour vous reconnecter à votre corps et relâcher
+        les tensions du quotidien.
+      </p>
+    </div>
+
+    <!-- Colonne prestations -->
+    <div class="footer-col">
+      <h3>Prestations</h3>
+      <ul>
+        {familles.map((f) => (
+          <li><a href={f.href}>{f.menu}</a></li>
+        ))}
+      </ul>
+    </div>
+
+    <!-- Colonne navigation -->
+    <div class="footer-col">
+      <h3>Le cabinet</h3>
+      <ul>
+        <li><a href="/">Accueil</a></li>
+        <li><a href="/cabinet/about">À propos de moi</a></li>
+        <li><a href="/cabinet/tarifs">Tarifs</a></li>
+        <li><a href="https://terapiz.com/masseur/le-lavandou/carole-renaud">Prendre rendez-vous</a></li>
+      </ul>
+    </div>
+
+    <!-- Colonne infos -->
+    <div class="footer-col">
+      <h3>Plus d'infos</h3>
+      <ul>
+        <li><a href="/informations/contact">Contactez nous</a></li>
+        <li><a href="/informations/mentions">Mentions légales</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <!-- la certification, à gauche de la barre brun foncé -->
+    <div class="footer-certif">
+      <img src="/pictures/certification.jpg" alt="Certificat de praticienne en massages bien-être obtenu par Carole Renaud" loading="lazy" />
+      <span>Praticienne certifiée<br>en massages bien-être</span>
+    </div>
+    <p>Copyright © 2026 — Tous droits réservés. <a href="/informations/mentions">Mentions légales</a></p>
+  </div>
+</footer>

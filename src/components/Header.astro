@@ -1,0 +1,38 @@
+---
+// header.css utilise --cream, --gold, --brown-logo… : le composant
+// déclare donc lui-même sa dépendance, plutôt que de supposer que la
+// page l'a chargée avant lui.
+import '../styles/globals.css'
+import '../styles/header.css'
+
+// Les cinq familles de prestations ne sont écrites qu'à un seul
+// endroit : public/prestations.json. Le menu utilise le libellé
+// court (`menu`), le pied de page et l'accueil s'y réfèrent aussi.
+import { familles } from '../../public/prestations.json'
+---
+<nav>
+	<a href="/" class="logo">
+    	<!-- l'image est le seul contenu du lien : son alt sert donc
+    	     aussi d'intitulé du lien pour les lecteurs d'écran -->
+    	<img src="/pictures/logo.png" alt="Massages &amp; Shiatsu, Carole Renaud — retour à l'accueil" />
+    </a>
+	<ul>
+		<li><a href="/">Accueil</a></li>
+		<li><a href="/cabinet/about">À propos de moi</a></li>
+		<li><a href="https://terapiz.com/masseur/le-lavandou/carole-renaud">Réserver un Créneau</a></li>
+		<li><a href="/cabinet/tarifs">Tarifs</a></li>
+		<li class="dropdown">
+    		<!-- bouton et non lien : il n'y a pas de page « toutes les
+    		     prestations », et au doigt sur mobile le focus ouvre le
+    		     menu au lieu de partir sur une page au hasard -->
+    		<button type="button" class="dropdown-toggle" aria-haspopup="true">
+    		    Prestations<span class="caret" aria-hidden="true"></span>
+    		</button>
+    		<ul class="submenu">
+    		    {familles.map((f) => (
+    		        <li><a href={f.href}>{f.menu}</a></li>
+    		    ))}
+    		</ul>
+		</li>
+	</ul>
+</nav>

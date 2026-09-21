@@ -1,0 +1,151 @@
+/* Importe globals.css AVANT ce fichier. */
+
+/* ============================================================
+   AVIS GOOGLE — section posée sur le fond crème de la page
+   ============================================================ */
+.gr {
+    max-width: 1200px;
+    margin: clamp(3rem, 6vw, 5rem) auto;
+    padding: clamp(2rem, 4vw, 3rem) 1.2rem;
+}
+
+/* ---- en-tête ---- */
+.gr-head {
+    text-align: center;
+    padding: 0 1.5rem;
+    margin-bottom: clamp(2rem, 4vw, 3rem);
+}
+.gr-head h2 {
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    font-weight: 500;
+    line-height: 1.1;
+    color: var(--brown-deep);
+    margin: 0 0 0.8rem;
+}
+.gr-head h2::after {
+    content: "";
+    display: block;
+    width: 60px;
+    height: 2px;
+    margin: 1rem auto 0;
+    background: var(--gold);
+}
+.gr-summary {
+    font-size: 1rem;
+    color: var(--brown-soft);
+    margin: 0;
+}
+.gr-summary strong { color: var(--brown-deep); }
+.gr-summary a {
+    color: var(--gold);
+    font-weight: 700;
+    text-decoration: none;
+}
+.gr-summary a:hover { text-decoration: underline; }
+
+
+/* ============================================================
+   MOSAÏQUE D'AVIS (masonry) — les cartes se tassent verticalement
+   ============================================================ */
+.gr-grid {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    /* autant de colonnes de ~300px que la largeur le permet */
+    columns: 300px;
+    column-gap: clamp(1.2rem, 2.5vw, 1.8rem);
+}
+
+
+/* ---- carte d'avis ---- */
+.gr-card {
+    position: relative;
+    background: var(--cream-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2.2rem 1.9rem 1.9rem;
+    box-shadow: 0 12px 34px rgba(27, 64, 83, 0.18);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    overflow: hidden;
+
+    /* masonry : ne pas couper une carte entre deux colonnes */
+    break-inside: avoid;
+    /* l'espace vertical entre cartes (column-gap ne joue qu'à l'horizontale) */
+    margin-bottom: clamp(1.2rem, 2.5vw, 1.8rem);
+}
+
+/* grand guillemet doré — écho de .prestations-quote sur l'accueil */
+.gr-card::before {
+    content: "“";
+    position: absolute;
+    top: -1.4rem;
+    right: 1rem;
+    font-family: var(--font-serif);
+    font-size: 7rem;
+    line-height: 1;
+    color: var(--gold);
+    opacity: 0.15;
+    pointer-events: none;
+}
+
+.gr-card-head {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+.gr-avatar {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+    border: 2px solid var(--gold);
+    padding: 2px;
+    background: #fff;
+}
+.gr-author {
+    font-weight: 700;
+    color: var(--brown-deep);
+    font-size: 1rem;
+    text-decoration: none;
+}
+.gr-author:hover { text-decoration: underline; }
+.gr-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-top: 0.15rem;
+}
+.gr-stars {
+    color: #e8b84b;
+    font-size: 0.95rem;
+    letter-spacing: 1px;
+    line-height: 1;
+    white-space: nowrap;
+}
+.gr-date {
+    font-size: 0.82rem;
+    color: var(--brown-soft);
+    white-space: nowrap;
+}
+.gr-text {
+    position: relative;
+    z-index: 1;
+    margin: 0;
+    color: var(--brown-deep);
+    font-size: 1.02rem;
+    line-height: 1.65;
+    font-style: italic;
+}
+
+
+/* ---- message d'erreur ---- */
+.gr-error {
+    text-align: center;
+    color: var(--brown-soft);
+    padding: 2rem 1.5rem;
+    font-style: italic;
+}

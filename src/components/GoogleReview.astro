@@ -1,0 +1,51 @@
+---
+import '../styles/googleReview.css'
+import { getGoogleReviews, stars } from '../lib/APIGoogle';
+import type { Review } from '../lib/Review';
+
+const { reviews, rating, total, mapsUri, errorMsg } = await getGoogleReviews();
+---
+
+{errorMsg && (
+  <p class="gr-error">Impossible de charger les avis ({errorMsg}).</p>
+)}
+
+{!errorMsg && (
+  <section class="gr">
+    <header class="gr-head">
+      <h2>Ce que disent mes clients</h2>
+      {rating && (
+        <p class="gr-summary">
+          <span class="gr-stars">{stars(rating)}</span>
+          <strong>{rating.toFixed(1)}</strong> / 5 · {total} avis sur
+          <a href={mapsUri} target="_blank" rel="noopener"> Google</a>
+        </p>
+      )}
+    </header>
+
+    <ul class="gr-grid">
+      {reviews.map((rev: Review) => (
+        <li class="gr-card">
+          <div class="gr-card-head">
+            {rev.authorAttribution?.photoUri && (
+              <img class="gr-avatar" src={rev.authorAttribution.photoUri}
+                   alt={rev.authorAttribution.displayName}
+                   loading="lazy" width="48" height="48" />
+            )}
+            <div>
+              <a class="gr-author" href={rev.authorAttribution?.uri}
+                 target="_blank" rel="noopener">
+                {rev.authorAttribution?.displayName}
+              </a>
+              <div class="gr-meta">
+                <span class="gr-stars">{stars(rev.rating)}</span>
+                <span class="gr-date">{rev.relativePublishTimeDescription}</span>
+              </div>
+            </div>
+          </div>
+          {rev.text?.text && <p class="gr-text">{rev.text.text}</p>}
+        </li>
+      ))}
+    </ul>
+  </section>
+)}

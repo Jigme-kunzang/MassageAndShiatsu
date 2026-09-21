@@ -1,0 +1,176 @@
+---
+// Gabarit RÉUTILISABLE d'une page de prestation.
+// Appliqué depuis le frontmatter du Markdown :  layout: ../../layouts/Prestation.astro
+// -> toutes les valeurs du frontmatter arrivent dans Astro.props.frontmatter
+// -> le <slot /> reçoit le corps du Markdown (les paragraphes d'ouverture).
+//
+// MISE EN PAGE : zig-zag + lecture en F.
+//   - En F : tout est aligné à gauche. Une large barre d'en-tête, une
+//     deuxième barre plus courte (durée/tarif/mots-clés), puis les titres
+//     de section qui descendent le long du bord gauche — le trajet que
+//     l'œil suit naturellement.
+//   - Zig-zag : le corps alterne texte/image puis image/texte, ce qui
+//     raccourcit la page (deux colonnes au lieu d'un empilement) et
+//     relance l'attention à chaque rangée.
+//
+// La durée et le tarif ne sont JAMAIS écrits ici : ils viennent de
+// public/prestations.json via la clé `nom` du frontmatter, qui reprend
+// mot pour mot le libellé du module de réservation Terapiz.
+import { tarifs as lignesTarifs } from "../../public/prestations.json";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import Meta from "../components/Meta.astro";
+import "../styles/globals.css";
+import "../styles/prestations.css";
+
+// même écriture des durées que Terapiz : 30 -> « 30 min », 60 -> « 1 h »,
+// 90 -> « 1 h 30 ». Plusieurs lignes pour un même nom sont fusionnées.
+const enDuree = (minutes: number) => {
+  if (minutes < 60) return `${minutes} min`;
+  const h = Math.floor(minutes / 60);
+  const reste = minutes % 60;
+  return reste ? `${h} h ${reste}` : `${h} h`;
+};
+const fusion = (valeurs: number[], ecrire: (v: number) => string) =>
+  [...new Set(valeurs)].sort((a, b) => a - b).map(ecrire).join(" ou ");
+
+const { frontmatter } = Astro.props;
+const {
+  title, description,
+  eyebrow = "La prestation",
+  lead,
+  nom, motsCles = [],
+  lieu = "Au cabinet, au Lavandou - ou chez vous",
+  image, imageAlt,
+  image2, image2Alt,
+  bienfaits, highlight, balance,
+  pourQui,
+  closingQuote,
+  booking = "https://terapiz.com/masseur/le-lavandou/carole-renaud",
+  tarifs = "/cabinet/tarifs",
+} = frontmatter;
+
+// Le grand titre de la page reprend par défaut l'intitulé `nom`,
+// celui de prestations.json : inutile de l'écrire une seconde fois
+// dans le Markdown. `headingEm` ne sert plus qu'aux rares cas où la
+// typographie affichée diffère du libellé de réservation.
+const headingEm = frontmatter.headingEm ?? nom;
+
+const lignes = nom ? lignesTarifs.filter((p) => p.nom === nom) : [];
+const duree = lignes.length ? fusion(lignes.map((l) => l["durée"]), enDuree) : "";
+const tarif = lignes.length ? fusion(lignes.map((l) => l.tarif), (t) => `${t} €`) : "";
+---
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <Meta title={title} description={description} image={image} />
+</head>
+<body class="page-prestation">
+  <Header/>
+
+  <main>
+
+    <!-- ====== BARRE HAUTE DU F — titre, chapô, l'essentiel ====== -->
+    <header class="entete">
+      <div class="wrap">
+        <p class="rubrique">{eyebrow}</p>
+        <h1><em>{headingEm}</em></h1>
+        <p class="chapo">{lead}</p>
+
+        <!-- deuxième barre du F, plus courte -->
+        <div class="barre">
+          <ul class="reperes">
+            {duree && <li><span>Durée</span>{duree}</li>}
+            {tarif && <li><span>Tarif</span>{tarif}</li>}
+            <li><span>Où</span>{lieu}</li>
+          </ul>
+          {motsCles.length > 0 && (
+            <ul class="mots-cles">
+              {motsCles.map((m: string) => <li>{m}</li>)}
+            </ul>
+          )}
+        </div>
+      </div>
+    </header>
+
+    <!-- ====== ZIG — texte à gauche, image à droite ====== -->
+    <section class="rangee">
+      <div class="wrap">
+        <div class="texte">
+          <div class="chapeau"><slot /></div>
+          <h2>{bienfaits.heading}</h2>
+          <ul class="liste">
+            {bienfaits.cards.map((c: any) => (
+              <li><strong>{c.title}</strong>{c.text && <> — {c.text}</>}</li>
+            ))}
+          </ul>
+        </div>
+        <figure class="visuel">
+          <img src={image} alt={imageAlt ?? title} />
+        </figure>
+      </div>
+    </section>
+
+    <!-- ====== ZAG — image à gauche, texte à droite ====== -->
+    <section class="rangee inverse">
+      <div class="wrap">
+        <figure class="visuel">
+          <img src={image2 ?? image} alt={image2Alt ?? title} loading="lazy" />
+        </figure>
+        <div class="texte">
+          <h2>{highlight.heading} {highlight.headingEm}</h2>
+          {highlight.paragraphs.map((p: string) => <p set:html={p} />)}
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== CITATION — respiration entre deux rangées ====== -->
+    {closingQuote && (
+      <section class="citation">
+        <div class="wrap"><blockquote>{closingQuote}</blockquote></div>
+      </section>
+    )}
+
+    <!-- ====== POUR QUI — balayage vertical, colonne de gauche ====== -->
+    {pourQui && (
+      <section class="pour-qui">
+        <div class="wrap">
+          <div class="titre">
+            <p class="rubrique">Pour qui ?</p>
+            <h2>{pourQui.heading}</h2>
+            {pourQui.note && <p class="incise" set:html={pourQui.note} />}
+          </div>
+          <ul class="liste cochee">
+            {pourQui.items.map((it: string) => <li set:html={it} />)}
+          </ul>
+        </div>
+      </section>
+    )}
+
+    <!-- ====== EN PRATIQUE + RÉSERVATION ====== -->
+    <section class="pratique">
+      <div class="wrap">
+        <div class="titre">
+          <p class="rubrique">Avant de venir</p>
+          <h2>En pratique</h2>
+        </div>
+        <div class="fiches">
+          <div class="savoir">
+            <h3>{balance.limitesHeading ?? "Ce qu'il faut savoir"}</h3>
+            <ul class="limites">{balance.limites.map((li: string) => <li set:html={li} />)}</ul>
+            {balance.note && <p class="note">{balance.note}</p>}
+          </div>
+        </div>
+        <div class="cta-row">
+          <a class="btn btn-primary" href={booking}>Réserver un créneau</a>
+          <a class="btn btn-ghost" href={tarifs}>Voir les tarifs</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <Footer/>
+</body>
+</html>

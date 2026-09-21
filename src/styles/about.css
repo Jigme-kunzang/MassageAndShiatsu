@@ -1,0 +1,341 @@
+/* Univers visuel propre à la page "à propos" (palette sage).
+   Police : Lora, comme tout le site (définie dans globals.css). 
+   Importe globals.css avant ce fichier ; le reset y est déjà. */
+
+:root{
+  /* fonds */
+  --linen:#F5F0E6;
+  --band:#EFE8DA;
+  /* texte */
+  --ink:#2B342C;
+  --ink-soft:#586051;
+  /* accents */
+  --sage:#7C8C6C;
+  --sage-deep:#5C6B4E;
+  --amber:#BC8A4C;
+  --clay:#AE7E66;
+  /* la page « à propos » est un cran plus étroite que les autres */
+  --wrap-max:1080px;
+}
+
+/* un seul et même fond sur toute la page, y compris sous le pied
+   de page : aucune section ne porte de bandeau d'une autre teinte */
+body{ background-color:var(--linen); }
+
+main{
+  margin:0;
+  background:var(--linen);
+  color:var(--ink);
+  font-family:var(--font-serif);
+  font-weight:400;
+  font-size:clamp(1rem,0.96rem + 0.2vw,1.12rem);
+  line-height:1.78;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+
+/* .wrap : socle dans globals.css, largeur pilotée par --wrap-max */
+
+/* ---------- éléments partagés ---------- */
+/* forme de base dans globals.css : on n'ajuste ici que le grain */
+.eyebrow{
+  font-weight:500;
+  font-size:.72rem;
+  letter-spacing:.26em;
+  color:var(--sage-deep);
+}
+.lead{
+  font-family:var(--font-serif);
+  font-weight:400;
+  font-size:clamp(1.35rem,1.1rem + 1vw,1.7rem);
+  line-height:1.55;
+  color:var(--ink);
+  max-width:54ch;
+}
+
+/* ---------- hero ---------- */
+.hero{
+  position:relative;
+  overflow:hidden;
+  padding:clamp(5rem,9vh,8rem) 0 clamp(4rem,7vh,6rem);
+}
+/* 1re barre du Z : texte à gauche, portrait à droite */
+.hero .wrap{
+  position:relative;z-index:2;
+  display:grid;
+  grid-template-columns:1.15fr .85fr;
+  gap:clamp(2rem,5vw,4.5rem);
+  align-items:center;
+}
+.portrait{margin:0;position:relative;}
+.portrait img{
+  display:block;width:100%;
+  aspect-ratio:4/5;object-fit:cover;
+  border-radius:2px;
+  box-shadow:0 22px 55px rgba(43,52,44,.22);
+}
+/* l'aplat sable décalé derrière le portrait */
+.portrait::before{
+  content:"";position:absolute;z-index:-1;
+  inset:-18px -18px 18px 18px;
+  background:var(--band);
+}
+.hero h1{
+  font-family:var(--font-serif);
+  font-weight:400;
+  font-size:clamp(2.6rem,1.8rem + 5vw,5rem);
+  line-height:.96;
+  letter-spacing:-.01em;
+  margin:.4rem 0 1.8rem;
+}
+.hero h1 .l{display:block;}
+.hero h1 .l:nth-child(2){color:var(--sage-deep);font-style:italic;font-weight:400;padding-left:.6em;}
+.hero h1 .l:nth-child(3){padding-left:.2em;}
+.hero .lead{margin:0;}
+
+.scrollcue{
+  display:inline-block;
+  margin-top:3.2rem;
+  font-size:.62rem;
+  letter-spacing:.22em;text-transform:uppercase;
+  color:var(--ink-soft);
+}
+
+/* ---------- chiffres clés ---------- */
+/* Une seule ligne, pleine largeur : autant de colonnes que
+   d'entrées dans le tableau `chiffres` de about.astro. */
+.chiffres{
+  padding:clamp(2.4rem,5vw,3.6rem) 0;
+}
+.chiffres ul{
+  list-style:none;margin:0;padding:0;
+  display:grid;
+  grid-auto-flow:column;
+  grid-auto-columns:1fr;
+  gap:clamp(1.6rem,4vw,3.4rem);
+}
+.chiffres li{ padding:0; }
+.chiffres .nombre{
+  display:flex;
+  align-items:flex-start;
+  font-family:var(--font-serif);
+  font-weight:600;
+  font-size:clamp(2.4rem,1.8rem + 2.4vw,3.6rem);
+  /* interligne exactement à 1 : toute la mécanique du rouleau
+     repose sur « un chiffre = 1em de haut » */
+  line-height:1;
+  color:var(--ink);
+  /* chasse fixe : la largeur ne saute pas pendant le défilement */
+  font-variant-numeric:tabular-nums;
+}
+
+/* le rouleau : une fenêtre d'un chiffre de haut, le reste caché */
+.chiffres .rouleau{
+  display:block;
+  height:1em;
+  overflow:hidden;
+}
+/* la bande verticale qui remonte : les chiffres entrent par le bas
+   et sortent par le haut */
+.chiffres .bande{
+  display:block;
+  transform:translateY(0);
+  transition:transform 1.7s cubic-bezier(.16,.84,.3,1);
+}
+.chiffres .bande > span{
+  display:block;
+  height:1em;
+  line-height:1;
+}
+.chiffres .separateur{ display:block; }
+.chiffres .label{
+  display:block;margin-top:.6rem;
+  font-weight:600;
+  font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--sage-deep);
+}
+.chiffres .precision{
+  display:block;margin-top:.35rem;
+  font-size:.86rem;line-height:1.5;
+  color:var(--ink-soft);
+}
+
+/* ---------- présence ---------- */
+/* 2e barre du Z : image à gauche, texte à droite */
+.presence{padding:clamp(3.5rem,7vh,6rem) 0;}
+.presence .grid{
+  display:grid;grid-template-columns:.9fr 1.1fr;
+  gap:clamp(2rem,5vw,4.5rem);align-items:center;
+}
+.presence .visuel{margin:0;}
+.presence .visuel img{
+  display:block;width:100%;
+  aspect-ratio:4/3;object-fit:cover;
+  border-radius:2px;
+  box-shadow:0 18px 44px rgba(43,52,44,.18);
+}
+.presence p{margin:0 0 1.3rem;color:var(--ink-soft);}
+.presence p:last-child{margin-bottom:0;}
+.presence p strong{color:var(--ink);font-weight:500;}
+
+/* ---------- parcours / timeline ---------- */
+.parcours{padding:clamp(2rem,4vh,4rem) 0 clamp(4.5rem,8vh,7rem);}
+/* 3e barre du Z : texte à gauche, image à droite */
+.parcours-head{
+  display:grid;
+  grid-template-columns:1.1fr .9fr;
+  gap:clamp(2rem,5vw,4.5rem);
+  align-items:center;
+  margin-bottom:clamp(3rem,6vh,5rem);
+}
+.parcours-head .visuel{margin:0;}
+.parcours-head .visuel img{
+  display:block;
+  width:100%;
+  aspect-ratio:3/2;
+  object-fit:cover;
+  border-radius:2px;
+  box-shadow:0 18px 44px rgba(43,52,44,.18);
+}
+.parcours-head h2{
+  font-family:var(--font-serif);
+  font-weight:400;
+  font-size:clamp(2.4rem,1.6rem + 3vw,4rem);
+  line-height:1.04;margin:0 0 1.4rem;
+}
+.parcours-head p{color:var(--ink-soft);margin:0;}
+
+.timeline{position:relative;max-width:940px;margin:0 auto;}
+
+/* fil vertical animé — ORDINATEUR UNIQUEMENT.
+   Il se déroule de haut en bas quand la frise entre dans l'écran.
+   Sous 760px la frise se replie à gauche : le fil est alors masqué
+   (voir la requête média en bas de fichier). */
+.spine{
+  position:absolute;top:6px;bottom:6px;left:50%;
+  width:22px;transform:translateX(-50%);
+  z-index:0;pointer-events:none;
+}
+.spine svg{width:100%;height:100%;display:block;}
+.spine path{fill:none;stroke:var(--sage);stroke-width:1.5;opacity:.55;}
+.spine .grow{
+  transform:scaleY(0);transform-origin:top center;
+  transition:transform 1.8s cubic-bezier(.22,.61,.36,1);
+}
+/* la classe .in est posée par scripts/display.js */
+.timeline.in .spine .grow{transform:scaleY(1);}
+
+/* étapes */
+.chapter{position:relative;padding:clamp(1.6rem,3vh,2.6rem) 0;}
+.dot{
+  position:absolute;left:50%;top:calc(clamp(1.6rem,3vh,2.6rem) + 6px);
+  width:15px;height:15px;border-radius:50%;
+  transform:translateX(-50%) scale(.2);opacity:0;
+  background:var(--linen);border:1.5px solid var(--sage-deep);
+  box-shadow:0 0 0 5px var(--linen);
+  transition:transform .7s cubic-bezier(.22,.61,.36,1),opacity .6s ease;
+  z-index:2;
+}
+.dot::after{
+  content:"";position:absolute;inset:0;margin:auto;
+  width:5px;height:5px;border-radius:50%;background:var(--amber);
+}
+.chapter.in .dot{transform:translateX(-50%) scale(1);opacity:1;}
+
+.card{
+  width:43%;
+  opacity:0;transform:translateY(20px);
+  transition:opacity .9s ease,transform .9s ease;
+}
+.chapter.in .card{opacity:1;transform:none;}
+.chapter:nth-of-type(odd) .card{margin-right:auto;text-align:right;}
+.chapter:nth-of-type(even) .card{margin-left:auto;text-align:left;}
+
+.card .tag{
+  font-weight:500;
+  font-size:.7rem;letter-spacing:.24em;text-transform:uppercase;
+  color:var(--sage-deep);display:block;margin-bottom:.7rem;
+}
+.card h3{
+  font-family:var(--font-serif);font-weight:400;
+  font-size:clamp(1.7rem,1.3rem + 1.4vw,2.4rem);
+  line-height:1.1;margin:0 0 .9rem;
+}
+.card p{font-size:.99rem;line-height:1.72;color:var(--ink-soft);margin:0;}
+
+/* ---------- bandeau bien-être ---------- */
+.band .inner{
+  max-width:760px;margin:0 auto;text-align:center;
+  padding:clamp(4rem,8vh,6.5rem) 0;
+}
+.band .eyebrow{color:var(--sage-deep);}
+.band p{
+  font-family:var(--font-serif);font-weight:400;
+  font-size:clamp(1.5rem,1.1rem + 1.6vw,2.1rem);
+  line-height:1.5;color:var(--ink);margin:0 auto;max-width:38ch;
+}
+
+/* ---------- citation de fin ---------- */
+.closing{padding:clamp(5rem,10vh,8rem) 0;text-align:center;}
+.closing .mark{
+  font-family:var(--font-serif);font-style:italic;
+  font-size:5rem;line-height:0;color:var(--sage);opacity:.5;
+  display:block;height:2.2rem;
+}
+.closing blockquote{
+  margin:0 auto;max-width:24ch;
+  font-family:var(--font-serif);font-weight:400;font-style:italic;
+  font-size:clamp(2rem,1.4rem + 2.6vw,3.4rem);
+  line-height:1.22;color:var(--ink);
+}
+.closing .sign{
+  margin-top:2.6rem;font-size:.74rem;letter-spacing:.24em;
+  text-transform:uppercase;color:var(--ink-soft);
+}
+.closing .sign::before{
+  content:"";display:inline-block;width:34px;height:1px;
+  background:var(--clay);vertical-align:middle;margin-right:1rem;
+  transform:translateY(-2px);
+}
+
+/* ---------- apparition au scroll / entrée du hero ----------
+   .reveal, .anim et @keyframes rise vivent dans globals.css :
+   il ne reste ici que les délais propres à cette page. */
+.a1{animation-delay:.15s}.a2{animation-delay:.35s}.a3{animation-delay:.62s}.a4{animation-delay:.9s}
+
+/* ---------- responsive ---------- */
+@media (max-width:980px){
+  /* le Z se déplie : chaque rangée passe sur une colonne, image
+     au-dessus du texte pour garder l'ordre de lecture */
+  .hero .wrap{grid-template-columns:1fr;gap:2.2rem;}
+  .portrait{max-width:420px;}
+  .parcours-head{grid-template-columns:1fr;gap:1.8rem;}
+}
+
+@media (max-width:760px){
+  .presence .grid{grid-template-columns:1fr;gap:1.4rem;}
+  /* la ligne ne tient plus : les chiffres s'empilent */
+  .chiffres ul{grid-auto-flow:row;gap:1.8rem;}
+  /* le fil vertical est réservé à l'ordinateur */
+  .spine{display:none;}
+  .dot{left:18px;transform:translateX(-50%) scale(.2);}
+  .chapter.in .dot{transform:translateX(-50%) scale(1);}
+  .card,
+  .chapter:nth-of-type(odd) .card,
+  .chapter:nth-of-type(even) .card{
+    width:auto;margin:0 0 0 48px;text-align:left;
+  }
+}
+
+/* ---------- accessibilité : mouvement réduit ----------
+   html, .anim et .reveal sont déjà traités dans globals.css ;
+   ne restent ici que les éléments propres à la frise. */
+@media (prefers-reduced-motion:reduce){
+  .card,.dot,.spine .grow{
+    animation:none!important;transition:none!important;
+    opacity:1!important;transform:none!important;
+  }
+  /* le fil reste tracé en entier, il ne se déroule simplement pas */
+  .spine .grow{transform:scaleY(1)!important;}
+  .dot{transform:translateX(-50%) scale(1)!important;}
+}

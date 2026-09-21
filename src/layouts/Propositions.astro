@@ -1,0 +1,109 @@
+---
+// Gabarit RÉUTILISABLE d'une page « famille de prestations »
+// (relaxant, énergétiques, sportifs, à domicile).
+// Appliqué depuis le frontmatter du Markdown : layout: ../../layouts/Propositions.astro
+// -> toutes les valeurs du frontmatter arrivent dans Astro.props.frontmatter
+// -> le <slot /> reçoit le corps du Markdown (les paragraphes d'intro).
+// La donnée qui pilote la grille est `propositions` : une liste de cartes
+// { nom, name, text, image, alt, href }.
+//   nom  -> CLÉ dans public/prestations.json : le titre affiché, la durée
+//           et le tarif de la carte en sont tirés (source unique de vérité).
+//           Plusieurs lignes pour un même nom (ex. convalescence en 30 et
+//           60 min) sont fusionnées en « 30 ou 60 min · 50 ou 90 € ».
+//   name -> titre de repli, pour une prestation pas (encore) tarifée
+//           dans prestations.json. Aucune durée ni tarif n'est alors affiché.
+import { tarifs as lignesTarifs } from "../../public/prestations.json";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import Meta from "../components/Meta.astro";
+import "../styles/globals.css";
+import "../styles/propositions.css";
+
+// même écriture des durées que le module de réservation Terapiz :
+// 30 -> « 30 min », 50 -> « 50 min », 60 -> « 1 h », 90 -> « 1 h 30 »
+const enDuree = (minutes: number) => {
+  if (minutes < 60) return `${minutes} min`;
+  const h = Math.floor(minutes / 60);
+  const reste = minutes % 60;
+  return reste ? `${h} h ${reste}` : `${h} h`;
+};
+
+// valeurs distinctes, triées, pour fusionner les lignes d'une même prestation
+const fusion = (valeurs: number[], ecrire: (v: number) => string) =>
+  [...new Set(valeurs)].sort((a, b) => a - b).map(ecrire).join(" ou ");
+
+const tarifDe = (nom?: string) => {
+  const lignes = nom ? lignesTarifs.filter((p) => p.nom === nom) : [];
+  if (!lignes.length) return { duree: "", tarif: "" };
+  return {
+    duree: fusion(lignes.map((l) => l["durée"]), enDuree),
+    tarif: fusion(lignes.map((l) => l.tarif), (t) => `${t} €`),
+  };
+};
+
+const { frontmatter } = Astro.props;
+const {
+  title, description,
+  eyebrow = "Les prestations",
+  heading, headingEm, lead,
+  propositions = [],
+} = frontmatter;
+---
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <Meta title={title} description={description} image={propositions[0]?.image} />
+    <script>import '../scripts/display'</script>
+</head>
+<body class="page-propositions">
+  <Header/>
+
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <p class="eyebrow anim a1">{eyebrow}</p>
+        <h1 class="anim a2">{heading}{headingEm && <><br><em>{headingEm}</em></>}</h1>
+        <p class="lead anim a3">{lead}</p>
+      </div>
+    </section>
+
+    <section class="intro">
+      <div class="wrap reveal">
+        <slot />
+      </div>
+    </section>
+
+    <section class="propositions">
+      <div class="wrap">
+        <div class="grid">
+          {propositions.map((p: any) => {
+            const titre = p.nom ?? p.name;
+            const { duree, tarif } = tarifDe(p.nom);
+            return (
+              <article class="p-card reveal">
+                <div class="media">
+                  <img src={p.image} alt={p.alt ?? titre} loading="lazy" />
+                </div>
+                <div class="body">
+                  <h2>{titre}</h2>
+                  {duree && <p class="meta"><strong>{tarif}</strong> – Séance de {duree}</p>}
+                  {p.motsCles && (
+                    <ul class="mots-cles">
+                      {p.motsCles.map((m: string) => <li>{m}</li>)}
+                    </ul>
+                  )}
+                  <p class="desc">{p.text}</p>
+                  {p.href && <a class="btn-carte" href={p.href}>En savoir plus</a>}
+                </div>
+              </article>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer/>
+</body>
+</html>

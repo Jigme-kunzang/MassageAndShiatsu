@@ -1,0 +1,134 @@
+/* Importe globals.css AVANT ce fichier.
+   Le fond bleu canard, la colonne de lecture, le h1 et son filet
+   doré viennent de la classe `page-teal` de globals.css, partagée
+   avec les pages mentions et contact. */
+
+/* ============================================================
+   PAGE TARIFS — le titre est ici centré, et un cran plus léger
+   ============================================================ */
+/* le sélecteur reprend `body.page-teal` : sans lui, la règle de
+   globals.css (même spécificité, mais chargée avant) l'emporterait
+   et le titre repasserait à gauche */
+body.page-teal main h1 {
+    font-size: clamp(1.9rem, 4vw, 2.8rem);
+    font-weight: 500;
+    text-align: center;
+    margin: 0 0 0.8rem;
+}
+body.page-teal main h1::after {
+    width: 64px;
+    margin: 1.2rem auto 0;
+}
+
+
+/* ============================================================
+   TABLEAU
+   ============================================================ */
+main table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: clamp(2rem, 5vw, 3.5rem);
+    font-size: 1.05rem;
+    color: var(--cream-light);
+}
+
+/* en-têtes */
+main th {
+    text-align: left;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    border-bottom: 2px solid var(--gold);
+    padding: 0 1rem 1rem;
+}
+
+/* cellules */
+main td {
+    padding: 1.1rem 1rem;
+    border-bottom: 1px solid rgba(240, 238, 233, 0.15);  /* hairline claire */
+    vertical-align: middle;
+}
+
+/* nom de la prestation mis en avant */
+main td:first-child {
+    font-weight: 600;
+}
+
+/* colonne durée, un peu en retrait */
+main td:nth-child(2) {
+    color: #c9bfb2;             /* crème atténué, propre aux tarifs */
+    font-style: italic;
+    white-space: nowrap;
+}
+
+/* colonne tarif, alignée à droite et accentuée */
+main th:last-child { text-align: right; }
+main td:last-child {
+    text-align: right;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+/* survol de ligne */
+main tbody tr {
+    transition: background-color 0.2s ease;
+}
+
+main tbody tr:hover {
+    background-color: rgba(240, 238, 233, 0.06);  /* voile clair au survol */
+}
+
+
+/* ============================================================
+   RESPONSIVE — cartes empilées sur mobile
+   ============================================================ */
+/* seuil relevé à 760px : trois colonnes deviennent illisibles bien
+   avant 520px, y compris sur les grands téléphones */
+@media (max-width: 760px) {
+    main thead { display: none; }               /* on masque les en-têtes */
+
+    main table, main tbody, main tr, main td { display: block; width: 100%; }
+
+    /* chaque ligne devient une petite fiche */
+    main tbody tr {
+        border: 1px solid rgba(240, 238, 233, 0.18);
+        border-radius: 10px;
+        padding: 0.3rem 1.1rem;
+        margin-bottom: 0.9rem;
+    }
+    main tbody tr:hover { background-color: transparent; }
+
+    main td {
+        border: none;
+        border-bottom: 1px solid rgba(240, 238, 233, 0.12);
+        padding: 0.6rem 0;
+        text-align: right;
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 1rem;
+    }
+    main td:last-child { border-bottom: none; }
+
+    /* la prestation garde toute la largeur, en tête de fiche */
+    main td:first-child {
+        display: block;
+        text-align: left;
+        font-size: 1.05rem;
+        padding-bottom: 0.5rem;
+    }
+    main td:first-child::before { display: none; }
+
+    /* libellé de colonne rappelé à gauche de chaque valeur */
+    main td::before {
+        content: attr(data-label);
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        color: var(--gold);
+        white-space: nowrap;
+    }
+}
