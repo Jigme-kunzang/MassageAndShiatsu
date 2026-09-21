@@ -5,7 +5,7 @@ name: Build et déploiement OVH
 
 on:
   push:
-    branches: [master]
+    branches: [main]
   workflow_dispatch:        # permet aussi de lancer le déploiement à la main
 
 permissions:
