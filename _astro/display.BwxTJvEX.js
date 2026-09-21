@@ -1,0 +1,1 @@
+(function(){var e=new IntersectionObserver(function(t){t.forEach(function(t){t.isIntersecting&&(t.target.classList.add(`in`),e.unobserve(t.target))})},{threshold:.18,rootMargin:`0px 0px -8% 0px`});document.querySelectorAll(`.reveal, .chapter, .timeline`).forEach(function(t){e.observe(t)})})();
