@@ -5,9 +5,8 @@ import { defineConfig } from 'astro/config';
 export default defineConfig({
   // Adresse publique du site. Elle sert à fabriquer les URL absolues
   // dont le référencement a besoin : lien canonique et aperçus de
-  // partage (voir src/components/Meta.astro). À changer le jour où le
-  // site prend son nom de domaine définitif.
-  site: 'https://massage-and-shiatsu.netlify.app',
+  // partage (voir src/components/Meta.astro).
+  site: 'https://carole-renaud-massage.fr',
 
   build: {
     // Par défaut Astro recopie les petits scripts et les petites feuilles de

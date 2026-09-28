@@ -3,3 +3,62 @@ Options -Indexes
 
 # Le clone Git d'OVH laisse un dossier .git dans www : on le rend inaccessible
 RedirectMatch 404 /\.git
+
+# Le site ne doit pas apparaître dans les moteurs de recherche. L'en-tête
+# couvre aussi les images et les PDF, que la balise meta ne touche pas.
+# Surtout PAS de « Disallow » dans un robots.txt : Google ne lirait plus
+# les pages, donc plus ce noindex, et pourrait garder l'adresse en index.
+<IfModule mod_headers.c>
+    Header always set X-Robots-Tag "noindex, nofollow"
+</IfModule>
+
+# ============================================================
+#  EN-TÊTES DE SÉCURITÉ
+#  Toute modification doit être suivie d'un test de la page
+#  contact : c'est la seule qui charge des ressources tierces.
+# ============================================================
+<IfModule mod_headers.c>
+    # interdit l'affichage du site dans une iframe (détournement de clic)
+    Header always set X-Frame-Options "DENY"
+
+    # empêche le navigateur de deviner un type de fichier
+    Header always set X-Content-Type-Options "nosniff"
+
+    # ne transmet l'URL complète qu'en interne ; vers l'extérieur,
+    # seul le domaine est envoyé
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+
+    # aucune de ces fonctions n'est utilisée : on les coupe
+    Header always set Permissions-Policy "geolocation=(), camera=(), microphone=(), payment=(), usb=()"
+
+    # force le HTTPS pendant un an, sous-domaines compris
+    Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+
+    # ----------------------------------------------------------
+    #  Politique de sécurité du contenu.
+    #  Le HTML ne contient AUCUN script ni style en ligne (voir
+    #  inlineStylesheets dans astro.config.mjs) : script-src reste
+    #  donc strict, sans 'unsafe-inline'.
+    #
+    #  Origines autorisées, et pourquoi :
+    #   - web3forms.com     : script client du formulaire de contact
+    #   - *.hcaptcha.com    : la vérification anti-spam, chargée par
+    #                         web3forms (script, iframe et appels)
+    #   - api.web3forms.com : destination de l'envoi du message
+    #   - lh3.googleuser…   : photos de profil des avis Google
+    #
+    #  'unsafe-inline' n'est présent que sur style-src, car hCaptcha
+    #  applique des styles en ligne à son widget. Une injection de
+    #  style est sans commune mesure avec une injection de script.
+    # ----------------------------------------------------------
+    Header always set Content-Security-Policy "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; img-src 'self' data: https://lh3.googleusercontent.com; font-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' https://web3forms.com https://*.hcaptcha.com; frame-src https://*.hcaptcha.com; connect-src 'self' https://api.web3forms.com https://*.hcaptcha.com; form-action 'self' https://api.web3forms.com; upgrade-insecure-requests"
+</IfModule>
+
+# Les fichiers de _astro/ et les polices portent une empreinte dans
+# leur nom : ils ne changent jamais sans changer de nom, on peut donc
+# les mettre en cache définitivement.
+<IfModule mod_headers.c>
+    <FilesMatch "\.(js|css|woff2?|ttf)$">
+        Header set Cache-Control "public, max-age=31536000, immutable"
+    </FilesMatch>
+</IfModule>
