@@ -4,8 +4,8 @@ title: "Massage énergétique — le myo-fascial des 12 méridiens"
 description: "Le myo-fascial des 12 méridiens : un massage de bien-être qui relance la circulation des énergies, pour un corps aligné et apaisé."
 nom: "Myo-fascial des 12 méridiens"
 motsCles: ["Reçu habillé", "Sans huile", "Corps entier", "Énergie", "Après le sport"]
-image: "/pictures/energetique.jpg"
-image2: "/pictures/massage.jpg"
+image: "/pictures/meridiens.jpg"
+image2: "/pictures/facial.jpg"
 eyebrow: "Massages énergétiques"
 lead: "Le myo-fascial des 12 méridiens tendino-musculaires (MTM) relève exclusivement du massage de bien-être. En travaillant sur ces réseaux immatériels où se croisent nerfs, fluides et fascias, ce massage offre une action complète, globale et profonde."
 bienfaits:

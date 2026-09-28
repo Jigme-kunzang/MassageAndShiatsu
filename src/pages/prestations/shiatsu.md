@@ -5,8 +5,8 @@ description: "Découvrez le shiatsu : ses bienfaits sur le corps, ses points for
 nom: "Shiatsu"
 eyebrow: "Massages énergétiques"
 motsCles: ["Reçu habillé", "Sans huile", "Stress", "Sommeil", "Tensions profondes"]
-image: "/pictures/shiatsu1.jpg"
-image2: "/pictures/shiatsu2.jpg"
+image: "/pictures/shiatsu2.jpg"
+image2: "/pictures/shiatsu3.jpg"
 lead: "Le shiatsu est une communication du coeur à coeur l'art du bien être, de la détente."
 bienfaits:
   heading: "Ce que la séance dénoue."
@@ -16,7 +16,7 @@ bienfaits:
     - title: "Sensation de recentrage et de la vitalité"
 highlight:
   heading: "Le shiatsu"
-  headingEm: "Une pratique habillée"
+  headingEm: "une pratique habillée"
   paragraphs:
     - "Vous êtes vêtu·e d'une tenue souple et confortable, allongé·e sur un futon. Une pression douce et profonde passe à travers le tissu — jamais directement sur la peau."
     - "Le shiatsu une alternative idéale il lève les freins liés à la pudeur et au toucher, tout en offrant les bénéfices physique et nerveux de la relaxation."

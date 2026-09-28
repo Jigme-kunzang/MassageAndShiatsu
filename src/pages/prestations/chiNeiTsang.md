@@ -5,8 +5,8 @@ description: "Découvrez le Chi Nei Tsang : ses bienfaits sur le corps, ses poin
 nom: "Massage du ventre CHI NEI TSANG"
 eyebrow: "Massages énergétiques"
 motsCles: ["Ventre", "Digestion", "Respiration", "Émotions", "Pressions douces"]
-image: "/pictures/chiNeiTsang.jpg"
-image2: "/pictures/massage1.jpg"
+image: "/pictures/chiNeiTsang3.jpg"
+image2: "/pictures/chiNeiTsang2.jpg"
 headingEm: "Massage du ventre Chi Nei Tsang"
 lead: "Pensé comme une véritable transformation de l'énergie, ce massage favorise une libre circulation de la vitalité dans l'ensemble de votre corps. Réalisé avec des pressions délicates et douces, il accompagne votre organisme vers un rééquilibrage naturel."
 bienfaits:
