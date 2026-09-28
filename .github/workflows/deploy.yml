@@ -40,5 +40,8 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: deploy
           publish_dir: ./dist
-          force_orphan: true          # la branche ne garde que la dernière version
+          # PAS de force_orphan : OVH met à jour son clone par un « git pull »,
+          # qui refuse une branche dont l'historique a été remplacé
+          # (« refusing to merge unrelated histories »). Chaque déploiement
+          # doit donc s'ajouter à la suite du précédent.
           commit_message: "Déploiement"
