@@ -78,13 +78,6 @@ p { margin: 0 0 1.1rem; }
     object-fit: cover;
 }
 
-/* tant qu'aucune image n'est fournie : un aplat sobre, pas un trou */
-.plan-vide {
-    display: block;
-    height: 250px;
-    background: var(--cream);
-}
-
 /* le bandeau d'appel, posé en bas du visuel */
 .plan-legende {
     position: absolute;

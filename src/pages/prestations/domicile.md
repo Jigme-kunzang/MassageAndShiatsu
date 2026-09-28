@@ -5,7 +5,7 @@ description: "Le massage de votre choix, chez vous : j'apporte la table, le ling
 nom: "Séance à domicile"
 motsCles: ["Chez vous", "Matériel fourni", "Aucun trajet", "Le Lavandou"]
 image: "/pictures/domicile.jpg"
-image2: "/pictures/massage1.jpg"
+image2: "/pictures/energetique2.jpg"
 lieu: "Chez vous - Le Lavandou et communes voisines"
 eyebrow: "Autres prestations"
 lead: "Le même massage, sans avoir à bouger. Je viens avec la table, le linge et les huiles, et j'installe une vraie parenthèse chez vous"
@@ -49,6 +49,6 @@ closingQuote: "Le massage vient jusqu'à vous."
 
 Certaines personnes ne peuvent pas se déplacer : mobilité réduite, convalescence, jeunes enfants à la maison. D'autres préfèrent simplement ne pas reprendre la voiture après une séance. Le domicile répond aux deux.
 
-Le massage est le même qu'au cabinet : nous convenons ensemble du massage à la prise de rendez-vous, parmi les [massages énergétiques](/prestations/energetiques), les [relaxants](/prestations/relaxant), les [sportifs](/prestations/sportifs) ou les [autres prestations](/prestations/other).
+Le massage est le même qu'au cabinet : nous convenons ensemble du massage à la prise de rendez-vous, parmi les [massages énergétiques](/prestations/energetiques), les [bien-être](/prestations/bien-etre), les [sportif](/prestations/sportif) ou les [autres prestations](/prestations/other).
 
 J'apporte tout le matériel. Il suffit d'une pièce calme et d'un peu de place autour de la table.

@@ -3,14 +3,14 @@ layout: ../../layouts/Propositions.astro
 title: "Les massages énergétiques — méridiens, chi nei tsang, convalescence®, shiatsu"
 description: "Les massages énergétiques du cabinet : myo-fascial des 12 méridiens, chi nei tsang (massage du ventre), massage convalescence® et shiatsu. Au Lavandou."
 eyebrow: "Circulation de l'énergie"
-heading: "Massage"
-headingEm: "énergétique"
-lead: "Des massages de bien-être qui travaillent la circulation des énergies et des fluides, pour un corps aligné, apaisé, capable de retrouver son équilibre naturel."
+heading: "Massages"
+headingEm: "énergétiques"
+lead: "Des massages qui travaillent la circulation des énergies et des fluides. Pour un corps aligné, apaisé, afin de retrouver un équilibre, une reconnexion à soi."
 propositions:
   - nom: "Myo-fascial des 12 méridiens"
     motsCles: ["Reçu habillé", "Sans huile", "Corps entier"]
     text: "En travaillant les 12 méridiens tendino-musculaires — ces réseaux immatériels où se croisent nerfs, fluides et fascias — ce massage offre une action complète, globale et profonde. Il stimule la circulation des énergies et des fluides, favorise le relâchement musculaire et soutient l'homéostasie : apaisement du corps et de l'esprit, régulation douce de l'équilibre global, sensation de recentrage et de vitalité."
-    image: "/pictures/energetique.jpg"
+    image: "/pictures/meridiens1.jpg"
     alt: "Massage myo-fascial des 12 méridiens"
     href: "/prestations/meridiens"
   - nom: "Massage du ventre CHI NEI TSANG"
@@ -32,9 +32,3 @@ propositions:
     alt: "Séance de shiatsu"
     href: "/prestations/shiatsu"
 ---
-
-Les massages énergétiques ne s'adressent pas d'abord au muscle : ils travaillent la circulation des énergies et des fluides dans le corps, là où se croisent nerfs, fascias et grands systèmes métaboliques.
-
-Le principe est partout le même — là où l'énergie stagne, le corps se crispe, fatigue, s'épuise. La séance vient relancer le mouvement, doucement, et soutenir la capacité naturelle du corps à retrouver son équilibre.
-
-Ce sont des massages de bien-être, exclusivement.

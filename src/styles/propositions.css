@@ -1,7 +1,7 @@
 /* ============================================================
    PROPOSITIONS — feuille PARTAGÉE, pilotée par le gabarit
    Propositions.astro et la liste `propositions` du Markdown
-   de chaque famille (relaxant, énergétiques, sportifs, autres,
+   de chaque famille (bien-être, énergétiques, sportif, autres,
    domicile). Importe globals.css AVANT ce fichier : palette
    (variables), reset et police Lora y sont déjà définis.
 
@@ -56,7 +56,7 @@ body.page-propositions {
     font-weight: 400;
     line-height: 1.08;
     margin: 0 0 1.4rem;
-    color: var(--brown-deep);
+    color: var(--teal);           /* bleu du logo */
 }
 /* l'italique ne se distingue plus que par sa forme : même graisse et
    même couleur que le reste du titre, il hérite du h1 */
@@ -213,40 +213,6 @@ body.page-propositions {
     background: var(--brown);
     color: var(--cream-light);
 }
-
-/* ------------------------------------------------------------
-   CLÔTURE — citation + appels à l'action
-   ------------------------------------------------------------ */
-.closing {
-    text-align: center;
-    padding: clamp(3.5rem, 7vh, 6rem) 0;
-    border-top: 1px solid rgba(184, 154, 106, 0.35);
-}
-.closing .mark {
-    display: block;
-    font-size: 4.5rem;
-    line-height: 0;
-    height: 2rem;
-    color: var(--gold);
-    opacity: 0.6;
-}
-.closing blockquote {
-    margin: 0 auto;
-    max-width: 26ch;
-    font-weight: 300;
-    font-style: italic;
-    font-size: clamp(1.8rem, 1.3rem + 2.4vw, 3rem);
-    line-height: 1.25;
-    color: var(--brown-deep);
-}
-/* boutons : socle dans globals.css — ici la rangée est centrée et
-   les gélules deviennent des rectangles à coins arrondis */
-.cta-row {
-    justify-content: center;
-    margin-top: 2.8rem;
-}
-.btn { border-radius: 8px; }
-.btn-ghost:hover { background: rgba(184, 154, 106, 0.14); }
 
 /* ------------------------------------------------------------
    APPARITION AU SCROLL  (piloté par scripts/display.js)
