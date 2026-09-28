@@ -13,9 +13,6 @@
 
 /* les colonnes sont plus étroites qu'avant : on récupère de la place
    sur les marges et on calme un peu le titre */
-.card.is-narrow .label {
-    left: var(--card-pad-narrow);
-}
 .card.is-narrow .body {
     left: var(--card-pad-narrow);
     right: var(--card-pad-narrow);
@@ -327,37 +324,26 @@
 
 
 /* ============================================================
-   LABEL (étiquette en haut)
-   ============================================================ */
-.label {
-    position: absolute; left: 2.5rem; top: 2rem; z-index: 2;
-    display: flex; gap: .5rem; align-items: flex-start;
-    font-weight: 700; font-size: 1rem;
-    white-space: nowrap;
-}
-.dot {
-    width: 7px; height: 7px; border-radius: 50%;
-    background: currentColor; flex-shrink: 0; margin-top: .4em;
-}
-
-
-/* ============================================================
    TEXTE DES CARTES (body) — placement, couleur, typo
    ============================================================ */
 .card--image .body {
+    --body-bottom: clamp(2rem, 6vh, 4rem);   /* marge sous le texte */
     position: absolute;
     left: 2.5rem;
     right: 2.5rem;
-    top: 32rem;                 /* titre ancré ici, identique sur toutes les cartes */
-    bottom: 5.5rem;            /* borne basse : le texte ne descend pas plus bas */
+    /* titre ancré au même endroit sur toutes les cartes, le plus bas
+       possible : --body-h est la hauteur du bloc de texte le plus haut,
+       mesurée par cards.js. Sans JS, on réserve 22rem par sécurité. */
+    top: max(6rem, calc(100vh - var(--body-bottom) - var(--body-h, 22rem)));
+    bottom: var(--body-bottom);  /* borne basse : le texte ne descend pas plus bas */
     z-index: 2;
     display: flex;
     flex-direction: column;
 }
 
 /* couleur selon le fond de la carte */
-.card--dark  .label, .card--dark  .body { color: var(--cream-light); }
-.card--light .label, .card--light .body { color: var(--brown-deep); }
+.card--dark  .body { color: var(--cream-light); }
+.card--light .body { color: var(--brown-deep); }
 
 .card--image .body h2 {
     font-size: 1.7rem;
@@ -381,6 +367,7 @@
 .card--image .body .subtitle {
     max-width: calc(var(--card-w, 100%) - 5rem);   /* 2.5rem de marge de chaque côté */
     overflow-wrap: break-word;
+    hyphens: auto;             /* « énergé-tiques » plutôt que « énergétiq-ues » */
 }
 .card--image .body .long,
 .card--image .body .short {
@@ -470,8 +457,8 @@
         width: 100% !important;
         height: auto;
     }
-    /* c'est .inner qui porte la hauteur : l'image, l'étiquette et le
-       texte sont positionnés en absolu PAR RAPPORT À LUI. Avec une
+    /* c'est .inner qui porte la hauteur : l'image et le texte sont
+       positionnés en absolu PAR RAPPORT À LUI. Avec une
        hauteur auto il s'effondrait à zéro et on ne voyait plus que
        le fond brun de la section. */
     .card .inner {
@@ -480,10 +467,8 @@
         min-height: 72vh;
     }
 
-    /* l'étiquette et le texte se recalent sur les bords de l'écran,
-       le texte ancré en bas de carte plutôt qu'à 32rem du haut */
-    .label { left: 1.4rem; top: 1.4rem; font-size: 0.9rem; }
-
+    /* le texte se recale sur les bords de l'écran, ancré en bas de
+       carte plutôt qu'à hauteur fixe */
     .card--image .body {
         top: auto;
         left: 1.4rem;

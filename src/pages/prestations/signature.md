@@ -4,7 +4,7 @@ title: "Massage Signature — une heure trente sur mesure"
 description: "Rien n'est figé : une heure trente construite avec vous, sur le corps entier ou seulement certaines zones. Le massage le plus libre du cabinet."
 nom: "Massage sur mesure"
 motsCles: ["Sur mesure", "Corps entier", "Format long", "À offrir", "Première fois"]
-image: "/pictures/massage2.jpg"
+image: "/pictures/carole2.jpg"
 image2: "/pictures/massage6.jpg"
 eyebrow: "Autres prestations"
 lead: "Une heure trente, sans montre. Sur le corps entier ou seulement certaines zones : nous échangeons d'abord, puis je reste à l'écoute de ce que votre corps exprime."

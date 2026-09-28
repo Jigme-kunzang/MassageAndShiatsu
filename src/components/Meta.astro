@@ -31,6 +31,9 @@ const visuel = new URL(image, Astro.site);
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="generator" content={Astro.generator} />
+<!-- le site ne doit pas apparaître dans les moteurs de recherche
+     (doublé par l'en-tête X-Robots-Tag du .htaccess) -->
+<meta name="robots" content="noindex, nofollow" />
 
 <title>{title}</title>
 {description && <meta name="description" content={description} />}

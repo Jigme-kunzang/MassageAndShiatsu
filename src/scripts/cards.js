@@ -25,7 +25,7 @@ if (!section || window.matchMedia("(max-width: 900px)").matches) {
   const steps  = movers.length;          // = 5 maintenant
 
   // durée de scroll proportionnelle au nombre d'étapes
-  const REVEAL = () => window.innerHeight * steps * 0.8;
+  const REVEAL = () => window.innerHeight * steps * 2;
   function setHeight() { section.style.height = `${window.innerHeight + REVEAL()}px`; }
 
   const clamp = v => Math.min(Math.max(v, 0), 1);
@@ -49,7 +49,34 @@ if (!section || window.matchMedia("(max-width: 900px)").matches) {
     });
   }
 
-  window.addEventListener("load",   () => { setHeight(); onScroll(); });
+  /* Position du texte : le plus bas possible, titres alignés sur toutes
+     les cartes, sans que le bloc le plus haut soit rogné par le bas.
+     On mesure chaque carte dans son pire cas — la largeur la plus
+     étroite de chaque état (long / court), là où le texte se replie le
+     plus — et on cale le haut commun sur le bloc le plus haut. */
+  function placeText() {
+    let maxH = 0;
+    const measure = (card, w, narrow) => {
+      card.classList.toggle("is-narrow", narrow);
+      card.style.setProperty("--card-w", `${w}vw`);
+      // dernier bloc du texte ; offsetTop/Height ignorent le translateY
+      // de l'animation d'apparition
+      const last = card.querySelector(".body")?.lastElementChild;
+      if (last) maxH = Math.max(maxH, last.offsetTop + last.offsetHeight);
+    };
+    cards.forEach((card, i) => {
+      const minW = Math.min(startW[i], endW[i]);
+      measure(card, Math.max(minW, NARROW), false);
+      if (minW < NARROW) measure(card, minW, true);
+      card.style.setProperty("--card-w", `${startW[i]}vw`);
+    });
+    section.style.setProperty("--body-h", `${Math.ceil(maxH) + 4}px`);
+    onScroll();   // remet largeurs et états réels
+  }
+
+  const layout = () => { setHeight(); placeText(); };
+  window.addEventListener("load",   layout);
+  document.fonts?.ready.then(layout);   // la police change la hauteur du texte
   window.addEventListener("scroll", onScroll, { passive: true });
-  window.addEventListener("resize", () => { setHeight(); onScroll(); });
+  window.addEventListener("resize", layout);
 }

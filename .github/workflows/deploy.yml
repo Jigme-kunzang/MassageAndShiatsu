@@ -1,4 +1,4 @@
-# Construit le site Astro à chaque push sur master,
+# Construit le site Astro à chaque push sur main,
 # puis publie le dossier dist/ sur la branche "deploy",
 # celle que suit l'hébergement OVH.
 name: Build et déploiement OVH
