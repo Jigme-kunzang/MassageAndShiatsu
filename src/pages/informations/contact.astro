@@ -15,7 +15,7 @@ const adresse = "43 rue des Bugadières, Appart Fitness, 83980 Le Lavandou";
 const lienMaps =
   "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(adresse);
 
-const planAcces: string = "/pictures/maps.png";
+const planAcces = "/pictures/maps.png";
 ---
 
 <!DOCTYPE html>
@@ -44,11 +44,7 @@ const planAcces: string = "/pictures/maps.png";
                 </div>
 
                 <a class="plan" href={lienMaps} target="_blank" rel="noopener noreferrer">
-                    {planAcces ? (
-                        <img src={planAcces} alt={`Plan d'accès au cabinet, ${adresse}`} loading="lazy" />
-                    ) : (
-                        <span class="plan-vide" aria-hidden="true"></span>
-                    )}
+                    <img src={planAcces} alt={`Plan d'accès au cabinet, ${adresse}`} loading="lazy" />
                     <span class="plan-legende">
                         <strong>Ouvrir dans Google Maps</strong>
                         <span>Itinéraire et horaires — nouvel onglet</span>
