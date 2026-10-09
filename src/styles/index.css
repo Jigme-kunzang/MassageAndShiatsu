@@ -1,34 +1,29 @@
 /* Importe globals.css AVANT ce fichier. */
+@import "globals.css";
 
 /* en haut de index.css */
 :root {
     --card-narrow: 15vw;   /* doit correspondre à endW[] dans cards.js */
-    --card-pad-narrow: 1.4rem;
-}
-
-/* remplace .card--image .body .short { width: calc(17vw - 5rem); } */
-.card--image .body .short {
-    width: calc(var(--card-narrow) - var(--card-pad-narrow) * 2);
+    --card-pad-narrow: 1.1rem;
 }
 
 /* les colonnes sont plus étroites qu'avant : on récupère de la place
-   sur les marges et on calme un peu le titre */
+   sur les marges et on calme un peu le titre. Le bloc de texte entier
+   dispose de la largeur visible moins ces deux marges */
 .card.is-narrow .body {
     left: var(--card-pad-narrow);
-    right: var(--card-pad-narrow);
+    width: calc(var(--card-w, 100%) - var(--card-pad-narrow) * 2);
 }
 .card.is-narrow .body h2 {
-    font-size: 1.35rem;
+    font-size: 1.3rem;
+    margin-bottom: 0.6rem;
 }
-.card.is-narrow .body .subtitle {
-    font-size: 1rem;
-}
-/* en mode étroit le body est collé à 1.4rem des bords : le titre
-   dispose de la largeur de carte moins ces deux marges */
-.card.is-narrow .body .title,
-.card.is-narrow .body h2,
-.card.is-narrow .body .subtitle {
-    max-width: calc(var(--card-w, 100%) - var(--card-pad-narrow) * 2);
+/* c'est la carte la plus étroite qui fixe la hauteur commune des
+   textes (voir placeText dans cards.js) : un paragraphe plus compact
+   permet de descendre les titres de toutes les cartes */
+.card.is-narrow .body .long {
+    font-size: 0.9rem;
+    line-height: 1.4;
 }
 /* ============================================================
    HERO + INTRO — un seul bloc bleu canard continu
@@ -88,6 +83,14 @@
 }
 .hero h1 em { font-style: italic; font-weight: 400; color: var(--gold); }
 
+.hero h2 {
+    font-family: var(--font-signature);
+    font-style: italic;
+    color: var(--gold);   /* même doré que « Shiatsu » dans le h1 */
+    /* les boucles de la signature débordent au-dessus de la ligne :
+       il faut un écart franc pour qu'elles ne touchent pas le « g » du h1 */
+    margin: 2rem 0 0;
+}
 /* séparateur orné : trait + losange doré */
 .hero-rule {
     position: relative;
@@ -167,8 +170,12 @@
    la section d'intro qui l'accueille.
    ============================================================ */
 .deroule {
-    max-width: 1120px;
-    margin: clamp(3rem, 7vh, 4.5rem) auto 0;
+    width: calc(100% + 3rem);
+    max-width: none;
+    margin: clamp(3rem, 7vh, 4.5rem) -1.5rem 0;
+    padding: clamp(2.5rem, 5vh, 4rem) max(1.5rem, calc((100vw - 1120px) / 2));
+    background: var(--teal);
+    color: var(--cream-light);
     text-align: center;
 }
 .deroule .titre { margin-bottom: clamp(1.6rem, 3vw, 2.2rem); }
@@ -177,7 +184,7 @@
     font-weight: 600;
     line-height: 1.2;
     margin: 0;
-    color: var(--brown-deep);
+    color: var(--cream-light);
 }
 /* le filet doré, arrondi aux deux bouts */
 .deroule .titre h2::before {
@@ -214,7 +221,7 @@
     font-size: 0.82rem;
     font-weight: 700;
     letter-spacing: 1px;
-    color: var(--brown-logo);
+    color: var(--gold-light);
 }
 .etapes li::after {
     content: "";
@@ -223,7 +230,7 @@
     left: 2.2rem;
     right: 0;
     height: 1px;
-    background: var(--border);
+    background: rgba(240, 238, 233, 0.25);
 }
 .etapes li:last-child::after { display: none; }
 .etapes li strong {
@@ -231,12 +238,12 @@
     margin-bottom: 0.35rem;
     font-size: 1.05rem;
     font-weight: 600;
-    color: var(--brown-deep);
+    color: var(--cream-light);
 }
 .etapes li span {
     font-size: 0.93rem;
     line-height: 1.6;
-    color: var(--brown-soft);
+    color: var(--cream-muted);
 }
 
 /* ============================================================
@@ -330,47 +337,39 @@
     --body-bottom: clamp(2rem, 6vh, 4rem);   /* marge sous le texte */
     position: absolute;
     left: 2.5rem;
-    right: 2.5rem;
-    /* titre ancré au même endroit sur toutes les cartes, le plus bas
+    /* .inner garde la largeur de DÉPART, donc le texte déborderait sous
+       la carte voisine et serait rogné pendant la fermeture. On contraint
+       tout le bloc à la largeur visible réelle (--card-w, posée par
+       cards.js à chaque scroll) : il se replie au lieu d'être coupé. */
+    width: calc(var(--card-w, 100%) - 5rem);   /* 2.5rem de marge de chaque côté */
+    /* titres ancrés à la même hauteur sur toutes les cartes, le plus bas
        possible : --body-h est la hauteur du bloc de texte le plus haut,
-       mesurée par cards.js. Sans JS, on réserve 22rem par sécurité. */
+       mesurée par cards.js à chaque défilement. Sans JS, on réserve
+       22rem par sécurité. */
     top: max(6rem, calc(100vh - var(--body-bottom) - var(--body-h, 22rem)));
-    bottom: var(--body-bottom);  /* borne basse : le texte ne descend pas plus bas */
+    transition: top 0.3s ease;   /* adoucit le saut quand une ligne s'ajoute */
     z-index: 2;
     display: flex;
     flex-direction: column;
 }
 
 /* couleur selon le fond de la carte */
-.card--dark  .body { color: var(--cream-light); }
+.card--dark  .body { color: var(--cream); }
 .card--light .body { color: var(--brown-deep); }
 
 .card--image .body h2 {
     font-size: 1.7rem;
     font-weight: 700;
     line-height: 1.1;
-    margin: 0 0 0.2rem;
-}
-.card--image .body .subtitle {
-    font-style: italic;
-    font-size: 1.15rem;
-    opacity: 0.85;
-    margin: 0 0 1rem;
+    margin: 0 0 0.8rem;
 }
 
-/* .inner garde la largeur de DÉPART, donc le titre déborderait sous la
-   carte voisine et serait rogné pendant la fermeture. On le contraint à
-   la largeur visible réelle (--card-w, posée par cards.js à chaque
-   scroll) : il se replie ligne à ligne au lieu d'être coupé. */
-.card--image .body .title,
 .card--image .body h2,
-.card--image .body .subtitle {
-    max-width: calc(var(--card-w, 100%) - 5rem);   /* 2.5rem de marge de chaque côté */
+.card--image .body .long {
     overflow-wrap: break-word;
     hyphens: auto;             /* « énergé-tiques » plutôt que « énergétiq-ues » */
 }
-.card--image .body .long,
-.card--image .body .short {
+.card--image .body .long {
     text-align: left;
     line-height: 1.5;
     font-size: 1rem;
@@ -380,13 +379,6 @@
 .card--image .body .long {
     width: 100%;
 }
-
-/* le short est contraint à la largeur FINALE de la carte, donc
-   jamais rogné par la voisine quand elle se referme.
-   La règle est en haut de ce fichier, calée sur --card-narrow :
-   l'ancienne copie en dur (17vw - 5rem) vivait ici et, plus bas
-   dans la feuille, l'emportait — elle a été supprimée. */
-
 
 /* ============================================================
    EFFET — apparition en fondu du texte
@@ -401,13 +393,8 @@
     animation: textReveal 0.7s ease both;
 }
 .card--image .body h2        { animation-delay: 0.00s; }
-.card--image .body .subtitle { animation-delay: 0.08s; }
 .card--image .body .swap     { animation-delay: 0.20s; }
 
-
-/* ============================================================
-   BASCULE texte long / court (selon la largeur de la carte)
-   ============================================================ */
 
 .body .swap {
     position: relative;       /* repère pour le texte en absolu */
@@ -416,16 +403,6 @@
     margin: 0;
     transition: opacity 0.5s ease;
 }
-
-/* le texte VISIBLE est dans le flux (il donne la hauteur) */
-/* le texte MASQUÉ est en absolu (il ne compte pas dans la hauteur) */
-
-.body .short { position: absolute; top: 0; left: 0; right: 0; opacity: 0; }
-.body .long  { position: relative; opacity: 1; }
-
-.card.is-narrow .body .long  { position: absolute; top: 0; left: 0; right: 0; opacity: 0; }
-.card.is-narrow .body .short { position: relative; opacity: 1; line-height: 1.4; }
-
 
 /* ============================================================
    MOBILE
@@ -469,23 +446,17 @@
 
     /* le texte se recale sur les bords de l'écran, ancré en bas de
        carte plutôt qu'à hauteur fixe */
+    /* pleine largeur : la contrainte calée sur --card-w n'a plus de sens
+       (et le !important couvre un --card-w resté en ligne après resize) */
     .card--image .body {
         top: auto;
         left: 1.4rem;
         right: 1.4rem;
+        width: auto !important;
         bottom: 1.4rem;
     }
     .card--image .body h2 { font-size: 1.4rem; }
-    .card--image .body .subtitle { font-size: 1rem; }
-    /* pleine largeur : la contrainte calée sur --card-w n'a plus de sens
-       (et le !important couvre un --card-w resté en ligne après resize) */
-    .card--image .body .title,
-    .card--image .body h2,
-    .card--image .body .subtitle { max-width: none !important; }
-    .card--image .body .long,
-    .card--image .body .short { text-align: left; font-size: 0.95rem; }
-    /* la largeur figée du texte court n'a plus de sens à pleine largeur */
-    .card--image .body .short { width: auto; }
+    .card--image .body .long { text-align: left; font-size: 0.95rem; }
 }
 
 @media (max-width: 560px) {
