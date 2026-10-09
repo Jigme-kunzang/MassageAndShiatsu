@@ -3,6 +3,7 @@ layout: ../../layouts/Prestation.astro
 title: "Séance à domicile — le cabinet vient à vous"
 description: "Le massage de votre choix, chez vous : j'apporte la table, le linge et les huiles. Une heure, au Lavandou et dans les communes voisines."
 nom: "Séance à domicile"
+question: "Comment se passe une séance à domicile ?"
 motsCles: ["Chez vous", "Matériel fourni", "Aucun trajet", "Le Lavandou"]
 image: "/pictures/domicile.jpg"
 image2: "/pictures/energetique2.jpg"
@@ -13,11 +14,11 @@ bienfaits:
   heading: "Ce que change le fait de ne pas se déplacer."
   cards:
     - title: "L'après-séance est immédiat"
-      text: "Pas de voiture à reprendre, pas de retour à l'agitation : vous restez dans l'état où la séance vous laisse."
+      text: "pas de voiture à reprendre, pas de retour à l'agitation : vous restez dans l'état où la séance vous laisse."
     - title: "Accessible quand se déplacer ne l'est pas"
-      text: "Mobilité réduite, convalescence, jeunes enfants à la maison : le massage reste possible."
+      text: "mobilité réduite, convalescence, jeunes enfants à la maison : le massage reste possible."
     - title: "Dans vos repères"
-      text: "Votre lumière, votre calme, vos odeurs. Certains corps lâchent bien plus vite chez eux."
+      text: "votre lumière, votre calme, vos odeurs. Certains corps lâchent bien plus vite chez eux."
 highlight:
   heading: "J'apporte tout,"
   headingEm: "vous prêtez la pièce."
@@ -49,6 +50,6 @@ closingQuote: "Le massage vient jusqu'à vous."
 
 Certaines personnes ne peuvent pas se déplacer : mobilité réduite, convalescence, jeunes enfants à la maison. D'autres préfèrent simplement ne pas reprendre la voiture après une séance. Le domicile répond aux deux.
 
-Le massage est le même qu'au cabinet : nous convenons ensemble du massage à la prise de rendez-vous, parmi les [massages énergétiques](/prestations/energetiques), les [bien-être](/prestations/bien-etre), les [sportif](/prestations/sportif) ou les [autres prestations](/prestations/other).
+Le massage est le même qu'au cabinet : nous convenons ensemble du massage à la prise de rendez-vous, parmi les [massages énergétiques](/prestations/energetiques), le [massage bien-être](/prestations/bien-etre), le [massage sportif](/prestations/sportif) ou les [autres prestations](/prestations/other).
 
 J'apporte tout le matériel. Il suffit d'une pièce calme et d'un peu de place autour de la table.

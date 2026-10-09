@@ -39,6 +39,7 @@ const {
   title, description,
   eyebrow = "La prestation",
   lead,
+  question,   // sous-titre au-dessus du texte d'ouverture (le corps du Markdown)
   nom, motsCles = [],
   lieu = "Au cabinet, au Lavandou - ou chez vous",
   image, imageAlt,
@@ -98,13 +99,14 @@ const tarif = lignes.length ? fusion(lignes.map((l) => l.tarif), (t) => `${t} �
     <section class="rangee">
       <div class="wrap">
         <div class="texte">
-          <div class="chapeau"><slot /></div>
           <h2>{bienfaits.heading}</h2>
           <ul class="liste">
             {bienfaits.cards.map((c: any) => (
-              <li><strong>{c.title}</strong>{c.text && <> — {c.text}</>}</li>
+              <li><strong>{c.title}</strong>{c.text && <> : {c.text}</>}</li>
             ))}
           </ul>
+          {question && <h3>{question}</h3>}
+          <div class="chapeau"><slot/></div>
         </div>
         <figure class="visuel">
           <img src={image} alt={imageAlt ?? title} />
@@ -125,28 +127,30 @@ const tarif = lignes.length ? fusion(lignes.map((l) => l.tarif), (t) => `${t} �
       </div>
     </section>
 
-    <!-- ====== CITATION — respiration entre deux rangées ====== -->
-    {closingQuote && (
-      <section class="citation">
-        <div class="wrap"><blockquote>{closingQuote}</blockquote></div>
-      </section>
-    )}
+    <div class="closing-band">
+      <!-- ====== CITATION — respiration pleine largeur ====== -->
+      {closingQuote && (
+        <section class="citation">
+          <div class="wrap"><blockquote>{closingQuote}</blockquote></div>
+        </section>
+      )}
 
-    <!-- ====== POUR QUI — balayage vertical, colonne de gauche ====== -->
-    {pourQui && (
-      <section class="pour-qui">
-        <div class="wrap">
-          <div class="titre">
-            <p class="rubrique">Pour qui ?</p>
-            <h2>{pourQui.heading}</h2>
-            {pourQui.note && <p class="incise" set:html={pourQui.note} />}
+      <!-- ====== POUR QUI — titre et liste ====== -->
+      {pourQui && (
+        <section class="pour-qui">
+          <div class="wrap">
+            <div class="titre">
+              <p class="rubrique">Pour qui ?</p>
+              <h2>{pourQui.heading}</h2>
+              {pourQui.note && <p class="incise" set:html={pourQui.note} />}
+            </div>
+            <ul class="liste cochee">
+              {pourQui.items.map((it: string) => <li set:html={it} />)}
+            </ul>
           </div>
-          <ul class="liste cochee">
-            {pourQui.items.map((it: string) => <li set:html={it} />)}
-          </ul>
-        </div>
-      </section>
-    )}
+        </section>
+      )}
+    </div>
 
     <!-- ====== EN PRATIQUE + RÉSERVATION ====== -->
     <section class="pratique">

@@ -3,23 +3,24 @@ layout: ../../layouts/Prestation.astro
 title: "Shiatsu — la pression juste, à travers le vêtement"
 description: "Découvrez le shiatsu : ses bienfaits sur le corps, ses points forts et ses limites. Une pratique reçue tout habillé, sans huile ni contact avec la peau."
 nom: "Shiatsu"
+question: "Qu'est-ce que le shiatsu ?"
 eyebrow: "Massages énergétiques"
-motsCles: ["Reçu habillé", "Sans huile", "Stress", "Sommeil", "Tensions profondes"]
+motsCles: ["Habillé", "Acupression", "Énergie"]
 image: "/pictures/shiatsu2.jpg"
 image2: "/pictures/shiatsu3.jpg"
-lead: "Le shiatsu est une communication du coeur à coeur l'art du bien être, de la détente."
+lead: "Le shiatsu est une communication du cœur à cœur : l'art du bien-être et de la détente."
 bienfaits:
   heading: "Ce que la séance dénoue."
   cards:
     - title: "Apaisement du corps et de l'esprit"
     - title: "Régulation douce de l'équilibre global"
-    - title: "Sensation de recentrage et de la vitalité"
+    - title: "Sensation de recentrage et de vitalité"
 highlight:
-  heading: "Le shiatsu"
+  heading: "Le shiatsu,"
   headingEm: "une pratique habillée"
   paragraphs:
     - "Vous êtes vêtu·e d'une tenue souple et confortable, allongé·e sur un futon. Une pression douce et profonde passe à travers le tissu — jamais directement sur la peau."
-    - "Le shiatsu une alternative idéale il lève les freins liés à la pudeur et au toucher, tout en offrant les bénéfices physique et nerveux de la relaxation."
+    - "Le shiatsu, une alternative idéale : il lève les freins liés à la pudeur et au toucher, tout en offrant les bénéfices physiques et nerveux de la relaxation."
 balance:
   limitesHeading: "Ce qu'il faut savoir sur cette prestation"
   limites:
@@ -41,9 +42,9 @@ pourQui:
 closingQuote: "Se détendre sans se dévoiler."
 ---
 
-Issue de la médecine traditionnelle chinoise, il est comforme à une pratique occidentale qui agit sur les 12 méridiens tendino musculaires (canaux immateriels d'énergie) permettant à l'energie du corps de circuler et de renforcer l'immunité. 
+Issu de la médecine traditionnelle chinoise, il est conforme à une pratique occidentale qui agit sur les 12 méridiens tendino-musculaires (canaux immatériels d'énergie) permettant à l'énergie du corps de circuler et de renforcer l'immunité. 
 
-Il agit de façon immédiate sur le système nerveux autonome. Le praticien applique des accupressions le long des méridiens.
+Il agit de façon immédiate sur le système nerveux autonome. Le praticien applique des acupressions le long des méridiens.
 
 Rien n'est brusque. La séance suit son souffle : on appuie, on maintient, on relâche, on écoute la réponse du corps avant d'avancer.
 

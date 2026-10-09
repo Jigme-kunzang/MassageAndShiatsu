@@ -62,6 +62,7 @@ main td:nth-child(2) {
     font-style: italic;
     white-space: nowrap;
 }
+.tarif-options > div + div { margin-top: 0.35rem; }
 
 /* colonne tarif, alignée à droite et accentuée */
 main th:last-child { text-align: right; }

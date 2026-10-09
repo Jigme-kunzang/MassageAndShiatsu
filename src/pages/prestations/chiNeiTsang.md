@@ -3,6 +3,7 @@ layout: ../../layouts/Prestation.astro
 title: "Massage du ventre Chi Nei Tsang — le massage taoïste du ventre"
 description: "Découvrez le Chi Nei Tsang : ses bienfaits sur le corps, ses points forts et ses limites. Un massage taoïste du ventre, doux et profond."
 nom: "Massage du ventre CHI NEI TSANG"
+question: "Qu'est-ce que le Chi Nei Tsang ?"
 eyebrow: "Massages énergétiques"
 motsCles: ["Ventre", "Digestion", "Respiration", "Émotions", "Pressions douces"]
 image: "/pictures/chiNeiTsang3.jpg"
@@ -13,11 +14,11 @@ bienfaits:
   heading: "Vos grands systèmes métaboliques, stimulés."
   cards:
     - title: "Digestif & lymphatique"
-      text: "Favorise l'élimination naturelle et le drainage."
+      text: "favorise l'élimination naturelle et le drainage."
     - title: "Nerveux"
-      text: "Apaise l'esprit et libère les tensions accumulées."
+      text: "apaise l'esprit et libère les tensions accumulées."
     - title: "Immunitaire & vasculaire"
-      text: "Stimule vos défenses et relance la circulation."
+      text: "stimule vos défenses et relance la circulation."
 highlight:
   heading: "Une invitation"
   headingEm: "au lâcher-prise."

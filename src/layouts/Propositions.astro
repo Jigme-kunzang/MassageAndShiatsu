@@ -3,7 +3,7 @@
 // (bien-être, énergétiques, sportif, à domicile).
 // Appliqué depuis le frontmatter du Markdown : layout: ../../layouts/Propositions.astro
 // -> toutes les valeurs du frontmatter arrivent dans Astro.props.frontmatter
-// -> le <slot /> reçoit le corps du Markdown (les paragraphes d'intro).
+//    (le corps du Markdown n'est pas affiché : pas de texte d'intro).
 // La donnée qui pilote la grille est `propositions` : une liste de cartes
 // { nom, name, text, image, alt, href }.
 //   nom  -> CLÉ dans public/prestations.json : le titre affiché, la durée
@@ -42,6 +42,7 @@ const tarifDe = (nom?: string) => {
 };
 
 const { frontmatter } = Astro.props;
+const booking = "https://terapiz.com/masseur/le-lavandou/carole-renaud";
 const {
   title, description,
   eyebrow = "Les prestations",
@@ -68,12 +69,6 @@ const {
       </div>
     </section>
 
-    <section class="intro">
-      <div class="wrap reveal">
-        <slot />
-      </div>
-    </section>
-
     <section class="propositions">
       <div class="wrap">
         <div class="grid">
@@ -87,14 +82,17 @@ const {
                 </div>
                 <div class="body">
                   <h2>{titre}</h2>
-                  {duree && <p class="meta"><strong>{tarif}</strong> – Séance de {duree}</p>}
+                  {duree && <p class="meta"><strong>{tarif}</strong> - Séance de {duree}</p>}
                   {p.motsCles && (
                     <ul class="mots-cles">
                       {p.motsCles.map((m: string) => <li>{m}</li>)}
                     </ul>
                   )}
                   <p class="desc">{p.text}</p>
-                  {p.href && <a class="btn-carte" href={p.href}>En savoir plus</a>}
+                  <div class="cta-row">
+                    {p.href && <a class="btn-carte" href={p.href}>En savoir plus</a>}
+                    <a class="btn-carte btn-primary" href={booking}>Réserver un créneau</a>
+                  </div>
                 </div>
               </article>
             );

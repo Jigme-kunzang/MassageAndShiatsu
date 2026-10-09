@@ -4,11 +4,11 @@ import { getGoogleReviews, stars } from '../lib/APIGoogle';
 import type { Review } from '../lib/Review';
 
 const { reviews, rating, total, mapsUri, errorMsg } = await getGoogleReviews();
----
 
-{errorMsg && (
-  <p class="gr-error">Impossible de charger les avis ({errorMsg}).</p>
-)}
+// en cas d'échec, la section est simplement omise : l'erreur reste
+// visible dans la console du build, jamais sur la page
+if (errorMsg) console.warn(`[GoogleReview] avis non chargés : ${errorMsg}`);
+---
 
 {!errorMsg && (
   <section class="gr">

@@ -23,6 +23,12 @@
     font-style: italic;
     font-display: swap;
 }
+@font-face {
+    font-family: "Just Signature";
+    src: url("/fonts/JustSignature-92w7.ttf") format("truetype");
+    font-style: normal;
+    font-display: swap;
+}
 
 /* ------------------------------------------------------------
    2. DESIGN TOKENS — la charte, en un seul endroit
@@ -30,7 +36,7 @@
 :root {
     /* Typographie */
     --font-serif:   "Lora", Georgia, serif;
-
+    --font-signature: "Just Signature", cursive;
     /* Fonds */
     --cream:        #FCF0E2;   /* fond crème (pages claires + header) */
     --cream-card:   #FFF9F0;   /* cartes, champs de formulaire */
