@@ -16,11 +16,16 @@ import { familles } from '../../public/prestations.json'
     	     aussi d'intitulé du lien pour les lecteurs d'écran -->
     	<img src="/pictures/logo.png" alt="Massages &amp; Shiatsu, Carole Renaud — retour à l'accueil" />
     </a>
-	<ul>
+	<!-- burger : visible seulement sur mobile (voir header.css) -->
+	<button type="button" class="burger" aria-expanded="false" aria-controls="menu-principal" aria-label="Ouvrir le menu">
+		<span aria-hidden="true"></span>
+	</button>
+	<ul id="menu-principal">
 		<li><a href="/">Accueil</a></li>
 		<li><a href="/cabinet/about">À propos de moi</a></li>
-		<li><a href="https://terapiz.com/masseur/le-lavandou/carole-renaud">Réserver un Créneau</a></li>
+		<li><a href="https://terapiz.com/masseur/le-lavandou/carole-renaud">Réserver un créneau</a></li>
 		<li><a href="/cabinet/tarifs">Tarifs</a></li>
+		<li><a href="/informations/contact">Contact</a></li>
 		<li class="dropdown">
     		<!-- bouton et non lien : il n'y a pas de page « toutes les
     		     prestations », et au doigt sur mobile le focus ouvre le
@@ -36,3 +41,28 @@ import { familles } from '../../public/prestations.json'
 		</li>
 	</ul>
 </nav>
+
+<script>
+	// ouverture / fermeture du menu mobile
+	const nav = document.querySelector("nav");
+	const burger = nav?.querySelector<HTMLButtonElement>(".burger");
+
+	const setOpen = (open: boolean) => {
+		nav!.classList.toggle("is-open", open);
+		burger!.setAttribute("aria-expanded", String(open));
+		burger!.setAttribute("aria-label", open ? "Fermer le menu" : "Ouvrir le menu");
+	};
+
+	if (nav && burger) {
+		burger.addEventListener("click", () => setOpen(!nav.classList.contains("is-open")));
+		// un lien choisi ou Échap referment le panneau
+		nav.querySelectorAll("#menu-principal a").forEach((a) =>
+			a.addEventListener("click", () => setOpen(false)));
+		document.addEventListener("keydown", (e) => {
+			if (e.key === "Escape" && nav.classList.contains("is-open")) {
+				setOpen(false);
+				burger.focus();
+			}
+		});
+	}
+</script>
