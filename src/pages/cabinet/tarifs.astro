@@ -10,6 +10,20 @@ import Meta from '../../components/Meta.astro'
 // un composant garantit l'ordre de chargement.
 import '../../styles/globals.css'
 import '../../styles/tarifs.css'
+
+const tarifsGroupes = tarifs.reduce((groupes, prestation) => {
+    let groupe = groupes.find((item) => item.nom === prestation.nom)
+    if (!groupe) {
+        groupe = { nom: prestation.nom, offres: [] }
+        groupes.push(groupe)
+    }
+    groupe.offres.push(prestation)
+    return groupes
+}, [] as { nom: string; offres: typeof tarifs }[])
+
+for (const groupe of tarifsGroupes) {
+    groupe.offres.sort((a, b) => a["durée"] - b["durée"])
+}
 ---
 
 <!DOCTYPE html>
@@ -37,14 +51,22 @@ import '../../styles/tarifs.css'
                 </tr>
             </thead>
             <tbody>
-                {tarifs.map((prestation) => (
+                {tarifsGroupes.map((groupe) => (
                     <tr>
                         {/* data-label : sur mobile les en-têtes sont masqués,
                             c'est cet attribut qui réaffiche le nom de la
                             colonne à gauche de chaque valeur */}
-                        <td data-label="Prestation">{prestation.nom}</td>
-                        <td data-label="Durée">{prestation.durée} minutes</td>
-                        <td data-label="Tarif">{prestation.tarif} €</td>
+                        <td data-label="Prestation">{groupe.nom}</td>
+                        <td data-label="Durées">
+                            <div class="tarif-options">
+                                {groupe.offres.map((offre) => <div>{offre["durée"]} minutes</div>)}
+                            </div>
+                        </td>
+                        <td data-label="Tarifs">
+                            <div class="tarif-options">
+                                {groupe.offres.map((offre) => <div>{offre.tarif} €</div>)}
+                            </div>
+                        </td>
                     </tr>
                 ))}
             </tbody>
