@@ -3,7 +3,7 @@
 
     "familles": [
         {"id": "bien-etre",     "nom": "Massage bien-être",      "menu": "Bien-être",      "href": "/prestations/bien-etre"},
-        {"id": "energetiques",  "nom": "Massage énergétique",   "menu": "Énergétiques",   "href": "/prestations/energetiques"},
+        {"id": "energetique",  "nom": "Massage énergétique",   "menu": "Énergétique",   "href": "/prestations/energetiques"},
         {"id": "sportif",      "nom": "Massage sportif",       "menu": "Sportif",       "href": "/prestations/sportif"},
         {"id": "convalescence", "nom": "Massage convalescence®","menu": "Convalescence®", "href": "/prestations/convalescence"},
         {"id": "other",         "nom": "Autres prestations",    "menu": "Autres",         "href": "/prestations/other"}
@@ -12,9 +12,12 @@
     "tarifs": [
         {"nom": "Myo-fascial des 12 méridiens", "durée": 60, "tarif": 90},
         {"nom": "Massage détente musculaire", "durée": 30, "tarif": 50},
+        {"nom": "Massage détente musculaire", "durée": 60, "tarif": 90},
+        {"nom": "Massage détente musculaire", "durée": 90, "tarif": 130},
         {"nom": "Massage convalescence®", "durée": 60, "tarif": 90},
         {"nom": "Massage convalescence®", "durée": 30, "tarif": 50},
         {"nom": "Massage indien ayurvédique", "durée": 60, "tarif": 90},
+        {"nom": "Massage indien ayurvédique", "durée": 90, "tarif": 130},
         {"nom": "Shiatsu", "durée": 50, "tarif": 90},
         {"nom": "Massage du ventre CHI NEI TSANG", "durée": 60, "tarif": 80},
         {"nom": "Séance à domicile", "durée": 60, "tarif": 110},
