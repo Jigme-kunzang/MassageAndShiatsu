@@ -74,25 +74,6 @@ body.page-propositions {
 }
 
 /* ------------------------------------------------------------
-   INTRO — corps du Markdown, colonne de lecture centrée
-   ------------------------------------------------------------ */
-.intro {
-    padding: clamp(1.5rem, 4vh, 3rem) 0;
-    text-align: center;
-}
-.intro .wrap {
-    max-width: var(--content-narrow);
-}
-.intro p {
-    margin: 0 auto 1.1rem;
-    max-width: 68ch;
-    color: var(--brown-soft);
-}
-.intro p:last-child { margin-bottom: 0; }
-.intro a { color: var(--brown-logo); }
-.intro a:hover { color: var(--gold); }
-
-/* ------------------------------------------------------------
    GRILLE DE PROPOSITIONS
    Flex plutôt que grid : la dernière ligne incomplète
    reste centrée au lieu de se coller à gauche.
@@ -195,15 +176,25 @@ body.page-propositions {
     font-size: 0.7rem;
 }
 
+/* les boutons de la carte, côte à côte et calés en bas ------- */
+.p-card .cta-row {
+    margin-top: auto;
+    flex-wrap: nowrap;        /* toujours sur la même ligne */
+    gap: 0.6rem;
+}
+
 /* le bouton de la carte, aplat sable comme sur la maquette ---- */
 .btn-carte {
-    align-self: flex-start;
-    margin-top: auto;
-    padding: 0.85rem 1.9rem;
+    flex: 1 1 auto;           /* les deux boutons se partagent la largeur */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0.85rem 1rem;
     background: var(--border);
     font-size: 0.72rem;
     font-weight: 600;
-    letter-spacing: 2.5px;
+    letter-spacing: 1.5px;
     text-transform: uppercase;
     text-decoration: none;
     color: var(--brown-deep);
@@ -213,6 +204,9 @@ body.page-propositions {
     background: var(--brown);
     color: var(--cream-light);
 }
+/* même gabarit que « En savoir plus », mais en aplat doré */
+.btn-carte.btn-primary { background: var(--gold); color: var(--brown); }
+.btn-carte.btn-primary:hover { background: var(--gold-light); color: var(--brown); }
 
 /* ------------------------------------------------------------
    APPARITION AU SCROLL  (piloté par scripts/display.js)

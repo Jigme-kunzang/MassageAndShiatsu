@@ -1,8 +1,9 @@
 ---
 layout: ../../layouts/Prestation.astro
-title: "Massage Signature — une heure trente sur mesure"
+title: "Massage sur mesure — une heure trente sur mesure"
 description: "Rien n'est figé : une heure trente construite avec vous, sur le corps entier ou seulement certaines zones. Le massage le plus libre du cabinet."
 nom: "Massage sur mesure"
+question: "Qu'est-ce que le massage sur mesure ?"
 motsCles: ["Sur mesure", "Corps entier", "Format long", "À offrir", "Première fois"]
 image: "/pictures/carole2.jpg"
 image2: "/pictures/massage6.jpg"
@@ -12,11 +13,11 @@ bienfaits:
   heading: "Ce que le temps long permet."
   cards:
     - title: "Rien n'est sacrifié"
-      text: "Le corps entier peut être parcouru sans expédier une zone pour en atteindre une autre."
+      text: "le corps entier peut être parcouru sans expédier une zone pour en atteindre une autre."
     - title: "Le corps a le temps de lâcher"
-      text: "Le relâchement profond arrive rarement en dix minutes. Ici, il a la place de s'installer."
+      text: "le relâchement profond arrive rarement en dix minutes. Ici, il a la place de s'installer."
     - title: "Les techniques se combinent"
-      text: "Énergétique, relaxant, plus profond : la séance emprunte à chaque approche selon le besoin."
+      text: "énergétique, relaxant, plus profond : la séance emprunte à chaque approche selon le besoin."
 highlight:
   heading: "Rien n'est figé,"
   headingEm: "tout se décide ensemble."

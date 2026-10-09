@@ -20,7 +20,3 @@ propositions:
     alt: "Massage à domicile"
     href: "/prestations/domicile"
 ---
-
-Toutes les séances ne rentrent pas dans une formule. Parfois c'est une zone précise qui réclame de l'attention — un dos raide après des semaines de bureau, des jambes lourdes en fin de journée, une épaule qui ne relâche plus. Parfois c'est le trajet, tout simplement, qui n'est pas envisageable ce jour-là.
-
-Le massage sur mesure est là pour ça : rien n'est figé, nous échangeons d'abord, puis je construis la séance autour de ce que votre corps exprime — le corps entier ou seulement les zones qui le demandent. Et si vous préférez ne pas vous déplacer, je viens chez vous avec la table, le linge et les huiles.

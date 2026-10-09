@@ -3,6 +3,7 @@ layout: ../../layouts/Prestation.astro
 title: "Massage détente musculaire — récupération et fascias"
 description: "Détente et récupération musculaire : mouvements lents et pression ferme pour dénouer les nœuds et libérer les tensions chroniques du dos"
 nom: "Massage détente musculaire"
+question: "Qu'est-ce que le massage détente musculaire ?"
 motsCles: ["Pression ferme", "Muscles profonds", "Fascias", "Sport", "Récupération"]
 image: "/pictures/detente-muscu.jpg"
 image2: "/pictures/detente-musculaire2.jpg"
@@ -12,11 +13,11 @@ bienfaits:
   heading: "Ce que la pression ferme permet."
   cards:
     - title: "Dénouer les nœuds"
-      text: "Il cible les adhérences musculaires qui créent de la douleur ou restreignent le mouvement."
+      text: "il cible les adhérences musculaires qui créent de la douleur ou restreignent le mouvement."
     - title: "Libérer les tensions chroniques"
-      text: "Idéal pour les raideurs tenaces au niveau du dos, celles qui ne cèdent plus toutes seules."
+      text: "idéal pour les raideurs tenaces au niveau du dos, celles qui ne cèdent plus toutes seules."
     - title: "Améliorer la mobilité"
-      text: "En étirant les fibres musculaires, il redonne de la souplesse et de l'amplitude aux articulations."
+      text: "en étirant les fibres musculaires, il redonne de la souplesse et de l'amplitude aux articulations."
 highlight:
   heading: "Lentement,"
   headingEm: "mais en profondeur."

@@ -14,9 +14,3 @@ propositions:
     alt: "Massage sportif, détente et récupération musculaire"
     href: "/prestations/detente-musculaire"
 ---
-
-Ces massages s'adressent à deux publics. Aux personnes souffrant de douleurs musculaires chroniques liées à une mauvaise posture ou au stress. Et aux sportifs, avant ou après l'effort, pour optimiser la récupération et prévenir les blessures
-
-Selon le moment — veille de course, lendemain d'effort, plein cycle d'entraînement — le travail n'est pas le même. Dites-moi où vous en êtes, j'adapte le rythme et l'intensité
-
-Pour une séance plus longue, construite sur mesure autour de votre pratique, voyez les [autres prestations](/prestations/other)
