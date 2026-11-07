@@ -4,14 +4,6 @@ Options -Indexes
 # Le clone Git d'OVH laisse un dossier .git dans www : on le rend inaccessible
 RedirectMatch 404 /\.git
 
-# Le site ne doit pas apparaître dans les moteurs de recherche. L'en-tête
-# couvre aussi les images et les PDF, que la balise meta ne touche pas.
-# Surtout PAS de « Disallow » dans un robots.txt : Google ne lirait plus
-# les pages, donc plus ce noindex, et pourrait garder l'adresse en index.
-<IfModule mod_headers.c>
-    Header always set X-Robots-Tag "noindex, nofollow"
-</IfModule>
-
 # ============================================================
 #  EN-TÊTES DE SÉCURITÉ
 #  Toute modification doit être suivie d'un test de la page
