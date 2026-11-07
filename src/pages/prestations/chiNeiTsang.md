@@ -16,7 +16,7 @@ bienfaits:
     - title: "Digestif & lymphatique"
       text: "favorise l'élimination naturelle et le drainage."
     - title: "Nerveux"
-      text: "apaise l'esprit et libère les tensions accumulées, le stress et les états dépréssifs."
+      text: "apaise l'esprit et libère les tensions accumulées, le stress et les états dépressifs."
     - title: "Immunitaire & vasculaire"
       text: "stimule vos défenses et relance la circulation."
     - title: "Soulage les douleurs du dos"
@@ -30,7 +30,7 @@ highlight:
 balance:
   limitesHeading: "Ce qu'il faut savoir"
   limites:
-    - "La personne devra être habillé d'une tenue souple et comfortable."
+    - "La personne devra être habillée d'une tenue souple et confortable."
     - "Le massage peut se pratiquer sur table ou futon."
     - "Les effets sont progressifs, à entretenir sur plusieurs séances."
     - "Ce n'est pas un acte médical et ne remplace aucun suivi."
@@ -46,6 +46,6 @@ pourQui:
 closingQuote: "Dénouer, de l'intérieur"
 ---
 
-Le Chi Nei Tsang est un massage abdominal issu de la tradition taoïste. L'énergie vitale est souvant bloquée par les énergies négatives mais aussi par le stress, un alimentation mal adaptée, une mauvaise posture, les opérations, les toxines dans le corps.
+Le Chi Nei Tsang est un massage abdominal issu de la tradition taoïste. L'énergie vitale est souvent bloquée par les énergies négatives mais aussi par le stress, une alimentation mal adaptée, une mauvaise posture, les opérations, les toxines dans le corps.
 
 C'est une pratique de bien-être et de détente. Elle ne remplace pas un suivi médical, mais elle accompagne : un ventre plus léger, une respiration plus libre, un esprit plus posé.

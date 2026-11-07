@@ -1,5 +1,6 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
+import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
@@ -7,6 +8,9 @@ export default defineConfig({
   // dont le référencement a besoin : lien canonique et aperçus de
   // partage (voir src/components/Meta.astro).
   site: 'https://carole-renaud-massage.fr',
+
+  // Plan du site pour Google : génère sitemap-index.xml à chaque construction.
+  integrations: [sitemap()],
 
   build: {
     // Par défaut Astro recopie les petits scripts et les petites feuilles de

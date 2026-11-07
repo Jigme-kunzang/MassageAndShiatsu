@@ -22,13 +22,13 @@ highlight:
   heading: "Lenteur,"
   headingEm: "et efficacité"
   paragraphs:
-    - "La pression est ferme et le rythme volontairement lent. Il combine étirrement et mobilisation pour optimiser la fonction musculaire et articulaire et gagner de l'amplitude."
+    - "La pression est ferme et le rythme volontairement lent. Il combine étirement et mobilisation pour optimiser la fonction musculaire et articulaire et gagner de l'amplitude."
     - "Le travail porte autant sur le muscle que sur les fascias, ce tissu conjonctif qui enveloppe et relie tout le corps. Quand il se rigidifie, c'est toute la chaîne qui perd en amplitude."
-    - "Il est conseillé de laisser au corps le temps d'intégrer les effets du massaages avant une nouvelle séance sprotive."
+    - "Il est conseillé de laisser au corps le temps d'intégrer les effets du massage avant une nouvelle séance sportive."
 balance:
   limitesHeading: "Ce qu'il faut savoir"
   limites:
-    - "Possibilité de courbatures 24/48h, c'est un phénomaine normal de libération."
+    - "Possibilité de courbatures 24/48h, c'est un phénomène normal de libération."
     - "Sur 30 minutes, on cible : on ne traite pas le corps entier. On ajuste."
     - "Ce n'est pas un acte médical et ne remplace ni kiné ni traitement."
   note: "En cas de blessure récente, de douleur inhabituelle ou de traitement en cours, parlez-en à votre médecin avant la séance. Nous en discutons aussi ensemble avant de commencer."
@@ -38,7 +38,7 @@ pourQui:
     - "Vous êtes sportif et voulez optimiser votre récupération après l'effort."
     - "Idéal pour récupérer après ou avant l'effort, prévenir les blessures."
     - "Vous sentez que votre mobilité se réduit, que l'amplitude diminue."
-    - "Améliorer les performance."
+    - "Améliorer les performances."
   note: ""
 closingQuote: "Récupérer fait partie de l'entraînement"
 ---

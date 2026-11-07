@@ -8,12 +8,12 @@ eyebrow: "Massages énergétiques"
 motsCles: ["Habillé", "Acupression", "Énergie"]
 image: "/pictures/shiatsu2.jpg"
 image2: "/pictures/shiatsu3.jpg"
-lead: "Le shiatsu est une communication du cœur à cœur : l'art du bien-être et de la détente."
+lead: "Le shiatsu est une communication de cœur à cœur : l'art du bien-être et de la détente."
 bienfaits:
   heading: "Les bienfaits"
   cards:
     - title: "Apaisement du corps et de l'esprit"
-      text: "apaise le système nerveux, dénoue les tensions profondes et relance la libre ciculation de l'energie."
+      text: "apaise le système nerveux, dénoue les tensions profondes et relance la libre circulation de l'énergie."
     - title: "Régulation douce de l'équilibre global"
       text: "rééquilibrage énergétique"
     - title: "Sensation de recentrage et de vitalité"
@@ -26,17 +26,17 @@ highlight:
 balance:
   limitesHeading: "Ce qu'il faut savoir sur cette prestation"
   limites:
-    - "Idéal pour rééquilbrage énergétique global."
+    - "Idéal pour un rééquilibrage énergétique global."
     - "Apaiser le système nerveux autonome."
-    - "Des contres indications existe : fièvre, imflammation aïgue, phlébite, certaine patologie."
+    - "Des contre-indications existent : fièvre, inflammation aiguë, phlébite, certaines pathologies."
     - "Ce n'est pas un acte médical : il ne remplace ni diagnostic ni traitement."
   note: "En cas de doute — grossesse, traitement en cours, problème de santé — parlez-en à votre médecin avant la séance. Nous en discutons ensemble à chaque début de séance."
 pourQui:
   heading: "Le shiatsu est fait pour vous si…"
   items:
     - "Vous n'aimez pas l'huile. Vous voulez essayer une approche énergétique sans vous dévêtir."
-    - "Idéal pour les tensions musculaire et articulaire."
-    - "S'adapter aux changement de saison."
+    - "Idéal pour les tensions musculaires et articulaires."
+    - "S'adapter aux changements de saison."
     - "Vous n'êtes pas à l'aise avec le contact direct sur la peau : ici, on reste habillé."
   note: "Vous restez habillé du début à la fin, et le shiatsu se pratique sans huile : c'est la porte d'entrée la plus douce vers un massage quand on est pudique ou hésitant."
 closingQuote: "Rééquilibrage énergétique global"

@@ -44,6 +44,6 @@ pourQui:
 closingQuote: "Se déposer, enfin..."
 ---
 
-L'abhyanga est l'un des massages fondateur de l'Ayurveda, la médecine traditionnelle indienne. Une huile chaude est appliquée généreusement, puis travaillée par des mouvements rythmés le long du corps et sur les points marma, ces zones d'énergie de la tradition ayurvédique.
+L'abhyanga est l'un des massages fondateurs de l'Ayurveda, la médecine traditionnelle indienne. Une huile chaude est appliquée généreusement, puis travaillée par des mouvements rythmés le long du corps et sur les points marma, ces zones d'énergie de la tradition ayurvédique.
 
 La chaleur ouvre, l'huile nourrit, le rythme apaise. On cherche surtout à enraciner : ramener au sol un corps et un esprit trop agités, calmer ce que l'Ayurveda appelle l'énergie Vata, celle du mouvement et de la dispersion.

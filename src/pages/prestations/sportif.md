@@ -9,7 +9,7 @@ lead: "Des mouvements lents et une pression ferme pour atteindre les couches pro
 propositions:
   - nom: "Massage détente musculaire"
     motsCles: ["Amplitude", "Performance", "Récupération"]
-    text: "Soulager les tensions, apporter de la mobiliter articulaire et retrouver du confort dans votre corps au quotidient par des maneuvres lentes, profondes."
+    text: "Soulager les tensions, apporter de la mobilité articulaire et retrouver du confort dans votre corps au quotidien par des manœuvres lentes, profondes."
     image: "/pictures/detente-muscu.jpg"
     alt: "Massage sportif, détente et récupération musculaire"
     href: "/prestations/detente-musculaire"

@@ -27,7 +27,7 @@ balance:
     - "C'est un massage de bien-être : il accompagne, il ne soigne pas."
     - "Il ne se substitue à aucun suivi médical en cours."
     - "L'accompagnement se construit dans la durée, séance après séance."
-    - "Dans le but de lacher ce qui fait mal émotionnellement ou physiquement"
+    - "Dans le but de lâcher ce qui fait mal émotionnellement ou physiquement"
     - "En cas de traitement lourd, un avis médical préalable est nécessaire."
   note: "Après une opération, un traitement lourd ou en cas de doute, parlez-en à votre médecin avant la séance. Nous en discutons aussi ensemble avant de commencer."
 pourQui:

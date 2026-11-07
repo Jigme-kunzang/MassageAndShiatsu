@@ -8,7 +8,7 @@ motsCles: ["Énergétique", "Étirement", "Mobilisation", "Méridiens"]
 image: "/pictures/meridiens.jpg"
 image2: "/pictures/facial.jpg"
 eyebrow: "Massages énergétiques"
-lead: "Le myo-fascial des 12 méridiens tendino-musculaires (MTM) relève exclusivement du massage bien-être. En travaillant sur ces réseaux ce massage agit sur les strucutres physique et la circulation énergétique. Ce massage offre une action complète, globale et profonde."
+lead: "Le myo-fascial des 12 méridiens tendino-musculaires (MTM) relève exclusivement du massage bien-être. En travaillant sur ces réseaux, ce massage agit sur les structures physiques et la circulation énergétique. Ce massage offre une action complète, globale et profonde."
 bienfaits:
   heading: "Les bienfaits"
   cards:
