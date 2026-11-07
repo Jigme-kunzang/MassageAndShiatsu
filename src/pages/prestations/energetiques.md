@@ -27,7 +27,7 @@ propositions:
     href: "/prestations/convalescence"
   - nom: "Shiatsu"
     motsCles: ["Habillé", "Acupression", "Énergie"]
-    text: "Le shiatsu se pratique sur un futon, les acupressions s'effectuent sur la ligne des méridiens dans un ordre bien précis. Il apaise le système nerveux, dénoue les tensions profondes et relance la libre circulation de l'énergie. Une tenue confortable est conseillée. Vous restez habillé."
+    text: "Le shiatsu (\"pression des doigts\" en japonnais) est une technique énergétique qui utilise des pressions maintenues sur les points d'acupuncture et le long des méridiens. Contrairement du massage à l'huile, il se pratique habillé, une tenue comfortable sur futon au sol."
     image: "/pictures/shiatsu1.jpg"
     alt: "Séance de shiatsu"
     href: "/prestations/shiatsu"

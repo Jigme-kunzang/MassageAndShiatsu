@@ -5,35 +5,34 @@ description: "Découvrez le Chi Nei Tsang : ses bienfaits sur le corps, ses poin
 nom: "Massage du ventre CHI NEI TSANG"
 question: "Qu'est-ce que le Chi Nei Tsang ?"
 eyebrow: "Massages énergétiques"
-motsCles: ["Ventre", "Digestion", "Respiration", "Émotions", "Pressions douces"]
+motsCles: ["Ventre", "Digestion", "Respiration", "Émotions"]
 image: "/pictures/chiNeiTsang3.jpg"
 image2: "/pictures/chiNeiTsang2.jpg"
 headingEm: "Massage du ventre Chi Nei Tsang"
-lead: "Pensé comme une véritable transformation de l'énergie, ce massage favorise une libre circulation de la vitalité dans l'ensemble de votre corps. Réalisé avec des pressions délicates et douces, il accompagne votre organisme vers un rééquilibrage naturel."
+lead: "Une invitation au lâcher-prise : un moment privilégié pour libérer les blocages, régénérer votre corps et retrouver un équilibre énergétique durable."
 bienfaits:
-  heading: "Vos grands systèmes métaboliques, stimulés."
+  heading: "Les bienfaits"
   cards:
     - title: "Digestif & lymphatique"
       text: "favorise l'élimination naturelle et le drainage."
     - title: "Nerveux"
-      text: "apaise l'esprit et libère les tensions accumulées."
+      text: "apaise l'esprit et libère les tensions accumulées, le stress et les états dépréssifs."
     - title: "Immunitaire & vasculaire"
       text: "stimule vos défenses et relance la circulation."
+    - title: "Soulage les douleurs du dos"
+      text: "" 
 highlight:
   heading: "Une invitation"
-  headingEm: "au lâcher-prise."
+  headingEm: "au lâcher-prise"
   paragraphs:
-    - "Un moment privilégié pour libérer les blocages, régénérer votre corps et retrouver un équilibre énergétique durable."
-    - "Le ventre est notre second cerveau. On y loge bien plus que la digestion : le ventre réagit à tout ce qu'on vit. Le Chi Nei Tsang travaille cette zone avec douceur et respect, sans jamais forcer. Vous pouvez garder un vêtement léger sur le ventre, et vous gardez la main à chaque étape."
-    - "Il arrive qu'une émotion remonte pendant la séance : c'est normal, et bienvenu. Mieux vaut simplement être disponible pour l'accueillir ce jour-là."
+    - "Le ventre est notre second cerveau. On y loge bien plus que la digestion : le ventre réagit à tout ce qu'on vit. Le Chi Nei Tsang travaille cette zone avec douceur et respect."
+    - "Il arrive qu'une émotion remonte pendant la séance : c'est normal, et bienvenu. Tout est juste..."
 balance:
   limitesHeading: "Ce qu'il faut savoir"
   limites:
-    - "C'est une zone intime : elle demande confiance et consentement à chaque étape."
-    - "Il peut réveiller des émotions."
+    - "La personne devra être habillé d'une tenue souple et comfortable."
+    - "Le massage peut se pratiquer sur table ou futon."
     - "Les effets sont progressifs, à entretenir sur plusieurs séances."
-    - "La pression sur le ventre peut surprendre au début."
-    - "Des contre-indications existent : grossesse, chirurgie abdominale récente, règles douloureuses, inflammation aiguë, ulcère, certaines pathologies digestives."
     - "Ce n'est pas un acte médical et ne remplace aucun suivi."
   note: "En cas de doute — grossesse, intervention récente, trouble digestif, problème de santé — parlez-en à votre médecin avant la séance. Nous en discutons aussi ensemble avant de commencer."
 pourQui:
@@ -43,16 +42,10 @@ pourQui:
     - "Vous sentez que le stress se loge dans votre ventre."
     - "Votre respiration reste haute, bloquée au niveau du diaphragme."
     - "Vous cherchez à soutenir votre élimination naturelle et votre drainage."
-    - "Vous traversez une période où vous gardez beaucoup pour vous."
-    - "Vous voulez un travail doux, en pressions délicates plutôt qu'en profondeur forcée."
-  note: "Le ventre est une zone intime : nous avançons à votre rythme, et rien ne se fait sans votre accord. Vous pouvez demander à alléger ou à arrêter à tout moment."
-closingQuote: "Dénouer, de l'intérieur."
+  note: "Le ventre est une zone intime : nous avançons à votre rythme, et rien ne se fait sans votre accord."
+closingQuote: "Dénouer, de l'intérieur"
 ---
 
-Le Chi Nei Tsang est un massage abdominal issu de la tradition taoïste. Pour elle, le ventre est un centre : il abrite la digestion, mais aussi une bonne part de nos tensions et de nos émotions — le stress, les contrariétés, ce qu'on « encaisse ».
-
-Pensé comme une véritable transformation de l'énergie, il favorise une libre circulation de la vitalité dans l'ensemble de votre corps. Réalisé avec des pressions délicates et douces autour du nombril, il accompagne votre organisme vers un rééquilibrage naturel en stimulant vos grands systèmes métaboliques : digestif et lymphatique pour l'élimination et le drainage, nerveux pour apaiser l'esprit et libérer les tensions accumulées, immunitaire et vasculaire pour stimuler vos défenses et relancer la circulation.
-
-Une invitation au lâcher-prise : un moment privilégié pour libérer les blocages, régénérer votre corps et retrouver un équilibre énergétique durable.
+Le Chi Nei Tsang est un massage abdominal issu de la tradition taoïste. L'énergie vitale est souvant bloquée par les énergies négatives mais aussi par le stress, un alimentation mal adaptée, une mauvaise posture, les opérations, les toxines dans le corps.
 
 C'est une pratique de bien-être et de détente. Elle ne remplace pas un suivi médical, mais elle accompagne : un ventre plus léger, une respiration plus libre, un esprit plus posé.

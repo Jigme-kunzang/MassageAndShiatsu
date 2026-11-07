@@ -5,7 +5,7 @@ description: "Découvrez l'abhyanga : ses bienfaits sur le corps, ses points for
 nom: "Massage indien ayurvédique"
 question: "Qu'est-ce que le massage indien ?"
 eyebrow: "Massage bien-être"
-motsCles: ["Huile chaude", "Corps entier", "Fatigue", "Ancrage", "Peau nourrie"]
+motsCles: ["Huile chaude", "Corps entier", "Fatigue", "Ancrage"]
 image: "/pictures/domicile.jpg"
 image2: "/pictures/massage.jpg"
 lead: "Rééquilibre et harmonie. Cette pratique millénaire indienne harmonise le corps, l'esprit et la libre circulation de votre énergie vitale, le Prana."
@@ -44,6 +44,6 @@ pourQui:
 closingQuote: "Se déposer, enfin..."
 ---
 
-L'abhyanga est l'un des massages fondateurs de l'Ayurveda, la médecine traditionnelle indienne. Une huile chaude est appliquée généreusement, puis travaillée par des mouvements rythmés le long du corps et sur les points marma, ces zones d'énergie de la tradition ayurvédique.
+L'abhyanga est l'un des massages fondateur de l'Ayurveda, la médecine traditionnelle indienne. Une huile chaude est appliquée généreusement, puis travaillée par des mouvements rythmés le long du corps et sur les points marma, ces zones d'énergie de la tradition ayurvédique.
 
 La chaleur ouvre, l'huile nourrit, le rythme apaise. On cherche surtout à enraciner : ramener au sol un corps et un esprit trop agités, calmer ce que l'Ayurveda appelle l'énergie Vata, celle du mouvement et de la dispersion.

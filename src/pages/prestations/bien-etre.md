@@ -5,7 +5,7 @@ description: "Le massage bien-être du cabinet : l'abhyanga ayurvédique à l'hu
 eyebrow: "Rééquilibre et harmonie"
 heading: "Massage"
 headingEm: "bien-être"
-lead: "Réalisé avec des huiles végétales tièdes, ce massage combine effleurages fluides, frictions enveloppantes et pressions précises. Ce massage tonifie et relaxe les tissus musculaires. Il est drainant et énergisant"
+lead: "Réalisé avec des huiles végétales chaudes, ce massage combine effleurages fluides, frictions enveloppantes et pressions précises. Ce massage tonifie et relaxe les tissus musculaires. Il est drainant et énergisant"
 propositions:
   - nom: "Massage indien ayurvédique"
     motsCles: ["Huile chaude", "Corps entier", "Ancrage"]
