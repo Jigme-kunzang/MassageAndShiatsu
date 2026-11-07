@@ -13,9 +13,8 @@ import '../../styles/about.css';
 //  formatage français et le décompte animé s'en chargent.
 // ================================================================
 const chiffres = [
-  { nombre: 20241, label: "corps soulagés",        precision: "depuis l'ouverture du cabinet" },
-  { nombre: 7,    label: "années de pratique",    precision: "formée aux massages bien-être" },
-  { nombre: 6,    label: "techniques maîtrisées", precision: "shiatsu, abhyanga, chi nei tsang…" },
+  { nombre: 7,    label: "années de pratique",    precision: "Formée aux massages bien-être" },
+  { nombre: 6,    label: "techniques maîtrisées", precision: "Shiatsu, Abhyanga technique ayurvédique, Chi Nei Tsang, Massage convalescence®, le Myo-fascial des 12 méridiens, Shiro abhyanga"},
 ];
 
 const enFrancais = new Intl.NumberFormat("fr-FR");
@@ -43,9 +42,9 @@ const enFrancais = new Intl.NumberFormat("fr-FR");
         <div class="hero-texte">
           <p class="eyebrow anim a1">À propos de moi</p>
           <h1>
-            <span class="l anim a2">Ralentir.</span>
-            <span class="l anim a3">Écouter.</span>
-            <span class="l anim a4">Accompagner.</span>
+            <span class="l anim a2">Ralentir</span>
+            <span class="l anim a3">Écouter</span>
+            <span class="l anim a4">Accompagner</span>
           </h1>
           <p class="lead anim a4">
             Dans un monde en perpétuelle accélération, je choisis de prendre le temps —
@@ -82,18 +81,56 @@ const enFrancais = new Intl.NumberFormat("fr-FR");
         <figure class="visuel reveal">
           <img src="/pictures/carole3.jpg" alt="Séance de massage au cabinet" loading="lazy" />
         </figure>
-        <div class="reveal">
-          <p>
-            Spécialisée dans l'art du massage bien-être depuis plus de cinq ans, j'ai à cœur
-            d'offrir à chacun une expérience <strong>unique, relaxante et adaptée à ses besoins</strong>.
-            Mon approche allie écoute, expertise et passion, pour vous accompagner vers un
-            mieux-être tant physique qu'émotionnel.
-          </p>
-          <p>
-            Je reçois des personnes de tous horizons : certaines pour un moment de détente,
+        <!-- le récit est découpé en blocs : chacun apparaît à son tour au scroll -->
+        <div class="recit">
+          <div class="reveal">
+            <p class="ouverture">
+              Spécialisée dans l'art du massage bien-être depuis plus de sept ans, j'ai à cœur
+              d'offrir à chacun une expérience <strong>unique, relaxante et adaptée à ses besoins</strong>.
+              Mon approche allie écoute, expertise et passion, pour vous accompagner vers un
+              mieux-être tant physique qu'émotionnel.
+            </p>
+            <p>
+              Je continue à me former, à explorer, à affiner ma pratique, mon toucher, car je considère
+              que ce métier est <strong>vivant et en perpétuelle évolution</strong>.
+            </p>
+          </div>
+
+          <div class="interlude reveal">
+            <p>Il se nourrit de chaque rencontre, chaque toucher, de chaque silence partagé.</p>
+            <p>
+              Être masseur c'est autant donner que recevoir&nbsp;: une attention, une énergie,
+              une écoute fine de ce qui se joue sous les doigts.
+            </p>
+            <p>Les mains captent, s'ajustent, répondent.</p>
+            <p>Le corps lui ne ment pas. Il accueille, il relâche, il guide.</p>
+          </div>
+
+          <p class="reveal">
+            Je reçois des personnes de tous horizons&nbsp;: certaines pour un moment de détente,
             d'autres pour récupérer après le sport, ou parce qu'elles traversent une période
             difficile et se reconnectent à leur corps après une maladie, un burn-out, une
             transition de vie. À chacune, j'offre <strong>un espace d'écoute et de respect</strong>.
+          </p>
+
+          <div class="reveal">
+            <h3>
+              La régularité dans le massage&nbsp;:
+              <span>plus le corps est habitué plus il conservera les bienfaits</span>
+            </h3>
+            <p>
+              Les résultats sur le corps sont évolutifs. Le massage regorge
+              d'effets positifs qui incluent notamment la prévention de la santé.
+            </p>
+            <p>
+              Chaque personne a une sensibilité différente, une histoire
+              et il est normal d'ajuster la pression au cours de la séance.
+              Un bon massage est un massage ajusté à votre corps, <strong>pas un protocole figé</strong>.
+            </p>
+          </div>
+
+          <p class="envoi reveal">
+            Dans cet échange silencieux, quelque chose se passe. Subtil et profondément humain.
           </p>
         </div>
       </div>
@@ -189,7 +226,7 @@ const enFrancais = new Intl.NumberFormat("fr-FR");
               <span class="tag">Le massage</span>
               <h3>Un retour à soi</h3>
               <p>
-                Je me suis formée aux massages bien-être il y a cinq ans. Ce n'était pas un
+                Je me suis formée aux massages bien-être il y a sept ans. Ce n'était pas un
                 simple virage professionnel, mais un retour à moi-même : une manière d'entrer
                 en relation autrement, au-delà des mots. Je me suis formée à plusieurs
                 techniques — chacune un langage du corps, de l'énergie et des émotions.
@@ -221,7 +258,7 @@ const enFrancais = new Intl.NumberFormat("fr-FR");
         <blockquote>
           Prendre soin de l'autre, c'est prendre soin de soi.
         </blockquote>
-        <p class="sign">Au plaisir de vous recevoir</p>
+        <p class="sign">Merci de votre confiance</p>
       </div>
     </section>
   </main>
