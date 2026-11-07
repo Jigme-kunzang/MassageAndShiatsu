@@ -5,7 +5,7 @@ description: "Découvrez l'abhyanga : ses bienfaits sur le corps, ses points for
 nom: "Massage indien ayurvédique"
 question: "Qu'est-ce que le massage indien ?"
 eyebrow: "Massage bien-être"
-motsCles: ["Huile chaude", "Corps entier", "Fatigue", "Ancrage", "Peau nourrie"]
+motsCles: ["Huile chaude", "Corps entier", "Fatigue", "Ancrage"]
 image: "/pictures/domicile.jpg"
 image2: "/pictures/massage.jpg"
 lead: "Rééquilibre et harmonie. Cette pratique millénaire indienne harmonise le corps, l'esprit et la libre circulation de votre énergie vitale, le Prana."

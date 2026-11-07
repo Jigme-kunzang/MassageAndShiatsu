@@ -165,18 +165,74 @@ main{
 .presence{padding:clamp(3.5rem,7vh,6rem) 0;}
 .presence .grid{
   display:grid;grid-template-columns:.9fr 1.1fr;
-  gap:clamp(2rem,5vw,4.5rem);align-items:center;
+  gap:clamp(2rem,5vw,4.5rem);align-items:start;
 }
-.presence .visuel{margin:0;}
+/* le récit est bien plus haut que la photo : elle l'accompagne au scroll */
+.presence .visuel{margin:0;position:sticky;top:2rem;}
 .presence .visuel img{
   display:block;width:100%;
-  aspect-ratio:4/3;object-fit:cover;
+  aspect-ratio:4/5;object-fit:cover;
+  max-height:calc(100vh - 4rem);
   border-radius:2px;
   box-shadow:0 18px 44px rgba(43,52,44,.18);
 }
-.presence p{margin:0 0 1.3rem;color:var(--ink-soft);}
+.presence .recit{display:grid;gap:clamp(2rem,4vh,2.8rem);}
+.presence p{margin:0 0 1.3rem;color:var(--ink-soft);text-wrap:pretty;}
 .presence p:last-child{margin-bottom:0;}
 .presence p strong{color:var(--ink);font-weight:500;}
+
+/* le paragraphe d'ouverture, un cran au-dessus du courant */
+.presence .ouverture{
+  font-size:clamp(1.12rem,1.02rem + .4vw,1.28rem);
+  line-height:1.62;
+  color:var(--ink);
+}
+
+/* les lignes les plus intimes, en italique le long d'un filet */
+.presence .interlude{
+  padding-left:clamp(1.1rem,2.4vw,1.6rem);
+  border-left:1px solid var(--clay);
+}
+.presence .interlude p{
+  margin:0;
+  font-style:italic;
+  line-height:1.6;
+  color:var(--ink);
+}
+.presence .interlude p + p{margin-top:.8rem;}
+
+/* le sous-titre : même jeu romain / italique sage que le titre du hero */
+.presence h3{
+  margin:clamp(.6rem,2vh,1.4rem) 0 1.2rem;
+  font-family:var(--font-serif);
+  font-weight:400;
+  font-size:clamp(1.5rem,1.25rem + 1vw,1.95rem);
+  line-height:1.22;
+  color:var(--ink);
+  text-wrap:balance;
+}
+.presence h3 span{
+  display:block;
+  margin-top:.5rem;
+  font-style:italic;
+  font-size:.72em;
+  line-height:1.35;
+  color:var(--sage-deep);
+}
+
+/* la phrase de fin, sous le petit filet argile de la signature de page */
+.presence .envoi{
+  font-style:italic;
+  font-size:clamp(1.2rem,1.05rem + .7vw,1.5rem);
+  line-height:1.45;
+  color:var(--ink);
+}
+.presence .envoi::before{
+  content:"";display:block;
+  width:34px;height:1px;
+  margin-bottom:1.3rem;
+  background:var(--clay);
+}
 
 /* ---------- parcours / timeline ---------- */
 .parcours{padding:clamp(2rem,4vh,4rem) 0 clamp(4.5rem,8vh,7rem);}
@@ -313,7 +369,10 @@ main{
 }
 
 @media (max-width:760px){
-  .presence .grid{grid-template-columns:1fr;gap:1.4rem;}
+  .presence .grid{grid-template-columns:1fr;gap:1.8rem;}
+  /* une seule colonne : la photo reprend sa place et son format large */
+  .presence .visuel{position:static;}
+  .presence .visuel img{aspect-ratio:4/3;}
   /* la ligne ne tient plus : les chiffres s'empilent */
   .chiffres ul{grid-auto-flow:row;gap:1.8rem;}
   /* le fil vertical est réservé à l'ordinateur */

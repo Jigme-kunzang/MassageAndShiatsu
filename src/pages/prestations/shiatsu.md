@@ -8,12 +8,14 @@ eyebrow: "Massages énergétiques"
 motsCles: ["Habillé", "Acupression", "Énergie"]
 image: "/pictures/shiatsu2.jpg"
 image2: "/pictures/shiatsu3.jpg"
-lead: "Le shiatsu est une communication du cœur à cœur : l'art du bien-être et de la détente."
+lead: "Le shiatsu est une communication de cœur à cœur : l'art du bien-être et de la détente."
 bienfaits:
-  heading: "Ce que la séance dénoue."
+  heading: "Les bienfaits"
   cards:
     - title: "Apaisement du corps et de l'esprit"
+      text: "apaise le système nerveux, dénoue les tensions profondes et relance la libre circulation de l'énergie."
     - title: "Régulation douce de l'équilibre global"
+      text: "rééquilibrage énergétique"
     - title: "Sensation de recentrage et de vitalité"
 highlight:
   heading: "Le shiatsu,"
@@ -24,22 +26,20 @@ highlight:
 balance:
   limitesHeading: "Ce qu'il faut savoir sur cette prestation"
   limites:
-    - "Les effets sont progressifs — rarement spectaculaires dès la première fois."
-    - "Une pression ferme peut surprendre ; de légères courbatures sont possibles le lendemain."
-    - "Des contre-indications existent : fièvre, inflammation aiguë, phlébite, certaines pathologies, grossesse."
+    - "Idéal pour un rééquilibrage énergétique global."
+    - "Apaiser le système nerveux autonome."
+    - "Des contre-indications existent : fièvre, inflammation aiguë, phlébite, certaines pathologies."
     - "Ce n'est pas un acte médical : il ne remplace ni diagnostic ni traitement."
   note: "En cas de doute — grossesse, traitement en cours, problème de santé — parlez-en à votre médecin avant la séance. Nous en discutons ensemble à chaque début de séance."
 pourQui:
   heading: "Le shiatsu est fait pour vous si…"
   items:
-    - "Vous vivez une période de stress ou de surmenage, et l'agitation ne redescend plus."
-    - "Vous dormez mal et cherchez à retrouver un sommeil plus profond."
+    - "Vous n'aimez pas l'huile. Vous voulez essayer une approche énergétique sans vous dévêtir."
+    - "Idéal pour les tensions musculaires et articulaires."
+    - "S'adapter aux changements de saison."
     - "Vous n'êtes pas à l'aise avec le contact direct sur la peau : ici, on reste habillé."
-    - "Vous n'aimez pas l'huile, ou vous enchaînez avec autre chose juste après."
-    - "Vous portez des tensions installées dans la nuque, les épaules, le dos."
-    - "Vous voulez essayer une approche énergétique sans vous dévêtir."
   note: "Vous restez habillé du début à la fin, et le shiatsu se pratique sans huile : c'est la porte d'entrée la plus douce vers un massage quand on est pudique ou hésitant."
-closingQuote: "Se détendre sans se dévoiler."
+closingQuote: "Rééquilibrage énergétique global"
 ---
 
 Issu de la médecine traditionnelle chinoise, il est conforme à une pratique occidentale qui agit sur les 12 méridiens tendino-musculaires (canaux immatériels d'énergie) permettant à l'énergie du corps de circuler et de renforcer l'immunité. 

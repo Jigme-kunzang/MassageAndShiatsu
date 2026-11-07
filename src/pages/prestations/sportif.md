@@ -8,8 +8,8 @@ headingEm: "sportif"
 lead: "Des mouvements lents et une pression ferme pour atteindre les couches profondes des muscles et des tissus"
 propositions:
   - nom: "Massage détente musculaire"
-    motsCles: ["Pression ferme", "Fascias", "Récupération"]
-    text: "Un massage axé sur la détente et la récupération musculaire, le relâchement des tensions et des fascias (tissu conjonctif du corps). Ses objectifs : dénouer les nœuds, ces adhérences musculaires qui créent de la douleur ou restreignent le mouvement ; libérer les tensions chroniques, notamment les raideurs tenaces au niveau du dos ; et améliorer la mobilité en étirant les fibres musculaires, pour redonner souplesse et amplitude aux articulations"
+    motsCles: ["Amplitude", "Performance", "Récupération"]
+    text: "Soulager les tensions, apporter de la mobilité articulaire et retrouver du confort dans votre corps au quotidien par des manœuvres lentes, profondes."
     image: "/pictures/detente-muscu.jpg"
     alt: "Massage sportif, détente et récupération musculaire"
     href: "/prestations/detente-musculaire"

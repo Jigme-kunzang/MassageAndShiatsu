@@ -121,7 +121,7 @@
 /* --- suite du même bloc : les prestations --- */
 .intro-prestations {
     background: var(--cream);
-    color: var(--brown-deep);     /* texte foncé sur fond clair */
+    color: var(--teal);     /* texte foncé sur fond clair */
     text-align: center;
     padding: clamp(3rem, 7vh, 5rem) 1.5rem clamp(4rem, 9vh, 7rem);
     margin: 0;
