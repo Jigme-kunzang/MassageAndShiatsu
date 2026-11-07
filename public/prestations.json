@@ -22,6 +22,8 @@
         {"nom": "Massage du ventre CHI NEI TSANG", "durée": 60, "tarif": 80},
         {"nom": "Séance à domicile", "durée": 60, "tarif": 110},
         {"nom": "Séance à domicile", "durée": 90, "tarif": 150},
+        {"nom": "Massage sur mesure", "durée": 30, "tarif": 50},
+        {"nom": "Massage sur mesure", "durée": 60, "tarif": 90},
         {"nom": "Massage sur mesure", "durée": 90, "tarif": 130}
     ]
 }
