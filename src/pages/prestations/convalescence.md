@@ -8,7 +8,7 @@ motsCles: ["Sur mesure", "En douceur", "Cicatrices"]
 image: "/pictures/convalescence.jpg"
 image2: "/pictures/convalescence2.jpg"
 eyebrow: "Massages énergétiques"
-lead: "Nous traversons des changements, des tempêtes silencieuses. Tout cela laisse une empreinte. On ne masse jamais qu'un corps, on accompagne une histoire."
+lead: "Nous traversons des changements, des tempêtes silencieuses. Tout cela laisse une empreinte. On ne masse jamais qu'un corps, on accompagne une histoire. L'art de l'adaptation : chaque corps a son histoire. Ici, la main observe, ressent et s'adapte — aux douleurs, aux cicatrices, aux sensibilités. Ce massage favorise la capacité du corps à se réguler et à se régénérer."
 bienfaits:
   heading: "Une approche unique, un retour à l'équilibre"
   cards:
