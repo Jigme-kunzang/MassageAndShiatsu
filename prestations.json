@@ -10,6 +10,7 @@
     ],
 
     "tarifs": [
+        {"nom": "Myo-fascial des 12 méridiens", "durée": 30, "tarif": 50},
         {"nom": "Myo-fascial des 12 méridiens", "durée": 60, "tarif": 90},
         {"nom": "Massage détente musculaire", "durée": 30, "tarif": 50},
         {"nom": "Massage détente musculaire", "durée": 60, "tarif": 90},
