@@ -39,6 +39,7 @@ const {
   title, description,
   eyebrow = "La prestation",
   lead,
+  lead2,
   question,   // sous-titre au-dessus du texte d'ouverture (le corps du Markdown)
   nom, motsCles = [],
   lieu = "Au cabinet, au Lavandou - ou chez vous",
@@ -78,6 +79,7 @@ const tarif = lignes.length ? fusion(lignes.map((l) => l.tarif), (t) => `${t} â‚
         <p class="rubrique">{eyebrow}</p>
         <h1><em>{headingEm}</em></h1>
         <p class="chapo">{lead}</p>
+        {lead2 && <p class="chapo">{lead2}</p>}
 
         <!-- deuxiÃ¨me barre du F, plus courte -->
         <div class="barre">

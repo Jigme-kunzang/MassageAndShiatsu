@@ -106,6 +106,7 @@ h2::before {
     margin: 0;
     max-width: 62ch;          /* la barre haute reste plus large… */
 }
+.chapo + .chapo { margin-top: 0.8rem; }
 
 /* deuxième barre du F : plus courte que la première */
 .barre {
