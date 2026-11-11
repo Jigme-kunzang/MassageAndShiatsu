@@ -19,12 +19,6 @@ propositions:
     image: "/pictures/chiNeiTsang.jpg"
     alt: "Massage chi nei tsang du ventre"
     href: "/prestations/chiNeiTsang"
-  - nom: "Massage convalescence®"
-    motsCles: ["Sur mesure", "En douceur", "Zones sensibles"]
-    text: "L'art de l'adaptation : chaque corps a son histoire. Ici, la main observe, ressent et s'adapte — aux douleurs, aux cicatrices, aux sensibilités. Ce massage favorise la capacité du corps à se réguler et à se régénérer."
-    image: "/pictures/convalescence.jpg"
-    alt: "Massage convalescence®"
-    href: "/prestations/convalescence"
   - nom: "Shiatsu"
     motsCles: ["Habillé", "Acupression", "Énergie"]
     text: "Le shiatsu (\"pression des doigts\" en japonais) est une technique énergétique qui utilise des pressions maintenues sur les points d'acupuncture et le long des méridiens. Contrairement au massage à l'huile, il se pratique habillé, une tenue confortable sur futon au sol."
